@@ -16,14 +16,18 @@ function parseLaunchOptions(args = process.argv.slice(2), env = process.env) {
       port:      { type: "string", short: "p" },
       hostname:  { type: "string", short: "H" },
       "no-open": { type: "boolean" },
+      tray:      { type: "boolean", short: "t" },
+      dev:       { type: "boolean" },
     },
     strict: false,
   });
 
   return {
-    port: cliArgs.port ?? env.PORT ?? "30141",
+    port: cliArgs.port ?? env.PORT ?? "37377",
     hostname: cliArgs.hostname ?? env.PI_WEB_HOSTNAME ?? "127.0.0.1",
     openBrowser: !cliArgs["no-open"] && !isEnabled(env.PI_WEB_NO_OPEN),
+    tray: Boolean(cliArgs.tray),
+    dev: Boolean(cliArgs.dev),
   };
 }
 

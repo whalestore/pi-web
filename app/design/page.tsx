@@ -10,7 +10,13 @@
  * 所有新 UI 开发前先在这里查看组件形态。
  */
 import { useState } from "react";
-import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text } from "@/components/ui";
+import {
+  Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text,
+  Checkbox, RadioGroup, Textarea, Label, Meter, Combobox, Autocomplete, SensitiveInput, InputGroup,
+  Banner, Tooltip, TooltipProvider, Loader, Empty, Popover, DropdownMenu,
+  Breadcrumbs, Pagination, Collapsible, Link, Toolbar, TableOfContents,
+  Table, Surface, LayerCard, Grid, ClipboardText, Code,
+} from "@/components/ui";
 import { useTheme } from "@/hooks/useTheme";
 
 function Section({
@@ -344,6 +350,208 @@ export default function DesignPage() {
             </Dialog>
           </Dialog.Root>
         </Section>
+
+
+        {/* ═══════ 表单组件补充 ═══════ */}
+        <Section
+          title="表单组件（Checkbox / Radio / Textarea / Label / Meter）"
+          desc="复选框、单选、多行输入、标签、度量条"
+          code={`<Checkbox label="启用" checked={on} onCheckedChange={setOn} />
+<RadioGroup name="tier" defaultValue="fast">
+  <RadioGroup.Item value="fast" label="快速" />
+  <RadioGroup.Item value="deep" label="深度" />
+</RadioGroup>
+<Textarea placeholder="多行内容" />
+<Label>字段标签</Label>
+<Meter value={68} max={100} label="使用率" />`}
+        >
+          <div className="flex flex-col gap-4 w-full max-w-sm">
+            <Checkbox label="启用 FleetView" />
+            <RadioGroup name="demo-tier" defaultValue="fast">
+              <RadioGroup.Item value="fast" label="快速（flash）" />
+              <RadioGroup.Item value="deep" label="深度（pro）" />
+            </RadioGroup>
+            <Textarea placeholder="多行输入内容" defaultValue="workflowScript 代码…" />
+            <div className="flex items-center gap-3">
+              <Label>使用率</Label>
+              <Meter value={68} max={100} label="使用率" />
+            </div>
+          </div>
+        </Section>
+
+        <Section
+          title="组合输入（Combobox / Autocomplete / SensitiveInput / InputGroup）"
+          desc="搜索选择、自动补全、敏感输入、前后缀组"
+          code={`<Combobox items={[{value:"a",label:"选项A"}]} label="组合框" />
+<Autocomplete items={[{value:"deepseek-v4-pro",label:"deepseek-v4-pro"}]} />
+<SensitiveInput value={secret} onChange={...} label="API Key" />
+<InputGroup leading={<span>https://</span>}><Input /></InputGroup>`}
+        >
+          <div className="flex flex-col gap-4 w-full max-w-sm">
+            <Combobox
+              items={[{ value: "a", label: "deepseek-v4-pro" }, { value: "b", label: "claude-sonnet-4" }]}
+              label="模型选择"
+            />
+            <Autocomplete
+              items={[{ value: "1", label: "deepseek-v4-pro" }, { value: "2", label: "deepseek-v4-flash" }]}
+              label="自动补全"
+            />
+            <SensitiveInput label="API Key" defaultValue="sk-xxxx" />
+            <InputGroup>
+              <InputGroup.Addon className="text-sm text-kumo-subtle px-2">https://</InputGroup.Addon>
+              <InputGroup.Input placeholder="域名" />
+            </InputGroup>
+          </div>
+        </Section>
+
+        {/* ═══════ 反馈组件 ═══════ */}
+        <Section
+          title="反馈组件（Banner / Tooltip / Loader / Empty / Popover / DropdownMenu）"
+          desc="提示横幅、悬停提示、加载、空状态、浮层、下拉菜单"
+          code={`<Banner variant="info" title="提示" description="横幅内容" />
+<TooltipProvider>
+  <Tooltip title="提示内容"><Button variant="secondary">悬停</Button></Tooltip>
+</TooltipProvider>
+<Loader size="sm" />
+<Empty title="暂无数据" description="添加后显示" />
+<Popover.Root><Popover.Trigger render={(p)=><Button {...p}/>} /><Popover.Content>…</Popover.Content></Popover.Root>
+<DropdownMenu.Root><DropdownMenu.Trigger render={(p)=><Button {...p}/>} /><DropdownMenu.Content><DropdownMenu.Item>选项</DropdownMenu.Item></DropdownMenu.Content></DropdownMenu.Root>`}
+        >
+          <div className="flex flex-col gap-3 w-full">
+            <Banner variant="default" title="提示" description="这是 Banner 提示横幅" />
+            <div className="flex items-center gap-3">
+              <TooltipProvider>
+                <Tooltip content="悬停提示内容" render={<Button variant="secondary">悬停我</Button>} />
+              </TooltipProvider>
+              <Loader size="sm" />
+              <Popover>
+                <Popover.Trigger render={(p) => <Button variant="secondary" {...p}>浮层</Button>} />
+                <Popover.Content>浮层内容</Popover.Content>
+              </Popover>
+              <DropdownMenu>
+                <DropdownMenu.Trigger render={(p) => <Button variant="secondary" {...p}>菜单</Button>} />
+                <DropdownMenu.Content>
+                  <DropdownMenu.Item>选项一</DropdownMenu.Item>
+                  <DropdownMenu.Item>选项二</DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu>
+            </div>
+            <Empty title="暂无数据" description="添加内容后显示在这里" />
+          </div>
+        </Section>
+
+        {/* ═══════ 导航组件 ═══════ */}
+        <Section
+          title="导航组件（Breadcrumbs / Pagination / Collapsible / Link / Toolbar / TableOfContents）"
+          desc="面包屑、分页、折叠、链接、工具栏、目录"
+          code={`<Breadcrumbs items={[{label:"首页",href:"/"},{label:"组件"}]} />
+<Pagination page={1} pageCount={10} onPageChange={...} />
+<Collapsible label="高级选项">折叠内容</Collapsible>
+<Link href="/design">组件库</Link>
+<Toolbar><Button variant="ghost">工具A</Button></Toolbar>`}
+        >
+          <div className="flex flex-col gap-4 w-full">
+            <Breadcrumbs>
+              <Breadcrumbs.Link href="/">首页</Breadcrumbs.Link>
+              <Breadcrumbs.Separator />
+              <Breadcrumbs.Link href="/design">组件库</Breadcrumbs.Link>
+              <Breadcrumbs.Separator />
+              <Breadcrumbs.Current>当前页</Breadcrumbs.Current>
+            </Breadcrumbs>
+            <Pagination page={1} setPage={() => {}} perPage={10} totalCount={50}>
+              <Pagination.Info />
+              <Pagination.Separator />
+              <Pagination.Controls />
+            </Pagination>
+            <Collapsible.Root>
+              <Collapsible.DefaultTrigger>▸ 高级选项（点击展开）</Collapsible.DefaultTrigger>
+              <Collapsible.DefaultPanel>
+                <div className="text-sm text-kumo-subtle p-2">折叠面板内容</div>
+              </Collapsible.DefaultPanel>
+            </Collapsible.Root>
+            <div className="flex items-center gap-3">
+              <Link href="/design">链接 → 组件库</Link>
+              <Toolbar>
+                <Button variant="ghost" size="sm">工具 A</Button>
+                <Button variant="ghost" size="sm">工具 B</Button>
+              </Toolbar>
+            </div>
+          </div>
+        </Section>
+
+        {/* ═══════ 数据展示 ═══════ */}
+        <Section
+          title="数据展示（Table / Surface / LayerCard / Grid / ClipboardText / Code）"
+          desc="表格、面板、分层卡片、栅格、复制、代码块"
+          code={`<Table><Table.Header><Table.Row><Table.Head>列</Table.Head></Table.Row></Table.Header>
+<Table.Body><Table.Row><Table.Cell>值</Table.Cell></Table.Row></Table.Body></Table>
+<Surface variant="elevated" className="p-4">面板</Surface>
+<LayerCard className="p-4">卡片</LayerCard>
+<ClipboardText text="复制我" />
+<Code code="const a = 1" language="ts" />`}
+        >
+          <div className="flex flex-col gap-3 w-full">
+            <Table>
+              <Table.Header>
+                <Table.Row>
+                  <Table.Head>角色</Table.Head>
+                  <Table.Head>模型</Table.Head>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                <Table.Row><Table.Cell>reviewer</Table.Cell><Table.Cell>deepseek-v4-pro</Table.Cell></Table.Row>
+                <Table.Row><Table.Cell>scout</Table.Cell><Table.Cell>deepseek-v4-flash</Table.Cell></Table.Row>
+              </Table.Body>
+            </Table>
+            <div className="flex gap-3">
+              <Surface color="secondary" className="p-3 text-sm">Surface 面板</Surface>
+              <LayerCard className="p-3 text-sm">LayerCard 卡片</LayerCard>
+              <ClipboardText text="要复制的文本" />
+            </div>
+            <Code code={`// workflowScript 示例
+const scan = await runs.run("scan", { agent: "scout", task: "扫描" });
+return scan.output;`} />
+          </div>
+        </Section>
+
+        {/* ═══════ 复合组件 ═══════ */}
+        <div className="border border-kumo-line rounded-lg overflow-hidden">
+          <div className="px-4 py-3 border-b border-kumo-line">
+            <div className="text-base font-semibold">复合/重型组件</div>
+            <div className="text-xs text-kumo-subtle mt-0.5">按需使用，均可在 components/ui 中找到包装</div>
+          </div>
+          <div className="p-4">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-kumo-line text-left">
+                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">组件</th>
+                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">用途</th>
+                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">注意</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                {[
+                  ["CommandPalette", "命令面板（Cmd+K 全局搜索/命令）", "复合组件（14 个子组件）"],
+                  ["Sidebar / SidebarProvider", "应用级侧边栏（菜单/折叠/悬浮）", "复合组件"],
+                  ["MenuBar", "顶部菜单栏", "useMenuNavigation"],
+                  ["DatePicker", "日期选择器", "DateRangePicker 已弃用，用 mode=\x27range\x27"],
+                  ["TimeseriesChart", "时序图表", "需要安装 echarts"],
+                  ["Flow", "流程图/节点图", "高级可视化"],
+                  ["TableOfContents", "文档目录", "useTableOfContentsActiveId"],
+                  ["SkeletonLine", "骨架屏", "配合 Loader"],
+                  ["Toasty / ToastManager", "命令式 toast", "createKumoToastManager"],
+                  ["RefreshButton", "刷新按钮（带旋转动画）", "Button 变体"],
+                ].map(([name, use, note]) => (
+                  <tr key={name} className="border-b border-kumo-line last:border-0">
+                    <td className="px-3 py-2 font-mono text-xs">{name}</td>
+                    <td className="px-3 py-2 text-xs text-kumo-subtle">{use}</td>
+                    <td className="px-3 py-2 text-xs text-kumo-inactive">{note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <footer className="pb-8 text-center text-xs text-kumo-inactive">
           pi-web UI 组件库 · 标准来源 @cloudflare/kumo v2.9.2 · 微调项见 docs/UI-COMPONENTS.md

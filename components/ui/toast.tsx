@@ -10,7 +10,11 @@
   <Toast.Description>内容</Toast.Description>
 </ToastProvider>
  */
-import { ToastProvider as KumoToastProvider } from "@cloudflare/kumo/components/toast";
+import {
+  Toast as KumoToast,
+  ToastProvider as KumoToastProvider,
+} from "@cloudflare/kumo/components/toast";
 
 export const ToastProvider = KumoToastProvider;
+export const Toast = KumoToast;
 export default ToastProvider;

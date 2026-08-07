@@ -1,0 +1,390 @@
+- generic [active] [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - banner [ref=f10e3]:
+      - generic [ref=f10e4]:
+        - generic [ref=f10e5]:
+          - heading "pi-web UI 组件库" [level=1] [ref=f10e6]
+          - generic [ref=f10e7]: 标准来源 @cloudflare/kumo · 微调层 components/ui
+        - button "☀️ 亮色 · 点击切换" [ref=f10e8] [cursor=pointer]
+    - main [ref=f10e10]:
+      - generic [ref=f10e11]:
+        - generic [ref=f10e12]:
+          - text: 使用规范：所有新 UI 一律从
+          - code [ref=f10e13]: "@/components/ui"
+          - text: 导入； 颜色只用语义 token（kumo-*），禁止内联 style 与硬编码 hex； 标准文档见
+          - code [ref=f10e14]: docs/UI-COMPONENTS.md
+          - text: 。
+        - link [ref=f10e15] [cursor=pointer]:
+          - /url: /design/plugins-viz
+          - button "🎨 设计图 v3：插件可视化配置预览" [ref=f10e16]
+      - generic [ref=f10e19]:
+        - generic [ref=f10e20]:
+          - generic [ref=f10e21]: 语义色板（kumo tokens）
+          - generic [ref=f10e22]: "主题微调：brand 对齐 pi-web accent 蓝（亮 #2563eb / 暗 #60a5fa）"
+        - generic [ref=f10e23]:
+          - generic [ref=f10e26]:
+            - generic [ref=f10e27]: kumo-brand
+            - generic [ref=f10e28]: brand / 主操作
+          - generic [ref=f10e31]:
+            - generic [ref=f10e32]: kumo-tint
+            - generic [ref=f10e33]: tint / 面板底
+          - generic [ref=f10e36]:
+            - generic [ref=f10e37]: kumo-line
+            - generic [ref=f10e38]: line / 边框
+          - generic [ref=f10e41]:
+            - generic [ref=f10e42]: kumo-success
+            - generic [ref=f10e43]: success
+          - generic [ref=f10e46]:
+            - generic [ref=f10e47]: kumo-warning
+            - generic [ref=f10e48]: warning
+          - generic [ref=f10e51]:
+            - generic [ref=f10e52]: kumo-danger
+            - generic [ref=f10e53]: danger
+          - generic [ref=f10e56]:
+            - generic [ref=f10e57]: kumo-info
+            - generic [ref=f10e58]: info
+          - generic [ref=f10e61]:
+            - generic [ref=f10e62]: kumo-base
+            - generic [ref=f10e63]: base / 页面背景
+      - generic [ref=f10e64]:
+        - generic [ref=f10e65]:
+          - generic [ref=f10e66]: Typography 字体标准（kumo Text 组件）
+          - generic [ref=f10e67]: 所有页面标题/正文必须遵循此层级，禁止自选字号
+        - generic [ref=f10e68]:
+          - generic [ref=f10e69]:
+            - generic [ref=f10e70]:
+              - heading "heading1 · 页面主标题" [level=1] [ref=f10e71]
+              - generic [ref=f10e72]: text-3xl (30px) font-semibold
+            - generic [ref=f10e73]:
+              - heading "heading2 · 区块标题" [level=2] [ref=f10e74]
+              - generic [ref=f10e75]: text-2xl (24px) font-semibold
+            - generic [ref=f10e76]:
+              - heading "heading3 · 小节标题" [level=3] [ref=f10e77]
+              - generic [ref=f10e78]: text-lg (16px) font-semibold
+            - generic [ref=f10e79]:
+              - paragraph [ref=f10e80]: body · 正文内容
+              - generic [ref=f10e81]: text-base (14px) · text-kumo-default
+            - generic [ref=f10e82]:
+              - paragraph [ref=f10e83]: secondary · 次要说明
+              - generic [ref=f10e84]: text-kumo-subtle 次要色
+            - generic [ref=f10e85]:
+              - text: mono · 代码/路径 deepseek-v4-pro
+              - generic [ref=f10e86]: font-mono · 等宽字体
+          - table [ref=f10e88]:
+            - rowgroup [ref=f10e89]:
+              - row [ref=f10e90]:
+                - columnheader "名称" [ref=f10e91]
+                - columnheader "字号" [ref=f10e92]
+                - columnheader "用途" [ref=f10e93]
+            - rowgroup [ref=f10e94]:
+              - row [ref=f10e95]:
+                - cell "heading1" [ref=f10e96]
+                - cell "30px (text-3xl)" [ref=f10e97]
+                - cell "页面主标题" [ref=f10e98]
+              - row [ref=f10e99]:
+                - cell "heading2" [ref=f10e100]
+                - cell "24px (text-2xl)" [ref=f10e101]
+                - cell "区块标题" [ref=f10e102]
+              - row [ref=f10e103]:
+                - cell "heading3" [ref=f10e104]
+                - cell "16px (text-lg)" [ref=f10e105]
+                - cell "小节标题（semibold）" [ref=f10e106]
+              - row [ref=f10e107]:
+                - cell "body" [ref=f10e108]
+                - cell "14px (text-base)" [ref=f10e109]
+                - cell "正文（默认）" [ref=f10e110]
+              - row [ref=f10e111]:
+                - cell "size=sm" [ref=f10e112]
+                - cell "13px (text-sm)" [ref=f10e113]
+                - cell "紧凑正文/表格" [ref=f10e114]
+              - row [ref=f10e115]:
+                - cell "size=xs" [ref=f10e116]
+                - cell "12px (text-xs)" [ref=f10e117]
+                - cell "辅助/标注/徽章" [ref=f10e118]
+      - generic [ref=f10e119]:
+        - generic [ref=f10e120]:
+          - generic [ref=f10e121]: Button 按钮
+          - generic [ref=f10e122]: "variant: primary / secondary / outline / ghost / destructive · 默认 size=sm（微调）"
+        - generic [ref=f10e123]:
+          - generic [ref=f10e124]:
+            - button "保存" [ref=f10e125] [cursor=pointer]
+            - button "取消" [ref=f10e128] [cursor=pointer]
+            - button "Outline" [ref=f10e129] [cursor=pointer]
+            - button "Ghost" [ref=f10e130] [cursor=pointer]
+            - button "删除" [ref=f10e131] [cursor=pointer]
+            - button [disabled] [ref=f10e134]:
+              - status "Loading" [ref=f10e135]
+              - text: 提交中…
+            - button "小尺寸" [ref=f10e138] [cursor=pointer]
+            - button "大尺寸" [ref=f10e139] [cursor=pointer]
+          - generic [ref=f10e140]: <Button variant="primary">保存</Button> <Button variant="secondary">取消</Button> <Button variant="outline">Outline</Button> <Button variant="ghost">Ghost</Button> <Button variant="destructive">删除</Button> <Button loading>提交中…</Button>
+      - generic [ref=f10e142]:
+        - generic [ref=f10e143]:
+          - generic [ref=f10e144]: Input + Field 输入框
+          - generic [ref=f10e145]: Field 提供 label / description / error，配 Input 使用
+        - generic [ref=f10e146]:
+          - generic [ref=f10e148]:
+            - generic [ref=f10e149]:
+              - generic [ref=f10e150]: 默认模型
+              - textbox "默认模型" [ref=f10e152]: deepseek-v4-pro
+              - paragraph [ref=f10e153]: 支持模糊匹配，如 anthropic/claude-sonnet-4
+            - generic [ref=f10e154]:
+              - generic [ref=f10e155]: 嵌套委派深度
+              - spinbutton "嵌套委派深度" [ref=f10e157]: "2"
+          - generic [ref=f10e158]: "<Field label=\"默认模型\" description=\"支持模糊匹配\"> <Input value={inputVal} onChange={...} /> </Field> <Field label=\"嵌套深度\" required> <Input type=\"number\" defaultValue={2} /> </Field>"
+      - generic [ref=f10e160]:
+        - generic [ref=f10e161]:
+          - generic [ref=f10e162]: Select 下拉选择
+          - generic [ref=f10e163]: "items: { value, label }[]"
+        - generic [ref=f10e164]:
+          - generic [ref=f10e166]:
+            - generic [ref=f10e167]:
+              - generic [ref=f10e168]: 思考级别
+              - combobox "思考级别" [ref=f10e170] [cursor=pointer]:
+                - generic [ref=f10e171]: high
+              - textbox [ref=f10e175]: high
+            - generic [ref=f10e176]: 当前值：high
+          - generic [ref=f10e177]: "<Select label=\"思考级别\" items={[ { value: \"off\", label: \"off\" }, { value: \"low\", label: \"low\" }, { value: \"high\", label: \"high\" }, ]} value={selectVal} onValueChange={setSelectVal} />"
+      - generic [ref=f10e179]:
+        - generic [ref=f10e180]:
+          - generic [ref=f10e181]: Switch 开关
+          - generic [ref=f10e182]: checked / onCheckedChange
+        - generic [ref=f10e183]:
+          - generic [ref=f10e185]:
+            - generic [ref=f10e186]:
+              - generic [ref=f10e187]: FleetView 常驻面板
+              - switch "FleetView 常驻面板" [checked] [ref=f10e189] [cursor=pointer]
+              - checkbox [checked] [ref=f10e191]
+            - generic [ref=f10e192]:
+              - generic [ref=f10e193]: Scope 监控（关闭示例）
+              - switch "Scope 监控（关闭示例）" [ref=f10e195] [cursor=pointer]
+              - checkbox [ref=f10e197]
+            - generic [ref=f10e198]:
+              - generic [ref=f10e199]: 禁用态示例
+              - switch "禁用态示例" [checked] [disabled] [ref=f10e201]
+              - checkbox [checked] [disabled] [ref=f10e203]
+          - generic [ref=f10e204]: "<Switch checked={switchOn} onCheckedChange={setSwitchOn} label=\"FleetView 常驻面板\" />"
+      - generic [ref=f10e206]:
+        - generic [ref=f10e207]:
+          - generic [ref=f10e208]: Badge 徽章
+          - generic [ref=f10e209]: 语义变体：primary / success / warning / error / neutral / info
+        - generic [ref=f10e210]:
+          - generic [ref=f10e212]:
+            - generic [ref=f10e213]: primary
+            - generic [ref=f10e214]: success · 已覆盖
+            - generic [ref=f10e215]: warning · 待处理
+            - generic [ref=f10e216]: error · 错误
+            - generic [ref=f10e217]: neutral · 内置
+            - generic [ref=f10e218]: info
+            - generic [ref=f10e219]: dot 样式
+          - generic [ref=f10e221]: <Badge variant="success">已覆盖</Badge> <Badge variant="neutral">内置</Badge> <Badge variant="warning" appearance="dot">dot 样式</Badge>
+      - generic [ref=f10e223]:
+        - generic [ref=f10e224]:
+          - generic [ref=f10e225]: Tabs 选项卡
+          - generic [ref=f10e226]: "数据驱动：tabs: { value, label }[] · variant: segmented（默认）/ underline"
+        - generic [ref=f10e227]:
+          - generic [ref=f10e229]:
+            - tablist [ref=f10e231]:
+              - tab "插件详情" [ref=f10e232] [cursor=pointer]
+              - tab "可视化配置" [selected] [ref=f10e233] [cursor=pointer]
+              - tab "模型路由" [ref=f10e234] [cursor=pointer]
+            - generic [ref=f10e235]: 当前选中：viz
+            - generic [ref=f10e236]:
+              - tablist [ref=f10e238]:
+                - tab "分段 A" [selected] [ref=f10e239] [cursor=pointer]
+                - tab "分段 B" [ref=f10e240] [cursor=pointer]
+              - button
+              - button
+          - generic [ref=f10e241]: "<Tabs variant=\"underline\" tabs={[ { value: \"detail\", label: \"插件详情\" }, { value: \"viz\", label: \"可视化配置\" }, ]} value={tab} onValueChange={setTab} />"
+      - generic [ref=f10e243]:
+        - generic [ref=f10e244]:
+          - generic [ref=f10e245]: Dialog 弹框
+          - generic [ref=f10e246]: 复合组件：Root / Trigger / Dialog(内容) / Title / Description / Close（无 Dialog.Content，内容组件就是 Dialog 本身）
+        - generic [ref=f10e247]:
+          - button "打开弹框" [ref=f10e249] [cursor=pointer]
+          - generic [ref=f10e250]: "<Dialog.Root open={open} onOpenChange={setOpen}> <Dialog.Trigger render={(p) => <Button {...p}>打开弹框</Button>} /> <Dialog> <Dialog.Title>插件配置</Dialog.Title> <Dialog.Description>弹框描述</Dialog.Description> <Dialog.Close render={(p) => <Button variant=\"secondary\" {...p}>关闭</Button>} /> </Dialog> </Dialog.Root>"
+      - generic [ref=f10e252]:
+        - generic [ref=f10e253]:
+          - generic [ref=f10e254]: 表单组件（Checkbox / Radio / Textarea / Label / Meter）
+          - generic [ref=f10e255]: 复选框、单选、多行输入、标签、度量条
+        - generic [ref=f10e256]:
+          - generic [ref=f10e258]:
+            - generic [ref=f10e260] [cursor=pointer]:
+              - checkbox [ref=f10e261]
+              - checkbox [ref=f10e262]
+              - generic [ref=f10e263]: 启用 FleetView
+            - radiogroup [ref=f10e264]:
+              - group [ref=f10e265]:
+                - generic [ref=f10e266]:
+                  - generic [ref=f10e267] [cursor=pointer]:
+                    - radio [checked] [ref=f10e268]
+                    - radio [checked] [ref=f10e271]
+                    - generic [ref=f10e272]: 快速（flash）
+                  - generic [ref=f10e273] [cursor=pointer]:
+                    - radio [ref=f10e274]
+                    - radio [ref=f10e277]
+                    - generic [ref=f10e278]: 深度（pro）
+            - textbox "多行输入内容" [ref=f10e279]: workflowScript 代码…
+            - generic [ref=f10e280]:
+              - generic [ref=f10e281]: 使用率
+              - meter [ref=f10e282]:
+                - generic [ref=f10e283]:
+                  - text: 使用率
+                  - generic [ref=f10e284]: 68%
+                - text: x
+          - generic [ref=f10e287]: "<Checkbox label=\"启用\" checked={on} onCheckedChange={setOn} /> <RadioGroup name=\"tier\" defaultValue=\"fast\"> <RadioGroup.Item value=\"fast\" label=\"快速\" /> <RadioGroup.Item value=\"deep\" label=\"深度\" /> </RadioGroup> <Textarea placeholder=\"多行内容\" /> <Label>字段标签</Label> <Meter value={68} max={100} label=\"使用率\" />"
+      - generic [ref=f10e289]:
+        - generic [ref=f10e290]:
+          - generic [ref=f10e291]: 组合输入（Combobox / Autocomplete / SensitiveInput / InputGroup）
+          - generic [ref=f10e292]: 搜索选择、自动补全、敏感输入、前后缀组
+        - generic [ref=f10e293]:
+          - generic [ref=f10e295]:
+            - generic [ref=f10e296]:
+              - generic [ref=f10e297]: 模型选择
+              - textbox [ref=f10e299]
+            - generic [ref=f10e300]:
+              - generic [ref=f10e301]: 自动补全
+              - textbox [ref=f10e303]
+            - generic [ref=f10e304]:
+              - generic [ref=f10e305]: API Key
+              - generic [ref=f10e307]:
+                - button "API Key, masked." [ref=f10e308] [cursor=pointer]:
+                  - textbox: sk-xxxx
+                  - generic [ref=f10e309]: ••••••••
+                  - button "Reveal value"
+                  - button "Copy to clipboard" [ref=f10e311]: Copy
+                - generic [ref=f10e312]: Click or press Enter to reveal.
+                - generic [ref=f10e313]: Value hidden
+            - generic [ref=f10e314]:
+              - generic: https://
+              - textbox "https://" [ref=f10e315]:
+                - /placeholder: 域名
+          - generic [ref=f10e316]: "<Combobox items={[{value:\"a\",label:\"选项A\"}]} label=\"组合框\" /> <Autocomplete items={[{value:\"deepseek-v4-pro\",label:\"deepseek-v4-pro\"}]} /> <SensitiveInput value={secret} onChange={...} label=\"API Key\" /> <InputGroup leading={<span>https://</span>}><Input /></InputGroup>"
+      - generic [ref=f10e318]:
+        - generic [ref=f10e319]:
+          - generic [ref=f10e320]: 反馈组件（Banner / Tooltip / Loader / Empty / Popover / DropdownMenu）
+          - generic [ref=f10e321]: 提示横幅、悬停提示、加载、空状态、浮层、下拉菜单
+        - generic [ref=f10e322]:
+          - generic [ref=f10e324]:
+            - generic [ref=f10e327]:
+              - paragraph [ref=f10e328]: 提示
+              - paragraph [ref=f10e330]: 这是 Banner 提示横幅
+            - generic [ref=f10e331]:
+              - button
+              - button "悬停我" [ref=f10e332] [cursor=pointer]
+              - status "Loading" [ref=f10e333]
+              - button "浮层" [ref=f10e336] [cursor=pointer]
+              - button "菜单" [ref=f10e337] [cursor=pointer]
+            - generic [ref=f10e338]:
+              - heading "暂无数据" [level=2] [ref=f10e339]
+              - paragraph [ref=f10e340]: 添加内容后显示在这里
+          - generic [ref=f10e341]: "<Banner variant=\"info\" title=\"提示\" description=\"横幅内容\" /> <TooltipProvider> <Tooltip title=\"提示内容\"><Button variant=\"secondary\">悬停</Button></Tooltip> </TooltipProvider> <Loader size=\"sm\" /> <Empty title=\"暂无数据\" description=\"添加后显示\" /> <Popover.Root><Popover.Trigger render={(p)=><Button {...p}/>} /><Popover.Content>…</Popover.Content></Popover.Root> <DropdownMenu.Root><DropdownMenu.Trigger render={(p)=><Button {...p}/>} /><DropdownMenu.Content><DropdownMenu.Item>选项</DropdownMenu.Item></DropdownMenu.Content></DropdownMenu.Root>"
+      - generic [ref=f10e343]:
+        - generic [ref=f10e344]:
+          - generic [ref=f10e345]: 导航组件（Breadcrumbs / Pagination / Collapsible / Link / Toolbar / TableOfContents）
+          - generic [ref=f10e346]: 面包屑、分页、折叠、链接、工具栏、目录
+        - generic [ref=f10e347]:
+          - generic [ref=f10e349]:
+            - navigation "breadcrumb" [ref=f10e350]:
+              - generic [ref=f10e351]:
+                - link "首页" [ref=f10e352] [cursor=pointer]:
+                  - /url: /
+                - link "组件库" [ref=f10e357] [cursor=pointer]:
+                  - /url: /design
+                - generic [ref=f10e362]: 当前页
+            - generic [ref=f10e364]:
+              - generic [ref=f10e365]: Showing 1-10 of 50
+              - navigation "Pagination" [ref=f10e368]:
+                - generic [ref=f10e369]:
+                  - button "First page" [disabled] [ref=f10e370]
+                  - button "Previous page" [disabled] [ref=f10e374]
+                  - textbox "Page number" [ref=f10e378]: "1"
+                  - button "Next page" [ref=f10e379] [cursor=pointer]
+                  - button "Last page" [ref=f10e383] [cursor=pointer]
+            - button "▸ 高级选项（点击展开）" [ref=f10e388] [cursor=pointer]
+            - generic [ref=f10e393]:
+              - link "链接 → 组件库" [ref=f10e394] [cursor=pointer]:
+                - /url: /design
+              - toolbar [ref=f10e395]:
+                - button "工具 A" [ref=f10e396] [cursor=pointer]
+                - button "工具 B" [ref=f10e397] [cursor=pointer]
+          - generic [ref=f10e398]: "<Breadcrumbs items={[{label:\"首页\",href:\"/\"},{label:\"组件\"}]} /> <Pagination page={1} pageCount={10} onPageChange={...} /> <Collapsible label=\"高级选项\">折叠内容</Collapsible> <Link href=\"/design\">组件库</Link> <Toolbar><Button variant=\"ghost\">工具A</Button></Toolbar>"
+      - generic [ref=f10e400]:
+        - generic [ref=f10e401]:
+          - generic [ref=f10e402]: 数据展示（Table / Surface / LayerCard / Grid / ClipboardText / Code）
+          - generic [ref=f10e403]: 表格、面板、分层卡片、栅格、复制、代码块
+        - generic [ref=f10e404]:
+          - generic [ref=f10e406]:
+            - table [ref=f10e407]:
+              - rowgroup [ref=f10e408]:
+                - row [ref=f10e409]:
+                  - columnheader "角色" [ref=f10e410]
+                  - columnheader "模型" [ref=f10e411]
+              - rowgroup [ref=f10e412]:
+                - row [ref=f10e413]:
+                  - cell "reviewer" [ref=f10e414]
+                  - cell "deepseek-v4-pro" [ref=f10e415]
+                - row [ref=f10e416]:
+                  - cell "scout" [ref=f10e417]
+                  - cell "deepseek-v4-flash" [ref=f10e418]
+            - generic [ref=f10e419]:
+              - generic [ref=f10e420]: Surface 面板
+              - generic [ref=f10e421]: LayerCard 卡片
+              - generic [ref=f10e422]:
+                - generic [ref=f10e423]: 要复制的文本
+                - button "Copy to clipboard" [ref=f10e424] [cursor=pointer]
+            - generic [ref=f10e430]: "// workflowScript 示例 const scan = await runs.run(\"scan\", { agent: \"scout\", task: \"扫描\" }); return scan.output;"
+          - generic [ref=f10e431]: <Table><Table.Header><Table.Row><Table.Head>列</Table.Head></Table.Row></Table.Header> <Table.Body><Table.Row><Table.Cell>值</Table.Cell></Table.Row></Table.Body></Table> <Surface variant="elevated" className="p-4">面板</Surface> <LayerCard className="p-4">卡片</LayerCard> <ClipboardText text="复制我" /> <Code code="const a = 1" language="ts" />
+      - generic [ref=f10e433]:
+        - generic [ref=f10e434]:
+          - generic [ref=f10e435]: 复合/重型组件
+          - generic [ref=f10e436]: 按需使用，均可在 components/ui 中找到包装
+        - table [ref=f10e438]:
+          - rowgroup [ref=f10e439]:
+            - row [ref=f10e440]:
+              - columnheader "组件" [ref=f10e441]
+              - columnheader "用途" [ref=f10e442]
+              - columnheader "注意" [ref=f10e443]
+          - rowgroup [ref=f10e444]:
+            - row [ref=f10e445]:
+              - cell "CommandPalette" [ref=f10e446]
+              - cell "命令面板（Cmd+K 全局搜索/命令）" [ref=f10e447]
+              - cell "复合组件（14 个子组件）" [ref=f10e448]
+            - row [ref=f10e449]:
+              - cell "Sidebar / SidebarProvider" [ref=f10e450]
+              - cell "应用级侧边栏（菜单/折叠/悬浮）" [ref=f10e451]
+              - cell "复合组件" [ref=f10e452]
+            - row [ref=f10e453]:
+              - cell "MenuBar" [ref=f10e454]
+              - cell "顶部菜单栏" [ref=f10e455]
+              - cell "useMenuNavigation" [ref=f10e456]
+            - row [ref=f10e457]:
+              - cell "DatePicker" [ref=f10e458]
+              - cell "日期选择器" [ref=f10e459]
+              - cell "DateRangePicker 已弃用，用 mode='range'" [ref=f10e460]
+            - row [ref=f10e461]:
+              - cell "TimeseriesChart" [ref=f10e462]
+              - cell "时序图表" [ref=f10e463]
+              - cell "需要安装 echarts" [ref=f10e464]
+            - row [ref=f10e465]:
+              - cell "Flow" [ref=f10e466]
+              - cell "流程图/节点图" [ref=f10e467]
+              - cell "高级可视化" [ref=f10e468]
+            - row [ref=f10e469]:
+              - cell "TableOfContents" [ref=f10e470]
+              - cell "文档目录" [ref=f10e471]
+              - cell "useTableOfContentsActiveId" [ref=f10e472]
+            - row [ref=f10e473]:
+              - cell "SkeletonLine" [ref=f10e474]
+              - cell "骨架屏" [ref=f10e475]
+              - cell "配合 Loader" [ref=f10e476]
+            - row [ref=f10e477]:
+              - cell "Toasty / ToastManager" [ref=f10e478]
+              - cell "命令式 toast" [ref=f10e479]
+              - cell "createKumoToastManager" [ref=f10e480]
+            - row [ref=f10e481]:
+              - cell "RefreshButton" [ref=f10e482]
+              - cell "刷新按钮（带旋转动画）" [ref=f10e483]
+              - cell "Button 变体" [ref=f10e484]
+      - generic [ref=f10e485]: pi-web UI 组件库 · 标准来源 @cloudflare/kumo v2.9.2 · 微调项见 docs/UI-COMPONENTS.md
+  - button "Open Next.js Dev Tools" [ref=f10e491] [cursor=pointer]

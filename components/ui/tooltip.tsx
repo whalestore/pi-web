@@ -10,7 +10,11 @@
   </Tooltip>
 </TooltipProvider>
  */
-import { Tooltip as KumoTooltip } from "@cloudflare/kumo/components/tooltip";
+import {
+  Tooltip as KumoTooltip,
+  TooltipProvider as KumoTooltipProvider,
+} from "@cloudflare/kumo/components/tooltip";
 
 export const Tooltip = KumoTooltip;
+export const TooltipProvider = KumoTooltipProvider;
 export default Tooltip;

@@ -110,7 +110,7 @@ export default function FontPage() {
                         </td>
                         <td className="px-4 py-2">
                           {elem ? (
-                            <code className="text-[11px] font-mono text-kumo-subtle break-all">{elem[0]}</code>
+                            <code className="text-xs font-mono text-kumo-subtle break-all">{elem[0]}</code>
                           ) : null}
                         </td>
                         <td className="px-4 py-2">

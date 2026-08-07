@@ -39,7 +39,7 @@ function Section({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         <div className="p-5 flex items-start flex-wrap gap-3 content-start bg-kumo-base">{children}</div>
         <div className="p-4 border-t lg:border-t-0 lg:border-l border-kumo-line bg-kumo-tint">
-          <pre className="text-[11px] leading-relaxed text-kumo-subtle overflow-x-auto whitespace-pre-wrap break-words font-mono">
+          <pre className="text-xs leading-relaxed text-kumo-subtle overflow-x-auto whitespace-pre-wrap break-words font-mono">
             {code}
           </pre>
         </div>
@@ -117,7 +117,7 @@ export default function DesignPage() {
                 <div className={`w-9 h-9 rounded-md ${cls}`} />
                 <div className="min-w-0">
                   <div className="text-xs font-mono text-kumo-default">{cls.split("-").slice(1).join("-")}</div>
-                  <div className="text-[11px] text-kumo-subtle truncate">{label}</div>
+                  <div className="text-xs text-kumo-subtle truncate">{label}</div>
                 </div>
               </div>
             ))}

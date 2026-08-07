@@ -9,7 +9,7 @@
  * 访问：http://127.0.0.1:37377/design/plugins-viz
  */
 import { useState } from "react";
-import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text } from "@/components/ui";
+import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text, Collapsible } from "@/components/ui";
 
 /* ---------- 模拟数据 ---------- */
 const MODEL_ITEMS = [
@@ -71,6 +71,9 @@ export default function PluginsVizPreview() {
   const [fleetView, setFleetView] = useState(true);
   const [asyncWidget, setAsyncWidget] = useState(true);
   const [asyncDefault, setAsyncDefault] = useState(true);
+  const [forceTopLevelAsync, setForceTopLevelAsync] = useState(false);
+  const [waitTool, setWaitTool] = useState(true);
+  const [completionBatch, setCompletionBatch] = useState(true);
   const [scopeWatch, setScopeWatch] = useState(false);
   const [lsp, setLsp] = useState(true);
   const [autoFollow, setAutoFollow] = useState(false);
@@ -185,19 +188,26 @@ export default function PluginsVizPreview() {
                       {page === "general" && (
                         <div>
 <PageHeading>通用设置</PageHeading>
+                          <div className="text-sm text-kumo-subtle mb-3">
+                            写入 <code className="font-mono text-xs bg-kumo-tint px-1 rounded">~/.pi/agent/extensions/subagent/config.json</code> · 重启 pi 或 /reload 生效
+                          </div>
 
                           <SectionLabel>UI 展示</SectionLabel>
                           <Card>
                             <div className="px-4 py-1">
                               <SwitchRow title="FleetView 常驻面板" desc="编辑器下方显示运行中的子代理摘要 · fleetView" checked={fleetView} onChange={setFleetView} />
                               <SwitchRow title="异步运行小部件" desc="编辑器下方显示后台任务状态 · asyncWidget" checked={asyncWidget} onChange={setAsyncWidget} />
+                              <SwitchRow title="完成通知批量合并" desc="后台任务同批完成时合并为一条静默通知 · completionBatch.enabled" checked={completionBatch} onChange={setCompletionBatch} />
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
                               <Field label="FleetView 位置 · fleetViewPlacement">
                                 <Select items={[{ value: "below", label: "belowEditor（下方）" }, { value: "above", label: "aboveEditor（上方）" }]} />
                               </Field>
                               <Field label="工具结果展示 · inlineToolDisplay">
-                                <Select items={[{ value: "rich", label: "rich（动态）" }, { value: "summary", label: "summary（单行）" }]} />
+                                <Select items={[{ value: "rich", label: "rich（动态展示）" }, { value: "summary", label: "summary（单行稳定）" }]} />
+                              </Field>
+                              <Field label="工具描述模式 · toolDescriptionMode">
+                                <Select items={[{ value: "full", label: "full（完整描述）" }, { value: "compact", label: "compact（精简）" }, { value: "custom", label: "custom（自定义文件）" }]} />
                               </Field>
                             </div>
                           </Card>
@@ -206,13 +216,24 @@ export default function PluginsVizPreview() {
                           <Card>
                             <div className="px-4 py-1">
                               <SwitchRow title="默认后台运行" desc="workflowScript 未指定 async 时默认异步 · asyncByDefault" checked={asyncDefault} onChange={setAsyncDefault} />
+                              <SwitchRow title="强制顶层异步" desc="顶层单/并行/链运行强制后台并跳过启动确认 · forceTopLevelAsync" checked={forceTopLevelAsync} onChange={setForceTopLevelAsync} />
+                              <SwitchRow title="subagent_wait 阻塞等待" desc="关闭后 wait 工具直接返回不阻塞 · waitTool.enabled" checked={waitTool} onChange={setWaitTool} />
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
-                              <Field label="嵌套委派深度 · maxSubagentDepth" description="0 = 禁止嵌套">
+                              <Field label="嵌套委派深度 · maxSubagentDepth" description="0 = 禁止嵌套，默认 2 层">
                                 <Input type="number" defaultValue={2} className="w-full" />
                               </Field>
-                              <Field label="并行上限 · parallel.maxTasks">
+                              <Field label="会话内最大启动数 · maxSubagentSpawnsPerSession" description="0 = 不限制">
+                                <Input type="number" defaultValue={0} className="w-full" />
+                              </Field>
+                              <Field label="全局并发上限 · globalConcurrencyLimit">
+                                <Input type="number" defaultValue={20} className="w-full" />
+                              </Field>
+                              <Field label="并行任务数 · parallel.maxTasks">
                                 <Input type="number" defaultValue={8} className="w-full" />
+                              </Field>
+                              <Field label="并行并发数 · parallel.concurrency">
+                                <Input type="number" defaultValue={4} className="w-full" />
                               </Field>
                             </div>
                           </Card>
@@ -221,12 +242,49 @@ export default function PluginsVizPreview() {
                           <Card className="p-4">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               <Field label="产物目录策略 · artifactDir">
-                                <Select items={[{ value: "project", label: "project（项目内 .pi-subagents/）" }, { value: "session", label: "session" }, { value: "temp", label: "temp" }]} />
+                                <Select items={[{ value: "project", label: "project（项目内 .pi-subagents/）" }, { value: "session", label: "session（pi 会话目录）" }, { value: "temp", label: "temp（系统临时）" }]} />
                               </Field>
-                              <Field label="worktree 基目录 · worktreeBaseDir">
-                                <Input placeholder="默认系统临时目录" className="w-full" />
+                              <Field label="会话目录 · defaultSessionDir">
+                                <Input value="~/.pi/agent/sessions/subagent/" className="w-full font-mono" />
+                              </Field>
+                              <Field label="worktree 基目录 · worktreeBaseDir" description="worktree: true 运行的隔离工作区">
+                                <Input placeholder="默认系统临时目录" className="w-full font-mono" />
+                              </Field>
+                              <Field label="单次运行输出目录 · singleRunOutputBaseDir">
+                                <Input placeholder="默认随运行产物目录" className="w-full font-mono" />
                               </Field>
                             </div>
+                          </Card>
+
+                          <SectionLabel>高级设置</SectionLabel>
+                          <Card>
+                            <Collapsible.Root>
+                              <Collapsible.DefaultTrigger className="w-full px-4 py-2.5 text-sm font-medium text-kumo-default hover:bg-kumo-tint">
+                                ▸ 展开高级选项（worktreeHook / intercomBridge / authorityPolicy / 预算）
+                              </Collapsible.DefaultTrigger>
+                              <Collapsible.DefaultPanel>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
+                                  <Field label="worktree 初始化 Hook · worktreeSetupHook" description="每个 worktree 创建时运行一次（绝对路径/~/相对）">
+                                    <Input placeholder="./scripts/setup-worktree.mjs" className="w-full font-mono" />
+                                  </Field>
+                                  <Field label="Hook 超时 · worktreeSetupHookTimeoutMs">
+                                    <Input type="number" defaultValue={30000} className="w-full" />
+                                  </Field>
+                                  <Field label="intercom 桥接 · intercomBridge.mode">
+                                    <Select items={[{ value: "always", label: "always（默认，始终注入）" }, { value: "fork-only", label: "fork-only（仅 fork 运行）" }, { value: "off", label: "off（关闭）" }]} />
+                                  </Field>
+                                  <Field label="操作确认策略 · authorityPolicy" description="auto / confirm / forbid">
+                                    <Input value="discardWorktree: confirm, stopRun: auto" className="w-full font-mono" />
+                                  </Field>
+                                  <Field label="回合预算默认 · turnBudget" description="如 {maxTurns:20, graceTurns:2} JSON 格式">
+                                    <Input placeholder={'{"maxTurns":20,"graceTurns":2}'} className="w-full font-mono" />
+                                  </Field>
+                                  <Field label="工具调用预算 · toolBudget" description="如 {soft:40, hard:60} JSON 格式">
+                                    <Input placeholder={'{"soft":40,"hard":60}'} className="w-full font-mono" />
+                                  </Field>
+                                </div>
+                              </Collapsible.DefaultPanel>
+                            </Collapsible.Root>
                           </Card>
                         </div>
                       )}

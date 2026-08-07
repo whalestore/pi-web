@@ -626,3 +626,268 @@
   - label prop: <Input label='Email' />
   - aria-label: <Input aria-label='Email address' />
   - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  722182ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  722387ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  722466ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  722575ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  722651ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:37377/design/plugins-viz?_rsc=jcyHvymKsvs6l2AU:0
+[  722676ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  722712ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  722778ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:37377/design/plugins-viz:0
+[  722943ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_react-dom_0kla17-._.js:15305
+[  722960ms] Error: ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./app/design/plugins-viz/page.tsx:279:111)
+    at Object.getCompilationErrors (file:///Users/caoxuefei/Codes/xuefei/pi-web-yuxi/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/caoxuefei/Codes/xuefei/pi-web-yuxi/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/caoxuefei/Codes/xuefei/pi-web-yuxi/node_modules/next/dist/server/dev/next-dev-server.js:720:42)
+    at DevServer.findPageComponents (file:///Users/caoxuefei/Codes/xuefei/pi-web-yuxi/node_modules/next/dist/server/dev/next-dev-server.js:690:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/caoxuefei/Codes/xuefei/pi-web-yuxi/node_modules/next/dist/server/base-server.js:1753:26)
+[  722970ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[  722991ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[  723073ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[  723114ms] [ERROR] ./app/design/plugins-viz/page.tsx:279:111
+Expected unicode escape
+  277 | ...confirm, stopRun: auto" className="w-full font-mono" />
+  278 | ...
+> 279 | ...· turnBudget" description="如 {\"maxTurns\":20,\"graceTurns\":2}">
+      |                                             ^
+  280 | ...":20,"graceTurns":2}'} className="w-full font-mono" />
+  281 | ...
+  282 | ...· toolBudget" description="如 {\"soft\":40,\"hard\":60}">
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/design/plugins-viz/page.tsx [Client Component Browser]
+    ./app/design/plugins-viz/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/plugins-viz/page.tsx [Client Component SSR]
+    ./app/design/plugins-viz/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[  759518ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[  759624ms] [LOG] [Fast Refresh] done in 59ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[  760664ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  760722ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761121ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761121ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761123ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761123ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761124ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761125ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761126ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761126ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761127ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761127ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761130ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761130ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761131ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761132ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761133ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  761133ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  762136ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  762822ms] [LOG] [Fast Refresh] done in 788ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783905ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783906ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783907ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783907ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783910ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783911ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783912ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783912ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783913ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  783913ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489

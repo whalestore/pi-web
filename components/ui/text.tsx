@@ -19,12 +19,9 @@
  * <Text variant="secondary" size="sm">辅助说明</Text>
  * <Text variant="mono" size="sm">deepseek-v4-pro</Text>
  */
-import { Text as KumoText, type KumoTextVariant, type KumoTextSize } from "@cloudflare/kumo/components/text";
+import { Text as KumoText } from "@cloudflare/kumo/components/text";
 
-export type TextProps = React.ComponentProps<typeof KumoText> & {
-  variant?: KumoTextVariant;
-  size?: KumoTextSize;
-};
+export type TextProps = React.ComponentProps<typeof KumoText>;
 
 export const Text = KumoText;
 export default Text;

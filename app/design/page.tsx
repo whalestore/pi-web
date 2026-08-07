@@ -128,15 +128,15 @@ export default function DesignPage() {
             {/* 层级预览 */}
             <div className="space-y-4">
               <div>
-                <Text variant="heading1">heading1 · 页面主标题</Text>
+                <Text variant="heading1" as="h1">heading1 · 页面主标题</Text>
                 <div className="text-xs text-kumo-inactive mt-0.5">text-3xl (30px) font-semibold</div>
               </div>
               <div>
-                <Text variant="heading2">heading2 · 区块标题</Text>
+                <Text variant="heading2" as="h2">heading2 · 区块标题</Text>
                 <div className="text-xs text-kumo-inactive mt-0.5">text-2xl (24px) font-semibold</div>
               </div>
               <div>
-                <Text variant="heading3">heading3 · 小节标题</Text>
+                <Text variant="heading3" as="h3">heading3 · 小节标题</Text>
                 <div className="text-xs text-kumo-inactive mt-0.5">text-lg (16px) font-semibold</div>
               </div>
               <div>
@@ -148,7 +148,7 @@ export default function DesignPage() {
                 <div className="text-xs text-kumo-inactive mt-0.5">text-kumo-subtle 次要色</div>
               </div>
               <div>
-                <Text variant="mono" size="sm">mono · 代码/路径 deepseek-v4-pro</Text>
+                <Text variant="mono" size="lg">mono · 代码/路径 deepseek-v4-pro</Text>
                 <div className="text-xs text-kumo-inactive mt-0.5">font-mono · 等宽字体</div>
               </div>
             </div>

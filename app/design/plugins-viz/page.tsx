@@ -60,7 +60,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function PageHeading({ children }: { children: React.ReactNode }) {
-  return <Text variant="heading3" className="mb-1">{children}</Text>;
+  return <div className="mb-1"><Text variant="heading3" as="h3">{children}</Text></div>;
 }
 
 /* ---------- 页面 ---------- */

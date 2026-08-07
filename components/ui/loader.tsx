@@ -6,7 +6,11 @@
  * @example
  * <Loader size="sm" label="加载中…" />
  */
-import { Loader as KumoLoader } from "@cloudflare/kumo/components/loader";
+import {
+  Loader as KumoLoader,
+  SkeletonLine as KumoSkeletonLine,
+} from "@cloudflare/kumo/components/loader";
 
 export const Loader = KumoLoader;
+export const SkeletonLine = KumoSkeletonLine;
 export default Loader;

@@ -23,3 +23,13 @@ export default Input;
 import { Textarea as KumoTextarea } from "@cloudflare/kumo/components/input";
 
 export const Textarea = KumoTextarea;
+
+/**
+ * ui/input-area —— 自动伸缩多行输入（官网独立组件）
+ *
+ * @example
+ * <InputArea value={...} onChange={...} placeholder="多行内容" />
+ */
+import { InputArea as KumoInputArea } from "@cloudflare/kumo/components/input";
+
+export const InputArea = KumoInputArea;

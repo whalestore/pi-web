@@ -79,10 +79,15 @@ export default function DesignPage() {
 
       <main className="max-w-5xl mx-auto px-6 py-6 space-y-5">
         {/* 说明横幅 */}
-        <div className="border border-kumo-brand/30 bg-kumo-brand/10 rounded-lg px-4 py-3 text-xs text-kumo-default leading-relaxed">
-          <b>使用规范：</b>所有新 UI 一律从 <code className="font-mono text-kumo-brand">@/components/ui</code> 导入；
-          颜色只用语义 token（kumo-*），禁止内联 style 与硬编码 hex；
-          标准文档见 <code className="font-mono text-kumo-brand">docs/UI-COMPONENTS.md</code>。
+        <div className="border border-kumo-brand/30 bg-kumo-brand/10 rounded-lg px-4 py-3 text-xs text-kumo-default leading-relaxed flex items-center justify-between gap-4">
+          <span>
+            <b>使用规范：</b>所有新 UI 一律从 <code className="font-mono text-kumo-brand">@/components/ui</code> 导入；
+            颜色只用语义 token（kumo-*），禁止内联 style 与硬编码 hex；
+            标准文档见 <code className="font-mono text-kumo-brand">docs/UI-COMPONENTS.md</code>。
+          </span>
+          <a href="/design/plugins-viz" className="shrink-0">
+            <Button variant="primary" size="sm">🎨 设计图 v3：插件可视化配置预览</Button>
+          </a>
         </div>
 
         {/* 主题色板 */}

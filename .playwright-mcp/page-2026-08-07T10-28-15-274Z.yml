@@ -1,0 +1,164 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: pi-subagents 可视化配置 · 设计图 v1 —— 交互示意（非真实功能），配色取自 pi-web globals.css
+    - generic [ref=e4]: 待评审
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - heading "插件配置" [level=2] [ref=e7]
+      - button "✕" [ref=e8] [cursor=pointer]
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - textbox "搜索插件…" [ref=e11]
+        - generic [ref=e12] [cursor=pointer]:
+          - generic [ref=e13]: M
+          - generic [ref=e14]: pi-mcp-adapter
+          - generic [ref=e15]: 0.9.x
+        - generic [ref=e16] [cursor=pointer]:
+          - generic [ref=e17]: C
+          - generic [ref=e18]: codex-computer-use-mcp
+          - generic [ref=e19]: 1.x
+        - generic [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: S
+          - generic [ref=e22]: pi-subagents
+          - generic [ref=e23]: 0.42.1
+          - generic [ref=e24]: 可视化
+        - generic [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: P
+          - generic [ref=e27]: projectops
+          - generic [ref=e28]: git
+        - button "＋ 安装插件" [ref=e29] [cursor=pointer]
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - button "插件详情" [ref=e32] [cursor=pointer]
+          - button "可视化配置 新" [ref=e33] [cursor=pointer]:
+            - text: 可视化配置
+            - generic [ref=e34]: 新
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e37]: 配置
+            - generic [ref=e38] [cursor=pointer]:
+              - generic [ref=e39]: ⚙️
+              - text: 通用设置
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 🧠
+              - text: 模型路由
+            - generic [ref=e42] [cursor=pointer]:
+              - generic [ref=e43]: 🤖
+              - text: Agent 管理
+            - generic [ref=e44] [cursor=pointer]:
+              - generic [ref=e45]: 🔀
+              - text: 工作流编排
+            - generic [ref=e46]: 安全与持久化
+            - generic [ref=e47] [cursor=pointer]:
+              - generic [ref=e48]: 🛡️
+              - text: Watchdog
+            - generic [ref=e49] [cursor=pointer]:
+              - generic [ref=e50]: 🔐
+              - text: 权限
+            - generic [ref=e51] [cursor=pointer]:
+              - generic [ref=e52]: 🗂️
+              - text: Mission·调度
+          - generic [ref=e53]:
+            - generic:
+              - generic: 通用设置
+              - generic:
+                - text: 行为与 UI 偏好，写入
+                - code [ref=e54]: ~/.pi/agent/extensions/subagent/config.json
+              - generic:
+                - generic:
+                  - text: UI 展示
+                  - generic [ref=e55]: config.json
+                - generic [ref=e56]:
+                  - generic [ref=e57]:
+                    - generic [ref=e58]:
+                      - generic [ref=e59]: FleetView 常驻面板
+                      - generic [ref=e60]: 编辑器下方显示运行中的子代理摘要（可导航）
+                    - generic [ref=e61]:
+                      - checkbox [checked]
+                      - generic [ref=e62] [cursor=pointer]
+                  - generic [ref=e63]:
+                    - generic [ref=e64]:
+                      - generic [ref=e65]: 异步运行小部件 asyncWidget
+                      - generic [ref=e66]: 编辑器下方显示后台任务状态
+                    - generic [ref=e67]:
+                      - checkbox [checked]
+                      - generic [ref=e68] [cursor=pointer]
+                  - generic:
+                    - generic [ref=e69]:
+                      - generic [ref=e70]: FleetView 位置 fleetViewPlacement
+                      - combobox [ref=e71]:
+                        - option "belowEditor（编辑器下方）" [selected]
+                        - option "aboveEditor（编辑器上方）"
+                    - generic [ref=e72]:
+                      - generic [ref=e73]: 聊天内工具结果展示 inlineToolDisplay
+                      - combobox [ref=e74]:
+                        - option "rich（动态展示）" [selected]
+                        - option "summary（单行摘要）"
+                    - generic [ref=e75]:
+                      - generic [ref=e76]: 工具描述模式 toolDescriptionMode
+                      - combobox [ref=e77]:
+                        - option "full（完整）" [selected]
+                        - option "compact（精简）"
+                        - option "custom（自定义文件）"
+                    - generic [ref=e78]:
+                      - generic [ref=e79]: 完成通知批量合并 completionBatch
+                      - combobox [ref=e80]:
+                        - option "enabled（默认 150ms 合并）" [selected]
+                        - option "disabled（每条单独通知）"
+              - generic:
+                - generic: 运行行为
+                - generic [ref=e81]:
+                  - generic [ref=e82]:
+                    - generic [ref=e83]:
+                      - generic [ref=e84]: 默认后台运行 asyncByDefault
+                      - generic [ref=e85]: workflowScript 未指定 async 时默认异步
+                    - generic [ref=e86]:
+                      - checkbox [checked]
+                      - generic [ref=e87] [cursor=pointer]
+                  - generic [ref=e88]:
+                    - generic [ref=e89]:
+                      - generic [ref=e90]: 强制顶层异步 forceTopLevelAsync
+                      - generic [ref=e91]: 顶层单/并行/链运行强制后台并跳过启动确认
+                    - generic [ref=e92]:
+                      - checkbox
+                      - generic [ref=e93] [cursor=pointer]
+                  - generic:
+                    - generic [ref=e94]:
+                      - generic [ref=e95]: 嵌套委派深度 maxSubagentDepth
+                      - spinbutton [ref=e96]: "2"
+                      - generic [ref=e97]: 主会话 → 子 → 孙 的层级上限（0 = 禁止嵌套）
+                    - generic [ref=e98]:
+                      - generic [ref=e99]: 会话内最大启动数 maxSubagentSpawnsPerSession
+                      - spinbutton [ref=e100]: "0"
+                      - generic [ref=e101]: 0 = 不限制
+                    - generic [ref=e102]:
+                      - generic [ref=e103]: 并行任务上限 parallel.maxTasks
+                      - spinbutton [ref=e104]: "8"
+                    - generic [ref=e105]:
+                      - generic [ref=e106]: 并行并发数 parallel.concurrency
+                      - spinbutton [ref=e107]: "4"
+              - generic:
+                - generic: 产物与存储
+                - generic:
+                  - generic [ref=e108]:
+                    - generic [ref=e109]: 产物目录策略 artifactDir
+                    - combobox [ref=e110]:
+                      - option "project（项目内 .pi-subagents/）" [selected]
+                      - option "session（pi 会话目录）"
+                      - option "temp（系统临时目录）"
+                  - generic [ref=e111]:
+                    - generic [ref=e112]: 会话目录 defaultSessionDir
+                    - textbox [ref=e113]: ~/.pi/agent/sessions/subagent/
+                  - generic [ref=e114]:
+                    - generic [ref=e115]: worktree 基目录 worktreeBaseDir
+                    - textbox "默认系统临时目录" [ref=e116]
+                    - generic [ref=e117]: "worktree: true 运行的隔离工作区位置"
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: 单次运行输出目录 singleRunOutputBaseDir
+                    - textbox "默认随运行产物" [ref=e120]
+            - text: ✓ ✓ ✓
+          - generic [ref=e121]:
+            - generic [ref=e122]: 写入目标：~/.pi/agent/settings.json（模型/角色/Watchdog）· ~/.pi/agent/extensions/subagent/config.json（行为/UI）
+            - button "恢复默认" [ref=e123] [cursor=pointer]
+            - button "保存" [ref=e124] [cursor=pointer]
+  - generic [ref=e125]: 已保存 ✓ 写入配置文件（设计图示意，未实际落盘）

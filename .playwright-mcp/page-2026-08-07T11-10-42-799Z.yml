@@ -1,0 +1,105 @@
+- generic [ref=f4e1]:
+  - generic [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - generic [ref=f4e5]:
+        - heading [level=1] [ref=f4e6]: 设计图 v3 · pi-subagents 可视化配置
+        - paragraph [ref=f4e7]: 真实组件实现（components/ui）· 可交互预览 · 后续 PluginsConfig 开发直接复用本结构
+      - button [ref=f4e9] [cursor=pointer]: ← 组件库
+    - button [expanded] [ref=f4e10] [cursor=pointer]: 重新打开弹框预览
+  - button "Open Next.js Dev Tools" [ref=f4e16] [cursor=pointer]
+  - alert [ref=f4e20]
+  - dialog [ref=f4e24]:
+    - heading "插件配置" [level=2] [ref=f4e25]
+    - paragraph [ref=f4e26]: ~/Codes/xuefei/pi-web-yuxi
+    - generic [ref=f4e27]:
+      - generic [ref=f4e28]:
+        - generic [ref=f4e29]: global
+        - generic [ref=f4e32] [cursor=pointer]:
+          - generic [ref=f4e33]: npm:pi-mcp-adapter
+          - generic [ref=f4e34]: 1 extension
+        - generic [ref=f4e35] [cursor=pointer]:
+          - generic [ref=f4e37]:
+            - generic [ref=f4e38]: npm:pi-subagents
+            - generic [ref=f4e39]: 1 extension · 1 skill · 7 prompts · v0.42.1
+          - generic [ref=f4e40]: 可视化
+        - generic [ref=f4e43] [cursor=pointer]:
+          - generic [ref=f4e44]: git:.../projectops
+          - generic [ref=f4e45]: git 包
+      - generic [ref=f4e46]:
+        - tablist [ref=f4e48]:
+          - tab "插件详情" [ref=f4e49] [cursor=pointer]
+          - tab "可视化配置" [active] [selected] [ref=f4e50] [cursor=pointer]
+        - generic [ref=f4e51]:
+          - generic [ref=f4e52]:
+            - button "通用设置" [ref=f4e53] [cursor=pointer]
+            - button "模型路由" [ref=f4e54] [cursor=pointer]
+            - button "Agent 管理" [ref=f4e55] [cursor=pointer]
+            - button "工作流编排" [ref=f4e56] [cursor=pointer]
+            - button "Watchdog" [ref=f4e57] [cursor=pointer]
+            - button "权限" [ref=f4e58] [cursor=pointer]
+            - button "Mission 调度" [ref=f4e59] [cursor=pointer]
+          - generic [ref=f4e61]:
+            - generic [ref=f4e62]: UI 展示
+            - generic [ref=f4e63]:
+              - generic [ref=f4e64]:
+                - generic [ref=f4e65]:
+                  - generic [ref=f4e66]:
+                    - generic [ref=f4e67]: FleetView 常驻面板
+                    - generic [ref=f4e68]: 编辑器下方显示运行中的子代理摘要 · fleetView
+                  - generic [ref=f4e69]:
+                    - generic [ref=f4e70]: FleetView 常驻面板
+                    - switch "FleetView 常驻面板" [checked]
+                    - checkbox [checked] [ref=f4e72]
+                - generic [ref=f4e73]:
+                  - generic [ref=f4e74]:
+                    - generic [ref=f4e75]: 异步运行小部件
+                    - generic [ref=f4e76]: 编辑器下方显示后台任务状态 · asyncWidget
+                  - generic [ref=f4e77]:
+                    - generic [ref=f4e78]: 异步运行小部件
+                    - switch "异步运行小部件" [checked]
+                    - checkbox [checked] [ref=f4e80]
+              - generic [ref=f4e81]:
+                - generic [ref=f4e82]:
+                  - generic [ref=f4e83]: FleetView 位置 · fleetViewPlacement
+                  - generic [ref=f4e85]:
+                    - combobox "FleetView 位置 · fleetViewPlacement" [ref=f4e86] [cursor=pointer]
+                    - textbox [ref=f4e90]
+                - generic [ref=f4e91]:
+                  - generic [ref=f4e92]: 工具结果展示 · inlineToolDisplay
+                  - generic [ref=f4e94]:
+                    - combobox "工具结果展示 · inlineToolDisplay" [ref=f4e95] [cursor=pointer]
+                    - textbox [ref=f4e99]
+            - generic [ref=f4e100]: 运行行为
+            - generic [ref=f4e101]:
+              - generic [ref=f4e103]:
+                - generic [ref=f4e104]:
+                  - generic [ref=f4e105]: 默认后台运行
+                  - generic [ref=f4e106]: workflowScript 未指定 async 时默认异步 · asyncByDefault
+                - generic [ref=f4e107]:
+                  - generic [ref=f4e108]: 默认后台运行
+                  - switch "默认后台运行" [checked]
+                  - checkbox [checked] [ref=f4e110]
+              - generic [ref=f4e111]:
+                - generic [ref=f4e112]:
+                  - generic [ref=f4e113]: 嵌套委派深度 · maxSubagentDepth
+                  - spinbutton "嵌套委派深度 · maxSubagentDepth" [ref=f4e115]: "2"
+                  - paragraph [ref=f4e116]: 0 = 禁止嵌套
+                - generic [ref=f4e117]:
+                  - generic [ref=f4e118]: 并行上限 · parallel.maxTasks
+                  - spinbutton "并行上限 · parallel.maxTasks" [ref=f4e120]: "8"
+            - generic [ref=f4e121]: 产物与存储
+            - generic [ref=f4e123]:
+              - generic [ref=f4e124]:
+                - generic [ref=f4e125]: 产物目录策略 · artifactDir
+                - generic [ref=f4e127]:
+                  - combobox "产物目录策略 · artifactDir" [ref=f4e128] [cursor=pointer]
+                  - textbox [ref=f4e132]
+              - generic [ref=f4e133]:
+                - generic [ref=f4e134]: worktree 基目录 · worktreeBaseDir
+                - textbox "worktree 基目录 · worktreeBaseDir" [ref=f4e136]:
+                  - /placeholder: 默认系统临时目录
+          - generic [ref=f4e137]:
+            - generic [ref=f4e138]: settings.json → subagents · config.json
+            - generic [ref=f4e139]:
+              - button "恢复默认" [ref=f4e140] [cursor=pointer]
+              - button "保存" [ref=f4e141] [cursor=pointer]

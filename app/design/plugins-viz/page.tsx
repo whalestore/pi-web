@@ -155,7 +155,7 @@ export default function PluginsVizPreview() {
                   ]}
                   value={tab}
                   onValueChange={(v) => setTab(String(v))}
-                  className="px-4 pt-2"
+                  className="px-4 pt-2 flex-shrink-0"
                 />
 
                 {tab === "detail" ? (
@@ -165,7 +165,7 @@ export default function PluginsVizPreview() {
                 ) : (
                   <div className="flex-1 flex flex-col min-h-0">
                     {/* 顶部分类导航 */}
-                    <div className="flex flex-wrap gap-1.5 px-4 py-2.5 border-b border-kumo-line">
+                    <div className="flex flex-wrap gap-1.5 px-4 py-2.5 border-b border-kumo-line flex-shrink-0">
                       {navPages.map((p) => (
                         <button
                           key={p.id}
@@ -209,10 +209,10 @@ export default function PluginsVizPreview() {
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
                               <Field label="嵌套委派深度 · maxSubagentDepth" description="0 = 禁止嵌套">
-                                <Input type="number" defaultValue={2} />
+                                <Input type="number" defaultValue={2} className="w-full" />
                               </Field>
                               <Field label="并行上限 · parallel.maxTasks">
-                                <Input type="number" defaultValue={8} />
+                                <Input type="number" defaultValue={8} className="w-full" />
                               </Field>
                             </div>
                           </Card>
@@ -224,7 +224,7 @@ export default function PluginsVizPreview() {
                                 <Select items={[{ value: "project", label: "project（项目内 .pi-subagents/）" }, { value: "session", label: "session" }, { value: "temp", label: "temp" }]} />
                               </Field>
                               <Field label="worktree 基目录 · worktreeBaseDir">
-                                <Input placeholder="默认系统临时目录" />
+                                <Input placeholder="默认系统临时目录" className="w-full" />
                               </Field>
                             </div>
                           </Card>
@@ -250,7 +250,7 @@ export default function PluginsVizPreview() {
                               </Field>
                               <div className="sm:col-span-2">
                                 <Field label="模型范围白名单 · modelScope.allow" description="glob 模式逗号分隔；未命中显式指定报错，继承来源仅警告">
-                                  <Input value="anthropic/*, openai/gpt-5-*" />
+                                  <Input value="anthropic/*, openai/gpt-5-*" className="w-full" />
                                 </Field>
                               </div>
                             </div>
@@ -382,7 +382,7 @@ export default function PluginsVizPreview() {
                               </Field>
                               <div className="sm:col-span-2">
                                 <Field label="工具白名单 · tools">
-                                  <Input value="read, grep, find, ls" className="font-mono" />
+                                  <Input value="read, grep, find, ls" className="font-mono w-full" />
                                 </Field>
                               </div>
                             </div>
@@ -497,13 +497,13 @@ return reviews.map(r => r.output);`}
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
                               <Field label="主审查模型 · main.model">
-                                <div className="flex gap-2">
-                                  <div className="flex-1"><Input value="anthropic/claude-opus-4-8" className="font-mono" /></div>
-                                  <Button variant="secondary">✨ 推荐</Button>
+                                <div className="flex gap-2 min-w-0">
+                                  <div className="flex-1 min-w-0"><Input value="anthropic/claude-opus-4-8" className="font-mono w-full" /></div>
+                                  <Button variant="secondary" className="shrink-0">✨ 推荐</Button>
                                 </div>
                               </Field>
                               <Field label="审查节奏 · cadence.everyNTools" description="0 = 仅 agent_end 审查">
-                                <Input type="number" defaultValue={0} />
+                                <Input type="number" defaultValue={0} className="w-full" />
                               </Field>
                             </div>
                           </Card>
@@ -586,10 +586,10 @@ return reviews.map(r => r.output);`}
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
                               <Field label="存储目录 · missions.directory">
-                                <Input value=".pi-subagents/missions" className="font-mono" />
+                                <Input value=".pi-subagents/missions" className="font-mono w-full" />
                               </Field>
                               <Field label="保留终端记录 · retainTerminal">
-                                <Input type="number" defaultValue={200} />
+                                <Input type="number" defaultValue={200} className="w-full" />
                               </Field>
                             </div>
                           </Card>
@@ -641,7 +641,7 @@ return reviews.map(r => r.output);`}
                     </div>
 
                     {/* 底部操作条 */}
-                    <div className="flex items-center justify-between px-5 py-2.5 border-t border-kumo-line">
+                    <div className="flex items-center justify-between px-5 py-2.5 border-t border-kumo-line flex-shrink-0">
                       <span className="text-xs font-mono text-kumo-inactive">
                         settings.json → subagents · config.json
                       </span>

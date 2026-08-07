@@ -46,17 +46,17 @@ function SwitchRow({ title, desc, checked, onChange }: { title: string; desc: st
         <div className="text-base text-kumo-default">{title}</div>
         <div className="text-sm text-kumo-subtle mt-0.5">{desc}</div>
       </div>
-      <Switch checked={checked} onCheckedChange={onChange} label={title} />
+      <Switch checked={checked} onCheckedChange={onChange} aria-label={title} />
     </div>
   );
 }
 
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`border border-kumo-line rounded-lg overflow-hidden ${className}`}>{children}</div>;
+  return <div className={`border border-kumo-line rounded-lg overflow-hidden bg-kumo-base ${className}`}>{children}</div>;
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <div className="text-[11px] font-semibold uppercase tracking-wide text-kumo-subtle mt-5 mb-2">{children}</div>;
+  return <div className="text-xs font-semibold uppercase tracking-wide text-kumo-subtle mt-5 mb-2">{children}</div>;
 }
 
 function PageHeading({ children }: { children: React.ReactNode }) {
@@ -125,7 +125,7 @@ export default function PluginsVizPreview() {
             <div className="flex gap-0 -mx-6 mt-3 border-t border-kumo-line flex-1 min-h-0">
               {/* 左侧插件列表（模拟现有结构） */}
               <div className="w-52 shrink-0 border-r border-kumo-line bg-kumo-tint p-2 hidden sm:block">
-                <div className="text-[10px] font-semibold uppercase text-kumo-inactive px-2 py-1.5">global</div>
+                <div className="text-xs font-semibold uppercase text-kumo-inactive px-2 py-1.5">global</div>
                 {[
                   { src: "npm:pi-mcp-adapter", sub: "1 extension", active: false },
                   { src: "npm:pi-subagents", sub: "1 extension · 1 skill · 7 prompts · v0.42.1", active: true },
@@ -138,7 +138,7 @@ export default function PluginsVizPreview() {
                     <span className="w-1.5 h-1.5 rounded-full bg-kumo-success shrink-0" />
                     <div className="min-w-0 flex-1">
                       <div className={`text-xs font-mono truncate ${p.active ? "text-kumo-default font-semibold" : "text-kumo-default"}`}>{p.src}</div>
-                      <div className="text-[10px] text-kumo-inactive truncate">{p.sub}</div>
+                      <div className="text-xs text-kumo-inactive truncate">{p.sub}</div>
                     </div>
                     {p.active && <Badge variant="primary">可视化</Badge>}
                   </div>
@@ -323,7 +323,7 @@ export default function PluginsVizPreview() {
 <PageHeading>Agent 管理</PageHeading>
 
                           <SectionLabel>推荐委派流转（官方循环）</SectionLabel>
-                          <Card className="p-3 bg-kumo-tint">
+                          <Card className="p-3">
                             <div className="flex items-center gap-2 flex-wrap text-xs">
                               {["clarify", "scout", "planner", "worker", "reviewer ×N", "oracle"].map((a, i) => (
                                 <span key={a} className="flex items-center gap-2">
@@ -351,17 +351,17 @@ export default function PluginsVizPreview() {
                               <div
                                 key={a.name}
                                 onClick={() => setSelectedAgent(a.name)}
-                                className={`border rounded-lg p-3 cursor-pointer transition-colors ${
+                                className={`border rounded-lg p-3 cursor-pointer transition-colors bg-kumo-base ${
                                   selectedAgent === a.name ? "border-kumo-brand bg-kumo-brand/5" : "border-kumo-line hover:border-kumo-brand/60"
                                 }`}
                               >
                                 <div className="flex items-center gap-2">
-                                  <span className="text-sm font-semibold">{a.name}</span>
+                                  <span className="text-base font-semibold">{a.name}</span>
                                   <Badge variant="neutral">内置</Badge>
                                   {a.override && <Badge variant="success">覆盖中</Badge>}
                                 </div>
-                                <div className="text-xs text-kumo-subtle mt-1.5">{a.desc}</div>
-                                <div className="flex items-center gap-2 mt-2 text-[11px] font-mono text-kumo-inactive">
+                                <div className="text-sm text-kumo-subtle mt-1.5">{a.desc}</div>
+                                <div className="flex items-center gap-2 mt-2 text-xs font-mono text-kumo-inactive">
                                   {a.model}
                                   {a.tags.map((t) => (
                                     <span key={t} className="text-kumo-subtle">· {t}</span>
@@ -410,11 +410,11 @@ export default function PluginsVizPreview() {
                             ].map((t, i) => (
                               <div
                                 key={t.name}
-                                className={`border rounded-lg p-3 cursor-pointer ${i === 0 ? "border-kumo-brand bg-kumo-brand/5" : "border-kumo-line hover:border-kumo-brand/60"}`}
+                                className={`border rounded-lg p-3 cursor-pointer bg-kumo-base ${i === 0 ? "border-kumo-brand bg-kumo-brand/5" : "border-kumo-line hover:border-kumo-brand/60"}`}
                               >
-                                <div className="text-sm font-semibold">{t.name}</div>
-                                <div className="text-xs text-kumo-subtle mt-1">{t.desc}</div>
-                                <div className="text-[10px] font-mono text-kumo-inactive mt-2">{t.code}</div>
+                                <div className="text-base font-semibold">{t.name}</div>
+                                <div className="text-sm text-kumo-subtle mt-1">{t.desc}</div>
+                                <div className="text-xs font-mono text-kumo-inactive mt-2">{t.code}</div>
                               </div>
                             ))}
                           </div>
@@ -438,30 +438,30 @@ return reviews.map(r => r.output);`}
                           </Card>
 
                           <SectionLabel>流水线预览 · 自动解析</SectionLabel>
-                          <Card className="p-4 bg-kumo-tint">
+                          <Card className="p-4">
                             <div className="flex items-center gap-2 flex-wrap">
                               <div className="border border-kumo-line bg-kumo-base rounded-md px-3 py-2">
-                                <div className="text-[10px] font-mono text-kumo-inactive">step 1</div>
-                                <div className="text-xs font-semibold mt-0.5">scout</div>
-                                <div className="text-[10px] text-kumo-subtle mt-0.5">扫描代码库结构</div>
+                                <div className="text-xs font-mono text-kumo-inactive">step 1</div>
+                                <div className="text-sm font-semibold mt-0.5">scout</div>
+                                <div className="text-xs text-kumo-subtle mt-0.5">扫描代码库结构</div>
                               </div>
                               <span className="text-kumo-inactive">→</span>
                               <div className="border border-dashed border-kumo-brand bg-kumo-brand/5 rounded-md px-3 py-2">
-                                <div className="text-[10px] font-mono text-kumo-brand">并行 ×3 · runs.all</div>
+                                <div className="text-xs font-mono text-kumo-brand">并行 ×3 · runs.all</div>
                                 <div className="flex gap-1.5 mt-2">
                                   {["correctness", "tests", "simplicity"].map((k, i) => (
                                     <div key={k} className={`border rounded px-2 py-1.5 bg-kumo-base ${i === 2 ? "border-kumo-brand" : "border-kumo-line"}`}>
-                                      <div className="text-[11px] font-semibold">reviewer</div>
-                                      <div className="text-[9px] text-kumo-inactive">{k}</div>
+                                      <div className="text-xs font-semibold">reviewer</div>
+                                      <div className="text-xs text-kumo-inactive">{k}</div>
                                     </div>
                                   ))}
                                 </div>
                               </div>
                               <span className="text-kumo-inactive">→</span>
                               <div className="border border-kumo-line bg-kumo-base rounded-md px-3 py-2">
-                                <div className="text-[10px] font-mono text-kumo-inactive">return</div>
-                                <div className="text-xs font-semibold mt-0.5">聚合结果</div>
-                                <div className="text-[10px] text-kumo-subtle mt-0.5">3 个审查输出</div>
+                                <div className="text-xs font-mono text-kumo-inactive">return</div>
+                                <div className="text-sm font-semibold mt-0.5">聚合结果</div>
+                                <div className="text-xs text-kumo-subtle mt-0.5">3 个审查输出</div>
                               </div>
                             </div>
                           </Card>
@@ -480,9 +480,9 @@ return reviews.map(r => r.output);`}
                               { label: "上次审查", value: "2 分钟前" },
                               { label: "LSP 诊断", value: <span className="text-xs">正常 · 2 文件</span> },
                             ].map((s) => (
-                              <div key={s.label} className="border border-kumo-line rounded-lg p-3 bg-kumo-tint">
-                                <div className="text-[10px] text-kumo-inactive">{s.label}</div>
-                                <div className="text-sm font-semibold mt-1">{s.value}</div>
+                              <div key={s.label} className="border border-kumo-line rounded-lg p-3 bg-kumo-base">
+                                <div className="text-xs text-kumo-inactive">{s.label}</div>
+                                <div className="text-base font-semibold mt-1">{s.value}</div>
                               </div>
                             ))}
                           </div>
@@ -516,7 +516,7 @@ return reviews.map(r => r.output);`}
                               { time: "昨天", title: "审查通过", tags: <span className="text-kumo-inactive">LSP 警告 3</span>, detail: "TS 诊断 3 个警告，无错误" },
                             ].map((h) => (
                               <div key={h.time} className="flex gap-3 py-2.5 border-b border-kumo-line last:border-0">
-                                <span className="text-[10px] font-mono text-kumo-inactive shrink-0 pt-0.5">{h.time}</span>
+                                <span className="text-xs font-mono text-kumo-inactive shrink-0 pt-0.5">{h.time}</span>
                                 <div>
                                   <div className="text-sm flex items-center gap-2">{h.title} {h.tags}</div>
                                   <div className="text-xs text-kumo-subtle mt-0.5">{h.detail}</div>
@@ -642,7 +642,7 @@ return reviews.map(r => r.output);`}
 
                     {/* 底部操作条 */}
                     <div className="flex items-center justify-between px-5 py-2.5 border-t border-kumo-line">
-                      <span className="text-[10px] font-mono text-kumo-inactive">
+                      <span className="text-xs font-mono text-kumo-inactive">
                         settings.json → subagents · config.json
                       </span>
                       <div className="flex gap-2">

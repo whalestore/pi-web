@@ -9,7 +9,7 @@
  * 访问：http://127.0.0.1:37377/design/plugins-viz
  */
 import { useState } from "react";
-import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs } from "@/components/ui";
+import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text } from "@/components/ui";
 
 /* ---------- 模拟数据 ---------- */
 const MODEL_ITEMS = [
@@ -43,8 +43,8 @@ function SwitchRow({ title, desc, checked, onChange }: { title: string; desc: st
   return (
     <div className="flex items-center justify-between py-2.5 border-b border-kumo-line last:border-0">
       <div>
-        <div className="text-sm text-kumo-default">{title}</div>
-        <div className="text-xs text-kumo-subtle mt-0.5">{desc}</div>
+        <div className="text-base text-kumo-default">{title}</div>
+        <div className="text-sm text-kumo-subtle mt-0.5">{desc}</div>
       </div>
       <Switch checked={checked} onCheckedChange={onChange} label={title} />
     </div>
@@ -57,6 +57,10 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <div className="text-[11px] font-semibold uppercase tracking-wide text-kumo-subtle mt-5 mb-2">{children}</div>;
+}
+
+function PageHeading({ children }: { children: React.ReactNode }) {
+  return <Text variant="heading3" className="mb-1">{children}</Text>;
 }
 
 /* ---------- 页面 ---------- */
@@ -99,8 +103,8 @@ export default function PluginsVizPreview() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-baseline justify-between mb-4">
           <div>
-            <h1 className="text-base font-bold">设计图 v3 · pi-subagents 可视化配置</h1>
-            <p className="text-xs text-kumo-subtle mt-1">
+            <h1 className="text-3xl font-bold text-kumo-strong">设计图 v3 · pi-subagents 可视化配置</h1>
+            <p className="text-sm text-kumo-subtle mt-1">
               真实组件实现（components/ui）· 可交互预览 · 后续 PluginsConfig 开发直接复用本结构
             </p>
           </div>
@@ -180,6 +184,8 @@ export default function PluginsVizPreview() {
                       {/* ══════ 通用设置 ══════ */}
                       {page === "general" && (
                         <div>
+<PageHeading>通用设置</PageHeading>
+
                           <SectionLabel>UI 展示</SectionLabel>
                           <Card>
                             <div className="px-4 py-1">
@@ -228,7 +234,9 @@ export default function PluginsVizPreview() {
                       {/* ══════ 模型路由 ══════ */}
                       {page === "models" && (
                         <div>
-                          <div className="text-xs text-kumo-subtle mb-3">
+<PageHeading>模型路由</PageHeading>
+
+                          <div className="text-sm text-kumo-subtle mb-3">
                             优先级：运行参数 &gt; agent 定义 &gt; 角色覆盖 &gt; 全局默认 &gt; 父会话 · 写入 settings.json → subagents
                           </div>
                           <SectionLabel>全局默认</SectionLabel>
@@ -312,6 +320,8 @@ export default function PluginsVizPreview() {
                       {/* ══════ Agent 管理 ══════ */}
                       {page === "agents" && (
                         <div>
+<PageHeading>Agent 管理</PageHeading>
+
                           <SectionLabel>推荐委派流转（官方循环）</SectionLabel>
                           <Card className="p-3 bg-kumo-tint">
                             <div className="flex items-center gap-2 flex-wrap text-xs">
@@ -389,6 +399,8 @@ export default function PluginsVizPreview() {
                       {/* ══════ 工作流编排 ══════ */}
                       {page === "workflow" && (
                         <div>
+<PageHeading>工作流编排</PageHeading>
+
                           <SectionLabel>模板库（点击插入 workflowScript）</SectionLabel>
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             {[
@@ -459,6 +471,8 @@ return reviews.map(r => r.output);`}
                       {/* ══════ Watchdog ══════ */}
                       {page === "watchdog" && (
                         <div>
+<PageHeading>Watchdog</PageHeading>
+
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
                             {[
                               { label: "状态", value: <Badge variant="success">● 已启用</Badge> },
@@ -516,7 +530,9 @@ return reviews.map(r => r.output);`}
                       {/* ══════ 权限 ══════ */}
                       {page === "perms" && (
                         <div>
-                          <div className="text-xs text-kumo-subtle mb-3">
+<PageHeading>权限</PageHeading>
+
+                          <div className="text-sm text-kumo-subtle mb-3">
                             原生权限门（bash 除外）：allow / ask / deny · 写入 config.json → permissions
                           </div>
                           <Card>
@@ -561,6 +577,8 @@ return reviews.map(r => r.output);`}
                       {/* ══════ Mission 调度 ══════ */}
                       {page === "mission" && (
                         <div>
+<PageHeading>Mission 调度</PageHeading>
+
                           <SectionLabel>Mission · missions</SectionLabel>
                           <Card>
                             <div className="px-4 py-1">

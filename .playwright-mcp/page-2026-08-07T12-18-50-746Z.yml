@@ -1,0 +1,207 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - banner [ref=f4e3]:
+      - generic [ref=f4e4]:
+        - generic [ref=f4e5]:
+          - heading "pi-web UI 组件库" [level=1] [ref=f4e6]
+          - generic [ref=f4e7]: 标准来源 @cloudflare/kumo · 微调层 components/ui
+        - button "☀️ 亮色 · 点击切换" [ref=f4e8] [cursor=pointer]
+    - main [ref=f4e10]:
+      - generic [ref=f4e11]:
+        - generic [ref=f4e12]:
+          - text: 使用规范：所有新 UI 一律从
+          - code [ref=f4e13]: "@/components/ui"
+          - text: 导入； 颜色只用语义 token（kumo-*），禁止内联 style 与硬编码 hex； 标准文档见
+          - code [ref=f4e14]: docs/UI-COMPONENTS.md
+          - text: 。
+        - link [ref=f4e15] [cursor=pointer]:
+          - /url: /design/plugins-viz
+          - button "🎨 设计图 v3：插件可视化配置预览" [ref=f4e16]
+      - generic [ref=f4e19]:
+        - generic [ref=f4e20]:
+          - generic [ref=f4e21]: 语义色板（kumo tokens）
+          - generic [ref=f4e22]: "主题微调：brand 对齐 pi-web accent 蓝（亮 #2563eb / 暗 #60a5fa）"
+        - generic [ref=f4e23]:
+          - generic [ref=f4e26]:
+            - generic [ref=f4e27]: kumo-brand
+            - generic [ref=f4e28]: brand / 主操作
+          - generic [ref=f4e31]:
+            - generic [ref=f4e32]: kumo-tint
+            - generic [ref=f4e33]: tint / 面板底
+          - generic [ref=f4e36]:
+            - generic [ref=f4e37]: kumo-line
+            - generic [ref=f4e38]: line / 边框
+          - generic [ref=f4e41]:
+            - generic [ref=f4e42]: kumo-success
+            - generic [ref=f4e43]: success
+          - generic [ref=f4e46]:
+            - generic [ref=f4e47]: kumo-warning
+            - generic [ref=f4e48]: warning
+          - generic [ref=f4e51]:
+            - generic [ref=f4e52]: kumo-danger
+            - generic [ref=f4e53]: danger
+          - generic [ref=f4e56]:
+            - generic [ref=f4e57]: kumo-info
+            - generic [ref=f4e58]: info
+          - generic [ref=f4e61]:
+            - generic [ref=f4e62]: kumo-base
+            - generic [ref=f4e63]: base / 页面背景
+      - generic [ref=f4e64]:
+        - generic [ref=f4e65]:
+          - generic [ref=f4e66]: Typography 字体标准（kumo Text 组件）
+          - generic [ref=f4e67]: 所有页面标题/正文必须遵循此层级，禁止自选字号
+        - generic [ref=f4e68]:
+          - generic [ref=f4e69]:
+            - generic [ref=f4e70]:
+              - text: heading1 · 页面主标题
+              - generic [ref=f4e71]: text-3xl (30px) font-semibold
+            - generic [ref=f4e72]:
+              - text: heading2 · 区块标题
+              - generic [ref=f4e73]: text-2xl (24px) font-semibold
+            - generic [ref=f4e74]:
+              - text: heading3 · 小节标题
+              - generic [ref=f4e75]: text-lg (18px) font-semibold
+            - generic [ref=f4e76]:
+              - paragraph [ref=f4e77]: body · 正文内容
+              - generic [ref=f4e78]: text-base (16px) · text-kumo-default
+            - generic [ref=f4e79]:
+              - paragraph [ref=f4e80]: secondary · 次要说明
+              - generic [ref=f4e81]: text-kumo-subtle 次要色
+            - generic [ref=f4e82]:
+              - text: mono · 代码/路径 deepseek-v4-pro
+              - generic [ref=f4e83]: font-mono · 等宽字体
+          - table [ref=f4e85]:
+            - rowgroup [ref=f4e86]:
+              - row [ref=f4e87]:
+                - columnheader "名称" [ref=f4e88]
+                - columnheader "字号" [ref=f4e89]
+                - columnheader "用途" [ref=f4e90]
+            - rowgroup [ref=f4e91]:
+              - row [ref=f4e92]:
+                - cell "heading1" [ref=f4e93]
+                - cell "30px (text-3xl)" [ref=f4e94]
+                - cell "页面主标题" [ref=f4e95]
+              - row [ref=f4e96]:
+                - cell "heading2" [ref=f4e97]
+                - cell "24px (text-2xl)" [ref=f4e98]
+                - cell "区块标题" [ref=f4e99]
+              - row [ref=f4e100]:
+                - cell "heading3" [ref=f4e101]
+                - cell "18px (text-lg)" [ref=f4e102]
+                - cell "小节标题" [ref=f4e103]
+              - row [ref=f4e104]:
+                - cell "body" [ref=f4e105]
+                - cell "16px (text-base)" [ref=f4e106]
+                - cell "正文（默认）" [ref=f4e107]
+              - row [ref=f4e108]:
+                - cell "size=sm" [ref=f4e109]
+                - cell "14px (text-sm)" [ref=f4e110]
+                - cell "紧凑正文/表格" [ref=f4e111]
+              - row [ref=f4e112]:
+                - cell "size=xs" [ref=f4e113]
+                - cell "12px (text-xs)" [ref=f4e114]
+                - cell "辅助/标注/徽章" [ref=f4e115]
+      - generic [ref=f4e116]:
+        - generic [ref=f4e117]:
+          - generic [ref=f4e118]: Button 按钮
+          - generic [ref=f4e119]: "variant: primary / secondary / outline / ghost / destructive · 默认 size=sm（微调）"
+        - generic [ref=f4e120]:
+          - generic [ref=f4e121]:
+            - button "保存" [ref=f4e122] [cursor=pointer]
+            - button "取消" [ref=f4e125] [cursor=pointer]
+            - button "Outline" [ref=f4e126] [cursor=pointer]
+            - button "Ghost" [ref=f4e127] [cursor=pointer]
+            - button "删除" [ref=f4e128] [cursor=pointer]
+            - button [disabled] [ref=f4e131]:
+              - status "Loading" [ref=f4e132]
+              - text: 提交中…
+            - button "小尺寸" [ref=f4e135] [cursor=pointer]
+            - button "大尺寸" [ref=f4e136] [cursor=pointer]
+          - generic [ref=f4e137]: <Button variant="primary">保存</Button> <Button variant="secondary">取消</Button> <Button variant="outline">Outline</Button> <Button variant="ghost">Ghost</Button> <Button variant="destructive">删除</Button> <Button loading>提交中…</Button>
+      - generic [ref=f4e139]:
+        - generic [ref=f4e140]:
+          - generic [ref=f4e141]: Input + Field 输入框
+          - generic [ref=f4e142]: Field 提供 label / description / error，配 Input 使用
+        - generic [ref=f4e143]:
+          - generic [ref=f4e145]:
+            - generic [ref=f4e146]:
+              - generic [ref=f4e147]: 默认模型
+              - textbox "默认模型" [ref=f4e149]: deepseek-v4-pro
+              - paragraph [ref=f4e150]: 支持模糊匹配，如 anthropic/claude-sonnet-4
+            - generic [ref=f4e151]:
+              - generic [ref=f4e152]: 嵌套委派深度
+              - spinbutton "嵌套委派深度" [ref=f4e154]: "2"
+          - generic [ref=f4e155]: "<Field label=\"默认模型\" description=\"支持模糊匹配\"> <Input value={inputVal} onChange={...} /> </Field> <Field label=\"嵌套深度\" required> <Input type=\"number\" defaultValue={2} /> </Field>"
+      - generic [ref=f4e157]:
+        - generic [ref=f4e158]:
+          - generic [ref=f4e159]: Select 下拉选择
+          - generic [ref=f4e160]: "items: { value, label }[]"
+        - generic [ref=f4e161]:
+          - generic [ref=f4e163]:
+            - generic [ref=f4e164]:
+              - generic [ref=f4e165]: 思考级别
+              - combobox "思考级别" [ref=f4e167] [cursor=pointer]:
+                - generic [ref=f4e168]: high
+              - textbox [ref=f4e172]: high
+            - generic [ref=f4e173]: 当前值：high
+          - generic [ref=f4e174]: "<Select label=\"思考级别\" items={[ { value: \"off\", label: \"off\" }, { value: \"low\", label: \"low\" }, { value: \"high\", label: \"high\" }, ]} value={selectVal} onValueChange={setSelectVal} />"
+      - generic [ref=f4e176]:
+        - generic [ref=f4e177]:
+          - generic [ref=f4e178]: Switch 开关
+          - generic [ref=f4e179]: checked / onCheckedChange
+        - generic [ref=f4e180]:
+          - generic [ref=f4e182]:
+            - generic [ref=f4e183]:
+              - generic [ref=f4e184]: FleetView 常驻面板
+              - switch "FleetView 常驻面板" [checked] [ref=f4e186] [cursor=pointer]
+              - checkbox [checked] [ref=f4e188]
+            - generic [ref=f4e189]:
+              - generic [ref=f4e190]: Scope 监控（关闭示例）
+              - switch "Scope 监控（关闭示例）" [ref=f4e192] [cursor=pointer]
+              - checkbox [ref=f4e194]
+            - generic [ref=f4e195]:
+              - generic [ref=f4e196]: 禁用态示例
+              - switch "禁用态示例" [checked] [disabled] [ref=f4e198]
+              - checkbox [checked] [disabled] [ref=f4e200]
+          - generic [ref=f4e201]: "<Switch checked={switchOn} onCheckedChange={setSwitchOn} label=\"FleetView 常驻面板\" />"
+      - generic [ref=f4e203]:
+        - generic [ref=f4e204]:
+          - generic [ref=f4e205]: Badge 徽章
+          - generic [ref=f4e206]: 语义变体：primary / success / warning / error / neutral / info
+        - generic [ref=f4e207]:
+          - generic [ref=f4e209]:
+            - generic [ref=f4e210]: primary
+            - generic [ref=f4e211]: success · 已覆盖
+            - generic [ref=f4e212]: warning · 待处理
+            - generic [ref=f4e213]: error · 错误
+            - generic [ref=f4e214]: neutral · 内置
+            - generic [ref=f4e215]: info
+            - generic [ref=f4e216]: dot 样式
+          - generic [ref=f4e218]: <Badge variant="success">已覆盖</Badge> <Badge variant="neutral">内置</Badge> <Badge variant="warning" appearance="dot">dot 样式</Badge>
+      - generic [ref=f4e220]:
+        - generic [ref=f4e221]:
+          - generic [ref=f4e222]: Tabs 选项卡
+          - generic [ref=f4e223]: "数据驱动：tabs: { value, label }[] · variant: segmented（默认）/ underline"
+        - generic [ref=f4e224]:
+          - generic [ref=f4e226]:
+            - tablist [ref=f4e228]:
+              - tab "插件详情" [ref=f4e229] [cursor=pointer]
+              - tab "可视化配置" [selected] [ref=f4e230] [cursor=pointer]
+              - tab "模型路由" [ref=f4e231] [cursor=pointer]
+            - generic [ref=f4e232]: 当前选中：viz
+            - generic [ref=f4e233]:
+              - tablist [ref=f4e235]:
+                - tab "分段 A" [selected] [ref=f4e236] [cursor=pointer]
+                - tab "分段 B" [ref=f4e237] [cursor=pointer]
+              - button
+              - button
+          - generic [ref=f4e238]: "<Tabs variant=\"underline\" tabs={[ { value: \"detail\", label: \"插件详情\" }, { value: \"viz\", label: \"可视化配置\" }, ]} value={tab} onValueChange={setTab} />"
+      - generic [ref=f4e240]:
+        - generic [ref=f4e241]:
+          - generic [ref=f4e242]: Dialog 弹框
+          - generic [ref=f4e243]: 复合组件：Root / Trigger / Dialog(内容) / Title / Description / Close（无 Dialog.Content，内容组件就是 Dialog 本身）
+        - generic [ref=f4e244]:
+          - button "打开弹框" [ref=f4e246] [cursor=pointer]
+          - generic [ref=f4e247]: "<Dialog.Root open={open} onOpenChange={setOpen}> <Dialog.Trigger render={(p) => <Button {...p}>打开弹框</Button>} /> <Dialog> <Dialog.Title>插件配置</Dialog.Title> <Dialog.Description>弹框描述</Dialog.Description> <Dialog.Close render={(p) => <Button variant=\"secondary\" {...p}>关闭</Button>} /> </Dialog> </Dialog.Root>"
+      - generic [ref=f4e249]: pi-web UI 组件库 · 标准来源 @cloudflare/kumo v2.9.2 · 微调项见 docs/UI-COMPONENTS.md
+  - button "Open Next.js Dev Tools" [ref=f4e255] [cursor=pointer]

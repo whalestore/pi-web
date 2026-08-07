@@ -35,6 +35,24 @@
 
 ## 3. 主题 token（微调项）
 
+### 3.1 字体标准（Typography）
+
+根字号 16px（html），kumo 定制文本尺寸（theme-kumo.css）：
+
+| 层级 | 值 | 用法 |
+|------|-----|------|
+| `heading1` | 30px (text-3xl) semibold | 页面主标题 |
+| `heading2` | 24px (text-2xl) semibold | 区块标题 |
+| `heading3` | 16px (text-lg) semibold | 小节标题 |
+| `body` | 14px (text-base) | 正文（默认） |
+| `size=sm` | 13px (text-sm) | 紧凑正文/表格 |
+| `size=xs` | 12px (text-xs) | 辅助/标注/徽章 |
+
+用 `Text` 组件（`<Text variant="heading2">`）或对应 class，禁止自选字号。
+预览见 /design 的 Typography 区块。
+
+### 3.2 颜色 token
+
 kumo 主题通过 Tailwind v4 `@theme` 定义，我们做了以下微调（`app/globals.css`）：
 
 | Token | 官方默认 | 我们的微调 | 说明 |

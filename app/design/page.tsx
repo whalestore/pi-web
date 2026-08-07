@@ -10,7 +10,7 @@
  * 所有新 UI 开发前先在这里查看组件形态。
  */
 import { useState } from "react";
-import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs } from "@/components/ui";
+import { Button, Field, Input, Select, Switch, Badge, Dialog, Tabs, Text } from "@/components/ui";
 import { useTheme } from "@/hooks/useTheme";
 
 function Section({
@@ -27,7 +27,7 @@ function Section({
   return (
     <div className="border border-kumo-line rounded-lg overflow-hidden bg-kumo-base">
       <div className="px-4 py-3 border-b border-kumo-line">
-        <div className="text-sm font-semibold text-kumo-default">{title}</div>
+        <div className="text-base font-semibold text-kumo-default">{title}</div>
         <div className="text-xs text-kumo-subtle mt-0.5">{desc}</div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
@@ -93,7 +93,7 @@ export default function DesignPage() {
         {/* 主题色板 */}
         <div className="border border-kumo-line rounded-lg overflow-hidden">
           <div className="px-4 py-3 border-b border-kumo-line">
-            <div className="text-sm font-semibold">语义色板（kumo tokens）</div>
+            <div className="text-base font-semibold">语义色板（kumo tokens）</div>
             <div className="text-xs text-kumo-subtle mt-0.5">主题微调：brand 对齐 pi-web accent 蓝（亮 #2563eb / 暗 #60a5fa）</div>
           </div>
           <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -115,6 +115,71 @@ export default function DesignPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* 字体标准 */}
+        <div className="border border-kumo-line rounded-lg overflow-hidden">
+          <div className="px-4 py-3 border-b border-kumo-line">
+            <div className="text-base font-semibold">Typography 字体标准（kumo Text 组件）</div>
+            <div className="text-xs text-kumo-subtle mt-0.5">所有页面标题/正文必须遵循此层级，禁止自选字号</div>
+          </div>
+          <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* 层级预览 */}
+            <div className="space-y-4">
+              <div>
+                <Text variant="heading1">heading1 · 页面主标题</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">text-3xl (30px) font-semibold</div>
+              </div>
+              <div>
+                <Text variant="heading2">heading2 · 区块标题</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">text-2xl (24px) font-semibold</div>
+              </div>
+              <div>
+                <Text variant="heading3">heading3 · 小节标题</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">text-lg (16px) font-semibold</div>
+              </div>
+              <div>
+                <Text variant="body">body · 正文内容</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">text-base (14px) · text-kumo-default</div>
+              </div>
+              <div>
+                <Text variant="secondary">secondary · 次要说明</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">text-kumo-subtle 次要色</div>
+              </div>
+              <div>
+                <Text variant="mono" size="sm">mono · 代码/路径 deepseek-v4-pro</Text>
+                <div className="text-xs text-kumo-inactive mt-0.5">font-mono · 等宽字体</div>
+              </div>
+            </div>
+            {/* 字号表 */}
+            <div className="border border-kumo-line rounded-lg overflow-hidden self-start w-full">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-kumo-line text-left">
+                    <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">名称</th>
+                    <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">字号</th>
+                    <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">用途</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm">
+                  {[
+                    ["heading1", "30px (text-3xl)", "页面主标题"],
+                    ["heading2", "24px (text-2xl)", "区块标题"],
+                    ["heading3", "16px (text-lg)", "小节标题（semibold）"],
+                    ["body", "14px (text-base)", "正文（默认）"],
+                    ["size=sm", "13px (text-sm)", "紧凑正文/表格"],
+                    ["size=xs", "12px (text-xs)", "辅助/标注/徽章"],
+                  ].map(([name, px, use]) => (
+                    <tr key={name} className="border-b border-kumo-line last:border-0">
+                      <td className="px-4 py-2 font-mono text-xs">{name}</td>
+                      <td className="px-4 py-2 text-xs text-kumo-subtle">{px}</td>
+                      <td className="px-4 py-2 text-xs text-kumo-subtle">{use}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

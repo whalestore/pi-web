@@ -1,0 +1,62 @@
+[     128ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     140ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     177ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     178ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     178ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     178ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     180ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     180ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     258ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     317ms] [LOG] [Fast Refresh] done in 161ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   11889ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:37377/_next/webpack-hmr?id=wYSwXiMBCTAKG7A83No6q' failed:  @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   12893ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:37377/_next/webpack-hmr?id=wYSwXiMBCTAKG7A83No6q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   13897ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:37377/_next/webpack-hmr?id=wYSwXiMBCTAKG7A83No6q' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js:13422
+[   16026ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17743ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17763ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17803ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17803ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17804ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17804ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17805ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   17805ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   18371ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   18509ms] [LOG] [Fast Refresh] done in 239ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   18617ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   19059ms] [LOG] [Fast Refresh] done in 544ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489

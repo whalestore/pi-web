@@ -190,7 +190,7 @@ export default function DesignPage() {
           {/* 组件内部字体规范 */}
           <div className="border-t border-kumo-line">
             <div className="px-4 py-2.5 border-b border-kumo-line text-xs font-semibold text-kumo-subtle">
-              组件内部字体规范（kumo 源码实证）· 开发组件时内部文字必须遵循下表
+              组件内部字体规范（kumo 源码实证）· 完整版见 /font · 开发组件时内部文字必须遵循下表
             </div>
             <div className="p-4">
               <table className="w-full text-sm">

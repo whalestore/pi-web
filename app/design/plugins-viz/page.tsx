@@ -56,7 +56,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <div className="text-xs font-semibold uppercase tracking-wide text-kumo-subtle mt-5 mb-2">{children}</div>;
+  return <div className="text-sm font-semibold uppercase tracking-wide text-kumo-subtle mt-5 mb-2">{children}</div>;
 }
 
 function PageHeading({ children }: { children: React.ReactNode }) {

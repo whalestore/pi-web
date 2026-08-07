@@ -1,4 +1,19 @@
 @import "tailwindcss";
+@import "@cloudflare/kumo/styles";
+@import "@cloudflare/kumo/styles/theme-kumo";
+
+/* Kumo 主题策略桥接：pi-web 用 .dark class 切换主题，kumo 组件使用 light-dark() 与 dark: variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  /* 微调：kumo brand（默认 Cloudflare 橙 #f6821f）→ pi-web 主题蓝，亮/暗两套 */
+  --color-kumo-brand: light-dark(#2563eb, #60a5fa);
+}
+
+html.dark {
+  color-scheme: dark;
+}
 
 @theme {
   --color-bg: var(--bg);

@@ -1,0 +1,96 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]: 设计图 v2 · 与 pi-web 原生风格一致（内联样式 + CSS 变量，无第三方 UI 库）
+    - generic [ref=f1e4]: 弹框尺寸模拟：860 × 76vh，与 PluginsConfig 一致
+  - generic [ref=f1e5]:
+    - generic [ref=f1e6]:
+      - generic [ref=f1e7]:
+        - generic [ref=f1e8]: 插件配置
+        - code [ref=f1e9]: ~/Codes/xuefei/pi-web-yuxi
+      - button "×" [ref=f1e10] [cursor=pointer]
+    - generic [ref=f1e11]:
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - generic [ref=f1e14]: global
+          - generic [ref=f1e17] [cursor=pointer]:
+            - generic [ref=f1e18]: npm:pi-mcp-adapter
+            - generic [ref=f1e19]: 1 extension
+          - generic [ref=f1e21] [cursor=pointer]:
+            - generic [ref=f1e22]:
+              - generic [ref=f1e23]: npm:pi-subagents
+              - generic [ref=f1e24]: 1 extension · 1 skill · 7 prompts
+              - generic [ref=f1e25]: v0.42.1
+            - text: 可视化
+        - generic [ref=f1e26]: 添加插件
+      - generic [ref=f1e29]:
+        - generic [ref=f1e30]:
+          - button "插件详情" [ref=f1e31] [cursor=pointer]
+          - button "可视化配置" [ref=f1e32] [cursor=pointer]
+        - generic [ref=f1e33]:
+          - generic [ref=f1e34]:
+            - button "通用设置" [ref=f1e35] [cursor=pointer]
+            - button "模型路由" [ref=f1e36] [cursor=pointer]
+            - button "Agent 管理" [ref=f1e37] [cursor=pointer]
+            - button "工作流编排" [ref=f1e38] [cursor=pointer]
+            - button "Watchdog" [ref=f1e39] [cursor=pointer]
+            - button "权限" [ref=f1e40] [cursor=pointer]
+            - button "Mission 调度" [ref=f1e41] [cursor=pointer]
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]: 通用设置
+            - generic [ref=f1e45]:
+              - text: 写入
+              - code [ref=f1e46]: ~/.pi/agent/extensions/subagent/config.json
+              - text: · 重启 pi 或 /reload 生效
+            - generic [ref=f1e47]: UI 展示
+            - generic [ref=f1e48]:
+              - generic [ref=f1e49]:
+                - generic [ref=f1e50]:
+                  - generic [ref=f1e51]: FleetView 常驻面板
+                  - generic [ref=f1e52]: 编辑器下方显示运行中的子代理摘要 · fleetView
+                - button [ref=f1e53] [cursor=pointer]
+              - generic [ref=f1e55]:
+                - generic [ref=f1e56]:
+                  - generic [ref=f1e57]: 异步运行小部件
+                  - generic [ref=f1e58]: 编辑器下方显示后台任务状态 · asyncWidget
+                - button [ref=f1e59] [cursor=pointer]
+              - generic [ref=f1e61]:
+                - generic [ref=f1e62]:
+                  - generic [ref=f1e63]: FleetView 位置 · fleetViewPlacement
+                  - combobox [ref=f1e64]:
+                    - option "belowEditor" [selected]
+                    - option "aboveEditor"
+                - generic [ref=f1e65]:
+                  - generic [ref=f1e66]: 工具结果展示 · inlineToolDisplay
+                  - combobox [ref=f1e67]:
+                    - option "rich" [selected]
+                    - option "summary"
+            - generic [ref=f1e68]: 运行行为
+            - generic [ref=f1e69]:
+              - generic [ref=f1e70]:
+                - generic [ref=f1e71]:
+                  - generic [ref=f1e72]: 默认后台运行
+                  - generic [ref=f1e73]: workflowScript 未指定 async 时默认异步 · asyncByDefault
+                - button [ref=f1e74] [cursor=pointer]
+              - generic [ref=f1e76]:
+                - generic [ref=f1e77]:
+                  - generic [ref=f1e78]: 嵌套委派深度 · maxSubagentDepth
+                  - spinbutton [ref=f1e79]: "2"
+                - generic [ref=f1e80]:
+                  - generic [ref=f1e81]: 并行上限 · parallel.maxTasks
+                  - spinbutton [ref=f1e82]: "8"
+            - generic [ref=f1e83]: 产物与存储
+            - generic [ref=f1e85]:
+              - generic [ref=f1e86]:
+                - generic [ref=f1e87]: 产物目录策略 · artifactDir
+                - combobox [ref=f1e88]:
+                  - option "project（项目内 .pi-subagents/）" [selected]
+                  - option "session"
+                  - option "temp"
+              - generic [ref=f1e89]:
+                - generic [ref=f1e90]: worktree 基目录 · worktreeBaseDir
+                - textbox "默认系统临时目录" [ref=f1e91]
+          - generic [ref=f1e92]:
+            - generic [ref=f1e93]: settings.json → subagents · config.json
+            - generic [ref=f1e94]:
+              - button "恢复默认" [ref=f1e95] [cursor=pointer]
+              - button "保存" [ref=f1e96] [cursor=pointer]

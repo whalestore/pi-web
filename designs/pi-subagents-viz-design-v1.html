@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pi-subagents 可视化配置 · 设计图 v1</title>
+<style>
+  /* ===== pi-web 真实配色变量（浅色） ===== */
+  :root {
+    --bg: #ffffff;
+    --bg-panel: #f5f5f5;
+    --bg-hover: #eeeeee;
+    --bg-selected: #e8e8e8;
+    --border: #e0e0e0;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --text-dim: #9ca3af;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --user-bg: #eff6ff;
+    --tool-bg: #f9fafb;
+    --bg-subtle: rgba(0,0,0,0.03);
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --purple: #7c3aed;
+    --purple-bg: #f5f3ff;
+    --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, Consolas, 'PingFang SC', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #e9e9ea;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 48px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .design-banner {
+    width: 1160px; max-width: 100%;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .design-banner b { color: var(--text); }
+  .design-banner .tag {
+    background: var(--purple-bg); color: var(--purple);
+    border: 1px solid #ddd6fe; border-radius: 999px;
+    padding: 2px 10px; font-size: 11px;
+  }
+
+  /* ===== 弹框主体 ===== */
+  .modal {
+    width: 1160px; max-width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    height: 780px;
+  }
+  .modal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-panel);
+  }
+  .modal-head h2 { font-size: 14px; font-weight: 600; }
+  .modal-head .close { background: none; border: none; font-size: 18px; color: var(--text-dim); cursor: pointer; padding: 2px 8px; border-radius: 6px; }
+  .modal-head .close:hover { background: var(--bg-hover); color: var(--text); }
+  .modal-body { display: flex; flex: 1; min-height: 0; }
+
+  /* ===== 左侧插件列表 ===== */
+  .plugin-list {
+    width: 210px; flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: var(--bg-panel);
+    padding: 10px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .plugin-list .search {
+    width: 100%; padding: 6px 10px;
+    border: 1px solid var(--border); border-radius: 7px;
+    background: var(--bg); font-size: 12px; margin-bottom: 8px;
+    outline: none;
+  }
+  .plugin-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-radius: 7px; cursor: pointer;
+    color: var(--text-muted);
+  }
+  .plugin-item:hover { background: var(--bg-hover); }
+  .plugin-item.active { background: var(--bg-selected); color: var(--text); }
+  .plugin-item .p-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; flex-shrink: 0; }
+  .plugin-item .p-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+  .plugin-item .p-ver { font-size: 10px; color: var(--text-dim); font-family: var(--mono); }
+  .plugin-item .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot.green { background: var(--green); }
+  .plugin-item .viz-badge { font-size: 10px; background: var(--user-bg); color: var(--accent); border-radius: 4px; padding: 1px 5px; }
+  .plugin-list .add-btn {
+    margin-top: auto; padding: 7px; border: 1px dashed var(--border);
+    border-radius: 7px; background: none; color: var(--text-dim);
+    cursor: pointer; font-size: 12px;
+  }
+  .plugin-list .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ===== 右侧 ===== */
+  .right { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .tab-bar {
+    display: flex; gap: 2px; padding: 0 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .tab-btn {
+    padding: 10px 16px; font-size: 13px; cursor: pointer;
+    border: none; background: none; color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* ===== 插件详情页（Tab1，简略示意） ===== */
+  .detail-page { flex: 1; overflow-y: auto; padding: 18px; }
+  .detail-page .enabled-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 14px;
+  }
+  .detail-page .desc { color: var(--text-muted); font-size: 12.5px; }
+
+  /* ===== 可视化页 ===== */
+  .viz-page { flex: 1; display: flex; min-height: 0; }
+  .viz-nav {
+    width: 150px; flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    padding: 10px 8px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .viz-nav .nav-item {
+    padding: 8px 10px; border-radius: 7px; cursor: pointer;
+    color: var(--text-muted); font-size: 12.5px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .viz-nav .nav-item:hover { background: var(--bg-hover); }
+  .viz-nav .nav-item.active { background: var(--bg-selected); color: var(--text); font-weight: 600; }
+  .viz-nav .nav-item .n-ico { width: 15px; text-align: center; }
+  .viz-nav .nav-group { font-size: 10.5px; color: var(--text-dim); padding: 8px 10px 3px; letter-spacing: .04em; }
+  .viz-content { flex: 1; overflow-y: auto; padding: 18px 20px; min-width: 0; }
+
+  .page-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+  .page-sub { color: var(--text-muted); font-size: 12px; margin-bottom: 16px; }
+  .page-sub code { font-family: var(--mono); font-size: 11px; background: var(--bg-panel); padding: 1px 5px; border-radius: 4px; }
+
+  .sec { margin-bottom: 20px; }
+  .sec-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .sec-title .src-tag { font-size: 10px; font-weight: 500; color: var(--text-dim); background: var(--bg-panel); border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; font-family: var(--mono); }
+  .sec-title .save-note { font-size: 10.5px; color: var(--accent); font-weight: 400; margin-left: auto; }
+
+  /* 表单 */
+  .form-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 12px; color: var(--text-muted); }
+  .field label .key { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+  .field input[type=text], .field select, .field input[type=number] {
+    padding: 7px 10px; border: 1px solid var(--border); border-radius: 7px;
+    font-size: 12.5px; background: var(--bg); color: var(--text); outline: none;
+    font-family: inherit;
+  }
+  .field input:focus, .field select:focus { border-color: var(--accent); }
+  .field .hint { font-size: 11px; color: var(--text-dim); }
+
+  /* 开关 */
+  .switch-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 2px; border-bottom: 1px solid var(--bg-subtle);
+  }
+  .switch-row:last-child { border-bottom: none; }
+  .switch-row .s-label { font-size: 12.5px; }
+  .switch-row .s-desc { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+  .switch { position: relative; width: 34px; height: 19px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .slider {
+    position: absolute; inset: 0; border-radius: 999px; background: #d4d4d4;
+    cursor: pointer; transition: .15s;
+  }
+  .switch .slider::before {
+    content: ""; position: absolute; width: 15px; height: 15px; border-radius: 50%;
+    background: #fff; top: 2px; left: 2px; transition: .15s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .switch input:checked + .slider { background: var(--accent); }
+  .switch input:checked + .slider::before { transform: translateX(15px); }
+
+  /* 徽章 */
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; border-radius: 999px; padding: 1px 8px; font-weight: 500; }
+  .badge.blue { background: var(--user-bg); color: var(--accent); }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.amber { background: var(--amber-bg); color: var(--amber); }
+  .badge.red { background: var(--red-bg); color: var(--red); }
+  .badge.purple { background: var(--purple-bg); color: var(--purple); }
+  .badge.gray { background: var(--bg-panel); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* Agent 卡片 */
+  .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .agent-card {
+    border: 1px solid var(--border); border-radius: 10px; padding: 12px 13px;
+    background: var(--bg); cursor: pointer; transition: border-color .12s, box-shadow .12s;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .agent-card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(37,99,235,.08); }
+  .agent-card .a-head { display: flex; align-items: center; gap: 7px; }
+  .agent-card .a-name { font-weight: 700; font-size: 13px; }
+  .agent-card .a-role { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+  .agent-card .a-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+  .agent-card .a-foot { display: flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 4px; }
+  .agent-card .a-foot .model { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); }
+  .agent-card .a-foot .tools { font-size: 10.5px; color: var(--text-dim); }
+  .agent-card .edit-hint { opacity: 0; transition: opacity .12s; font-size: 10.5px; color: var(--accent); margin-left: auto; }
+  .agent-card:hover .edit-hint { opacity: 1; }
+
+  /* 推荐流转链 */
+  .flow-chain {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .flow-node {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 14px; position: relative;
+  }
+  .flow-node .fn-name { font-size: 12px; font-weight: 700; }
+  .flow-node .fn-when { font-size: 10px; color: var(--text-dim); white-space: nowrap; }
+  .flow-arrow { color: var(--text-dim); font-size: 15px; }
+  .flow-node.hot { border-color: var(--accent); background: var(--user-bg); }
+  .flow-node .cond { position: absolute; top: -9px; font-size: 9.5px; background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; border-radius: 999px; padding: 0 6px; white-space: nowrap; }
+
+  /* 工作流：模板库 */
+  .tpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tpl-card {
+    border: 1px solid var(--border); border-radius: 10px; padding: 12px 13px;
+    background: var(--bg); cursor: pointer; transition: border-color .12s;
+  }
+  .tpl-card:hover { border-color: var(--accent); }
+  .tpl-card.selected { border-color: var(--accent); background: var(--user-bg); }
+  .tpl-card .t-name { font-size: 12.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .tpl-card .t-desc { font-size: 11.5px; color: var(--text-muted); margin-top: 3px; }
+  .tpl-card .t-shape { margin-top: 8px; font-size: 10px; color: var(--text-dim); font-family: var(--mono); display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+  .tpl-card .t-shape .chip { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
+  .tpl-card .t-shape .chip.par { background: var(--purple-bg); border-color: #ddd6fe; color: var(--purple); }
+
+  /* 代码编辑区 */
+  .code-editor {
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .code-editor .ce-head {
+    display: flex; align-items: center; gap: 8px; padding: 7px 12px;
+    background: var(--bg-panel); border-bottom: 1px solid var(--border);
+    font-size: 11.5px; color: var(--text-muted);
+  }
+  .code-editor .ce-head .dots { display: flex; gap: 4px; }
+  .code-editor .ce-head .dot2 { width: 9px; height: 9px; border-radius: 50%; }
+  .code-editor .ce-head .fname { font-family: var(--mono); font-size: 11px; }
+  .code-editor .ce-head .ce-actions { margin-left: auto; display: flex; gap: 6px; }
+  .code-editor pre {
+    margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: 12px;
+    line-height: 1.65; overflow-x: auto; background: var(--bg);
+  }
+  .code-editor .tok-k { color: #7c3aed; }
+  .code-editor .tok-s { color: #16a34a; }
+  .code-editor .tok-c { color: var(--text-dim); }
+  .code-editor .tok-f { color: #2563eb; }
+  .code-editor .tok-n { color: #b45309; }
+
+  /* 流水线预览 */
+  .pipeline {
+    display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap;
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .pipe-node {
+    background: var(--bg); border: 1.5px solid var(--border); border-radius: 9px;
+    padding: 8px 12px; min-width: 130px; position: relative;
+  }
+  .pipe-node .pn-step { font-size: 10px; color: var(--text-dim); font-family: var(--mono); }
+  .pipe-node .pn-agent { font-size: 12.5px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+  .pipe-node .pn-task { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .pipe-arrow { display: flex; align-items: center; color: var(--text-dim); font-size: 16px; }
+  .pipe-par {
+    display: flex; flex-direction: column; gap: 6px;
+    border: 1.5px dashed var(--purple); border-radius: 9px; padding: 8px;
+    background: var(--purple-bg);
+  }
+  .pipe-par .par-label { font-size: 10px; color: var(--purple); font-weight: 600; text-align: center; }
+  .pipe-par .pipe-node { border-style: solid; }
+  .pipe-done { border-color: var(--green); }
+  .pipe-done .pn-agent::after { content: "✓"; color: var(--green); font-size: 11px; }
+
+  /* 按钮 */
+  .btn {
+    padding: 6px 14px; border-radius: 7px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); font-size: 12px; cursor: pointer;
+  }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-hover); }
+  .btn.sm { padding: 3px 9px; font-size: 11px; }
+  .btn.ghost { border: none; background: none; color: var(--accent); }
+  .btn.danger { color: var(--red); border-color: #fecaca; background: var(--red-bg); }
+
+  /* 表格 */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; font-size: 11px; color: var(--text-dim); font-weight: 600; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--bg-subtle); vertical-align: middle; }
+  tr:hover td { background: var(--bg-subtle); }
+  td code, .mono { font-family: var(--mono); font-size: 11px; }
+
+  /* Watchdog 状态卡 */
+  .status-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .status-card { border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; background: var(--bg); }
+  .status-card .sc-label { font-size: 10.5px; color: var(--text-dim); }
+  .status-card .sc-value { font-size: 13px; font-weight: 700; margin-top: 3px; display: flex; align-items: center; gap: 6px; }
+
+  /* 时间线 */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ""; position: absolute; left: 6px; top: 4px; bottom: 4px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; padding: 0 0 14px 8px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -18px; top: 5px; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--bg); border: 2px solid var(--green);
+  }
+  .tl-item.fail::before { border-color: var(--red); }
+  .tl-item.warn::before { border-color: var(--amber); }
+  .tl-item .tl-time { font-size: 10.5px; color: var(--text-dim); font-family: var(--mono); }
+  .tl-item .tl-title { font-size: 12.5px; font-weight: 600; }
+  .tl-item .tl-detail { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+  /* 底部操作条 */
+  .viz-footer {
+    display: flex; align-items: center; gap: 10px;
+    border-top: 1px solid var(--border); padding: 10px 18px;
+    background: var(--bg-panel);
+  }
+  .viz-footer .target { font-size: 11px; color: var(--text-dim); font-family: var(--mono); }
+  .viz-footer .spacer { flex: 1; }
+
+  /* toast */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: #111827; color: #fff; padding: 10px 18px; border-radius: 9px;
+    font-size: 12.5px; transition: transform .25s; z-index: 99;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .hidden { display: none !important; }
+  .hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<div class="design-banner">
+  <div><b>pi-subagents 可视化配置 · 设计图 v1</b> —— 交互示意（非真实功能），配色取自 pi-web globals.css</div>
+  <span class="tag">待评审</span>
+</div>
+
+<div class="modal">
+  <!-- 弹框头部 -->
+  <div class="modal-head">
+    <h2>插件配置</h2>
+    <button class="close">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <!-- 左侧：插件列表 -->
+    <div class="plugin-list">
+      <input class="search" placeholder="搜索插件…">
+      <div class="plugin-item">
+        <span class="p-icon" style="background:#3b82f6">M</span>
+        <span class="p-name">pi-mcp-adapter</span>
+        <span class="p-ver">0.9.x</span>
+      </div>
+      <div class="plugin-item">
+        <span class="p-icon" style="background:#f59e0b">C</span>
+        <span class="p-name">codex-computer-use-mcp</span>
+        <span class="p-ver">1.x</span>
+      </div>
+      <div class="plugin-item active">
+        <span class="p-icon" style="background:#7c3aed">S</span>
+        <span class="p-name">pi-subagents</span>
+        <span class="p-ver">0.42.1</span>
+        <span class="viz-badge">可视化</span>
+      </div>
+      <div class="plugin-item">
+        <span class="p-icon" style="background:#059669">P</span>
+        <span class="p-name">projectops</span>
+        <span class="p-ver">git</span>
+      </div>
+      <button class="add-btn">＋ 安装插件</button>
+    </div>
+
+    <!-- 右侧 -->
+    <div class="right">
+      <!-- Tab：插件详情 | 可视化 -->
+      <div class="tab-bar">
+        <button class="tab-btn" data-tab="detail">插件详情</button>
+        <button class="tab-btn active" data-tab="viz">可视化配置 <span class="badge purple" style="margin-left:4px">新</span></button>
+      </div>
+
+      <!-- ============ Tab1 插件详情（现有关卡，简略示意） ============ -->
+      <div class="detail-page hidden" id="page-detail">
+        <div class="enabled-row">
+          <div>
+            <div style="font-weight:600;font-size:13px">pi-subagents <span class="badge gray">v0.42.1</span></div>
+            <div class="desc" style="margin-top:3px">Pi extension for single-agent delegation and scripted multi-agent workflows</div>
+          </div>
+          <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+        <div class="desc">（此处保持现有内容：插件介绍、启用开关、安装源、包信息等 —— 不做改动）</div>
+      </div>
+
+      <!-- ============ Tab2 可视化 ============ -->
+      <div class="viz-page" id="page-viz">
+        <!-- 可视化内部分类导航 -->
+        <div class="viz-nav">
+          <div class="nav-group">配置</div>
+          <div class="nav-item active" data-page="general"><span class="n-ico">⚙️</span>通用设置</div>
+          <div class="nav-item" data-page="models"><span class="n-ico">🧠</span>模型路由</div>
+          <div class="nav-item" data-page="agents"><span class="n-ico">🤖</span>Agent 管理</div>
+          <div class="nav-item" data-page="workflow"><span class="n-ico">🔀</span>工作流编排</div>
+          <div class="nav-group">安全与持久化</div>
+          <div class="nav-item" data-page="watchdog"><span class="n-ico">🛡️</span>Watchdog</div>
+          <div class="nav-item" data-page="perms"><span class="n-ico">🔐</span>权限</div>
+          <div class="nav-item" data-page="mission"><span class="n-ico">🗂️</span>Mission·调度</div>
+        </div>
+
+        <!-- ============ 内容区 ============ -->
+        <div class="viz-content">
+
+          <!-- ═══════════ 1. 通用设置 ═══════════ -->
+          <div class="viz-page-content" id="page-general">
+            <div class="page-title">通用设置</div>
+            <div class="page-sub">行为与 UI 偏好，写入 <code>~/.pi/agent/extensions/subagent/config.json</code></div>
+
+            <div class="sec">
+              <div class="sec-title">UI 展示 <span class="src-tag">config.json</span></div>
+              <div class="form-card">
+                <div class="switch-row">
+                  <div><div class="s-label">FleetView 常驻面板</div><div class="s-desc">编辑器下方显示运行中的子代理摘要（可导航）</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="switch-row">
+                  <div><div class="s-label">异步运行小部件 <span class="key">asyncWidget</span></div><div class="s-desc">编辑器下方显示后台任务状态</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="form-grid" style="margin-top:10px">
+                  <div class="field">
+                    <label>FleetView 位置 <span class="key">fleetViewPlacement</span></label>
+                    <select><option>belowEditor（编辑器下方）</option><option>aboveEditor（编辑器上方）</option></select>
+                  </div>
+                  <div class="field">
+                    <label>聊天内工具结果展示 <span class="key">inlineToolDisplay</span></label>
+                    <select><option>rich（动态展示）</option><option>summary（单行摘要）</option></select>
+                  </div>
+                  <div class="field">
+                    <label>工具描述模式 <span class="key">toolDescriptionMode</span></label>
+                    <select><option>full（完整）</option><option>compact（精简）</option><option>custom（自定义文件）</option></select>
+                  </div>
+                  <div class="field">
+                    <label>完成通知批量合并 <span class="key">completionBatch</span></label>
+                    <select><option>enabled（默认 150ms 合并）</option><option>disabled（每条单独通知）</option></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">运行行为</div>
+              <div class="form-card">
+                <div class="switch-row">
+                  <div><div class="s-label">默认后台运行 <span class="key">asyncByDefault</span></div><div class="s-desc">workflowScript 未指定 async 时默认异步</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="switch-row">
+                  <div><div class="s-label">强制顶层异步 <span class="key">forceTopLevelAsync</span></div><div class="s-desc">顶层单/并行/链运行强制后台并跳过启动确认</div></div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="form-grid" style="margin-top:10px">
+                  <div class="field">
+                    <label>嵌套委派深度 <span class="key">maxSubagentDepth</span></label>
+                    <input type="number" value="2" min="0" max="5">
+                    <div class="hint">主会话 → 子 → 孙 的层级上限（0 = 禁止嵌套）</div>
+                  </div>
+                  <div class="field">
+                    <label>会话内最大启动数 <span class="key">maxSubagentSpawnsPerSession</span></label>
+                    <input type="number" value="0" min="0">
+                    <div class="hint">0 = 不限制</div>
+                  </div>
+                  <div class="field">
+                    <label>并行任务上限 <span class="key">parallel.maxTasks</span></label>
+                    <input type="number" value="8" min="1" max="64">
+                  </div>
+                  <div class="field">
+                    <label>并行并发数 <span class="key">parallel.concurrency</span></label>
+                    <input type="number" value="4" min="1" max="16">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">产物与存储</div>
+              <div class="form-grid">
+                <div class="field">
+                  <label>产物目录策略 <span class="key">artifactDir</span></label>
+                  <select><option>project（项目内 .pi-subagents/）</option><option>session（pi 会话目录）</option><option>temp（系统临时目录）</option></select>
+                </div>
+                <div class="field">
+                  <label>会话目录 <span class="key">defaultSessionDir</span></label>
+                  <input type="text" value="~/.pi/agent/sessions/subagent/">
+                </div>
+                <div class="field">
+                  <label>worktree 基目录 <span class="key">worktreeBaseDir</span></label>
+                  <input type="text" placeholder="默认系统临时目录">
+                  <div class="hint">worktree: true 运行的隔离工作区位置</div>
+                </div>
+                <div class="field">
+                  <label>单次运行输出目录 <span class="key">singleRunOutputBaseDir</span></label>
+                  <input type="text" placeholder="默认随运行产物">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 2. 模型路由 ═══════════ -->
+          <div class="viz-page-content hidden" id="page-models">
+            <div class="page-title">模型路由</div>
+            <div class="page-sub">子代理模型选择策略，写入 <code>~/.pi/agent/settings.json → subagents</code>；优先级：运行参数 &gt; agent 定义 &gt; 角色覆盖 &gt; 全局默认 &gt; 父会话</div>
+
+            <div class="sec">
+              <div class="sec-title">全局默认 <span class="src-tag">settings.json</span></div>
+              <div class="form-card form-grid">
+                <div class="field">
+                  <label>默认模型 <span class="key">subagents.defaultModel</span></label>
+                  <input type="text" value="deepseek-v4-pro" placeholder="provider/model-id">
+                  <div class="hint">所有未指定模型的子代理使用（支持模糊匹配）</div>
+                </div>
+                <div class="field">
+                  <label>默认思考级别 <span class="key">subagents.defaultThinking</span></label>
+                  <select><option>继承父会话</option><option>off</option><option>low</option><option>medium</option><option selected>high</option><option>xhigh</option></select>
+                </div>
+                <div class="field" style="grid-column: 1 / -1">
+                  <label>备用模型（fallback）</label>
+                  <input type="text" value="" placeholder="openai/gpt-5-mini, anthropic/claude-sonnet-4  （逗号分隔）">
+                  <div class="hint">provider 限流/鉴权失败时按序降级</div>
+                </div>
+                <div class="field">
+                  <label>模型范围白名单 <span class="key">subagents.modelScope.allow</span></label>
+                  <input type="text" value="anthropic/*, openai/gpt-5-*">
+                  <div class="hint">glob 模式，未命中则拒绝/警告</div>
+                </div>
+                <div class="field">
+                  <label>思考后缀 <span class="key">disableThinking</span></label>
+                  <select><option selected>正常（启用 thinking 后缀）</option><option>禁用（provider 不接受后缀时）</option></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">角色覆盖 <span class="src-tag">subagents.agentOverrides</span> <button class="btn sm" style="margin-left:auto">＋ 添加角色</button></div>
+              <div class="form-card" style="padding:8px">
+                <table>
+                  <thead><tr><th>角色</th><th>模型</th><th>思考</th><th>备用模型</th><th>状态</th><th style="width:110px">操作</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><b>reviewer</b></td>
+                      <td><input type="text" value="deepseek-v4-pro" style="width:140px;padding:4px 8px;border:1px solid var(--border);border-radius:6px"></td>
+                      <td><select style="padding:4px 6px;border:1px solid var(--border);border-radius:6px"><option>inherit</option><option>off</option><option>low</option><option selected>high</option></select></td>
+                      <td><span class="mono" style="color:var(--text-dim)">—</span></td>
+                      <td><span class="badge green">已覆盖</span></td>
+                      <td><button class="btn sm ghost">编辑</button><button class="btn sm ghost" style="color:var(--red)">删除</button></td>
+                    </tr>
+                    <tr>
+                      <td><b>oracle</b></td>
+                      <td><input type="text" value="deepseek-v4-pro" style="width:140px;padding:4px 8px;border:1px solid var(--border);border-radius:6px"></td>
+                      <td><select style="padding:4px 6px;border:1px solid var(--border);border-radius:6px"><option>inherit</option><option>off</option><option selected>high</option></select></td>
+                      <td><input type="text" value="openai/gpt-5-mini" style="width:150px;padding:4px 8px;border:1px solid var(--border);border-radius:6px"></td>
+                      <td><span class="badge green">已覆盖</span></td>
+                      <td><button class="btn sm ghost">编辑</button><button class="btn sm ghost" style="color:var(--red)">删除</button></td>
+                    </tr>
+                    <tr>
+                      <td><b>worker</b></td>
+                      <td><span class="mono" style="color:var(--text-dim)">跟随全局默认</span></td>
+                      <td><span class="mono" style="color:var(--text-dim)">—</span></td>
+                      <td><span class="mono" style="color:var(--text-dim)">—</span></td>
+                      <td><span class="badge gray">默认</span></td>
+                      <td><button class="btn sm ghost">覆盖</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">实时映射诊断</div>
+              <div class="form-card" style="display:flex;align-items:center;gap:10px;justify-content:space-between">
+                <span style="font-size:12px;color:var(--text-muted)">查看当前生效的角色→模型映射（运行时状态，非配置）</span>
+                <button class="btn sm">刷新映射（/subagents-models）</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 3. Agent 管理 ═══════════ -->
+          <div class="viz-page-content hidden" id="page-agents">
+            <div class="page-title">Agent 管理</div>
+            <div class="page-sub">内置 9 个角色 + 自定义 agent；点击卡片展开编辑，支持 eject / disable / reset</div>
+
+            <div class="sec">
+              <div class="sec-title">推荐委派流转 <span class="src-tag">官方推荐循环</span></div>
+              <div class="flow-chain">
+                <div class="flow-node hot"><span class="fn-name">🧭 clarify</span><span class="fn-when">需求不明确时</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node"><span class="fn-name">🔍 scout</span><span class="fn-when">先理解代码</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node"><span class="fn-name">🧩 planner</span><span class="fn-when">大改动前</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node"><span class="fn-name">🛠️ worker</span><span class="fn-when">实现</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">
+                  <span class="fn-name">👀 reviewer</span><span class="fn-when">审查 ×N（并行）</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node"><span class="fn-name">🤔 oracle</span><span class="fn-when">决策风险高时</span></div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">角色卡片 <span style="margin-left:auto;display:flex;gap:6px"><button class="btn sm">＋ 新建自定义 Agent</button></span></div>
+              <div class="agent-grid">
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">scout</span><span class="badge gray">内置</span></div>
+                  <div class="a-role">快速代码侦察：相关文件、入口、数据流、风险</div>
+                  <div class="a-tags"><span class="badge blue">read-only</span><span class="badge gray">tools: 8</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-flash</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">researcher</span><span class="badge gray">内置</span></div>
+                  <div class="a-role">Web/文档调研，带来源与调研简报</div>
+                  <div class="a-tags"><span class="badge amber">需 pi-web-access</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-flash</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">planner</span><span class="badge gray">内置</span></div>
+                  <div class="a-role">从现有上下文制定实现计划，只读不编辑</div>
+                  <div class="a-tags"><span class="badge blue">read-only</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-pro</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">worker</span><span class="badge gray">内置</span><span class="badge green">覆盖中</span></div>
+                  <div class="a-role">实现工作：改文件、验证、未批准决策上报</div>
+                  <div class="a-tags"><span class="badge red">writer</span><span class="badge gray">fork 上下文</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-pro</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">reviewer</span><span class="badge gray">内置</span><span class="badge green">覆盖中</span></div>
+                  <div class="a-role">对照任务/计划审查代码、测试、边界与简洁性</div>
+                  <div class="a-tags"><span class="badge blue">read-only</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-pro</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">oracle</span><span class="badge gray">内置</span><span class="badge green">覆盖中</span></div>
+                  <div class="a-role">第二意见：挑战假设、发现漂移、不编辑</div>
+                  <div class="a-tags"><span class="badge blue">read-only</span><span class="badge gray">fork 上下文</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-pro</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">context-builder</span><span class="badge gray">内置</span></div>
+                  <div class="a-role">规划前收集代码上下文并写交接材料</div>
+                  <div class="a-tags"><span class="badge blue">read-only</span></div>
+                  <div class="a-foot"><span class="model">deepseek-v4-flash</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card">
+                  <div class="a-head"><span class="a-name">delegate</span><span class="badge gray">内置</span></div>
+                  <div class="a-role">通用轻量委派，行为接近父会话</div>
+                  <div class="a-tags"><span class="badge gray">append 模式</span></div>
+                  <div class="a-foot"><span class="model">跟随父会话</span><span class="edit-hint">点击编辑 →</span></div>
+                </div>
+                <div class="agent-card" style="border-style:dashed">
+                  <div class="a-head"><span class="a-name" style="color:var(--text-dim)">+ 自定义角色</span></div>
+                  <div class="a-role" style="color:var(--text-dim)">从 frontmatter 模板创建（tools / model / memory / acceptance…）</div>
+                  <div class="a-foot"><span class="model" style="color:var(--text-dim)">user / project 作用域</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">Agent 编辑面板（点击卡片展开，示意）</div>
+              <div class="form-card">
+                <div class="form-grid">
+                  <div class="field"><label>名称 <span class="key">name</span></label><input type="text" value="reviewer"></div>
+                  <div class="field"><label>别名 <span class="key">aliases</span></label><input type="text" placeholder="code-reviewer, cr"></div>
+                  <div class="field"><label>模型 <span class="key">model</span></label><input type="text" value="deepseek-v4-pro"></div>
+                  <div class="field"><label>思考级别 <span class="key">thinking</span></label><select><option>inherit</option><option>off</option><option>low</option><option selected>high</option></select></div>
+                  <div class="field" style="grid-column:1/-1"><label>工具白名单 <span class="key">tools</span></label><input type="text" value="read, grep, find, ls"></div>
+                  <div class="field"><label>系统提示模式 <span class="key">systemPromptMode</span></label><select><option selected>replace</option><option>append</option></select></div>
+                  <div class="field"><label>默认上下文 <span class="key">defaultContext</span></label><select><option>fresh</option><option selected>fork</option></select></div>
+                </div>
+                <div class="switch-row" style="margin-top:8px">
+                  <div><div class="s-label">继承项目上下文 <span class="key">inheritProjectContext</span></div><div class="s-desc">读取 AGENTS.md 等</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px">
+                  <button class="btn primary sm">保存覆盖</button>
+                  <button class="btn sm">eject（抽出为自定义文件）</button>
+                  <button class="btn sm">reset（恢复内置）</button>
+                  <button class="btn danger sm">disable</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 4. 工作流编排 ═══════════ -->
+          <div class="viz-page-content hidden" id="page-workflow">
+            <div class="page-title">工作流编排</div>
+            <div class="page-sub">选择模板 → 生成 workflowScript → 流水线预览。模板与代码等价，可互相切换</div>
+
+            <div class="sec">
+              <div class="sec-title">模板库</div>
+              <div class="tpl-grid">
+                <div class="tpl-card selected">
+                  <div class="t-name">🔍 单代理委派</div>
+                  <div class="t-desc">一个子代理完成任务并返回结果</div>
+                  <div class="t-shape"><span class="chip">scout</span></div>
+                </div>
+                <div class="tpl-card">
+                  <div class="t-name">🔗 顺序链</div>
+                  <div class="t-desc">前一步输出作为下一步输入</div>
+                  <div class="t-shape"><span class="chip">scout</span>→<span class="chip">worker</span>→<span class="chip">reviewer</span></div>
+                </div>
+                <div class="tpl-card">
+                  <div class="t-name">🔀 并行扇出</div>
+                  <div class="t-desc">多个独立审查/调研同时进行，聚合结果</div>
+                  <div class="t-shape"><span class="chip par">reviewer×3</span></div>
+                </div>
+                <div class="tpl-card">
+                  <div class="t-name">🔄 审查循环</div>
+                  <div class="t-desc">worker + reviewer 循环直到干净或达上限</div>
+                  <div class="t-shape"><span class="chip">worker</span>⇄<span class="chip">reviewer</span> <span class="chip">max 3</span></div>
+                </div>
+                <div class="tpl-card">
+                  <div class="t-name">⏳ 后台任务</div>
+                  <div class="t-desc">异步运行，控制权立即交还</div>
+                  <div class="t-shape"><span class="chip">async</span> <span class="chip">worker</span></div>
+                </div>
+                <div class="tpl-card">
+                  <div class="t-name">🧩 混合编排</div>
+                  <div class="t-desc">顺序 + 并行组合 + worktree 隔离</div>
+                  <div class="t-shape"><span class="chip">scout</span>→<span class="chip par">worker×2</span>→<span class="chip">reviewer</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">workflowScript <span class="src-tag">可编辑</span> <button class="btn sm" style="margin-left:auto">复制</button></div>
+              <div class="code-editor">
+                <div class="ce-head">
+                  <span class="dots"><span class="dot2" style="background:#f87171"></span><span class="dot2" style="background:#fbbf24"></span><span class="dot2" style="background:#34d399"></span></span>
+                  <span class="fname">workflowScript</span>
+                  <span class="ce-actions"><button class="btn sm">格式化</button></span>
+                </div>
+                <pre><span class="tok-c">// 并行审查扇出：三个独立角度</span>
+<span class="tok-k">const</span> scan = <span class="tok-k">await</span> <span class="tok-f">runs.run</span>(<span class="tok-s">"scan"</span>, { agent: <span class="tok-s">"scout"</span>, task: <span class="tok-s">"扫描代码库结构"</span> });
+<span class="tok-k">const</span> reviews = <span class="tok-k">await</span> <span class="tok-f">runs.all</span>([
+  { key: <span class="tok-s">"correctness"</span>, agent: <span class="tok-s">"reviewer"</span>, task: <span class="tok-s">"审查正确性: "</span> + scan.output },
+  { key: <span class="tok-s">"tests"</span>,       agent: <span class="tok-s">"reviewer"</span>, task: <span class="tok-s">"审查测试: "</span> + scan.output },
+  { key: <span class="tok-s">"simplicity"</span>,  agent: <span class="tok-s">"reviewer"</span>, task: <span class="tok-s">"审查简洁性: "</span> + scan.output }
+]);
+<span class="tok-k">return</span> reviews.<span class="tok-f">map</span>(r =&gt; r.output);</pre>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">流水线预览 <span class="src-tag">自动解析，只读</span></div>
+              <div class="pipeline">
+                <div class="pipe-node pipe-done">
+                  <div class="pn-step">step 1 · 顺序</div>
+                  <div class="pn-agent">🔍 scout</div>
+                  <div class="pn-task">扫描代码库结构</div>
+                </div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-par">
+                  <div class="par-label">并行 ×3</div>
+                  <div class="pipe-node pipe-done">
+                    <div class="pn-step">runs.all · correctness</div>
+                    <div class="pn-agent">👀 reviewer</div>
+                    <div class="pn-task">审查正确性</div>
+                  </div>
+                  <div class="pipe-node pipe-done">
+                    <div class="pn-step">runs.all · tests</div>
+                    <div class="pn-agent">👀 reviewer</div>
+                    <div class="pn-task">审查测试</div>
+                  </div>
+                  <div class="pipe-node">
+                    <div class="pn-step">runs.all · simplicity</div>
+                    <div class="pn-agent">👀 reviewer <span class="badge amber" style="font-size:9px">运行中</span></div>
+                    <div class="pn-task">审查简洁性</div>
+                  </div>
+                </div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-node">
+                  <div class="pn-step">return</div>
+                  <div class="pn-agent">📦 聚合结果</div>
+                  <div class="pn-task">3 个审查输出合并</div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:var(--text-dim);margin-top:8px">💡 解析失败时自动降级为纯代码视图；hover 节点可定位到对应代码行</div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 5. Watchdog ═══════════ -->
+          <div class="viz-page-content hidden" id="page-watchdog">
+            <div class="page-title">Watchdog 看门狗</div>
+            <div class="page-sub">可选的对抗性变更审查：repo 被修改时用独立强模型审查，写入 <code>settings.json → subagents.watchdog</code></div>
+
+            <div class="status-cards">
+              <div class="status-card"><div class="sc-label">当前状态</div><div class="sc-value"><span class="badge green">● 已启用</span></div></div>
+              <div class="status-card"><div class="sc-label">审查模型</div><div class="sc-value"><span class="mono" style="font-size:12px">anthropic/claude-opus-4-8</span></div></div>
+              <div class="status-card"><div class="sc-label">上次审查</div><div class="sc-value" style="font-size:12px">2 分钟前</div></div>
+              <div class="status-card"><div class="sc-label">LSP 诊断</div><div class="sc-value"><span class="badge blue">正常 · 2 文件</span></div></div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">审查配置 <span class="src-tag">subagents.watchdog</span></div>
+              <div class="form-card">
+                <div class="switch-row">
+                  <div><div class="s-label">启用 Watchdog <span class="key">enabled</span></div><div class="s-desc">agent_end 且 repo 有改动时触发对抗性审查</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="form-grid" style="margin-top:10px">
+                  <div class="field">
+                    <label>主审查模型 <span class="key">main.model</span></label>
+                    <div style="display:flex;gap:6px"><input type="text" value="anthropic/claude-opus-4-8"><button class="btn sm" style="white-space:nowrap">✨ 推荐模型</button></div>
+                  </div>
+                  <div class="field">
+                    <label>思考级别 <span class="key">main.thinking</span></label>
+                    <select><option>off</option><option>low</option><option selected>high</option></select>
+                  </div>
+                  <div class="field">
+                    <label>子代理默认审查模型 <span class="key">children.model</span></label>
+                    <input type="text" placeholder="默认继承 main.model">
+                  </div>
+                  <div class="field">
+                    <label>审查节奏 <span class="key">cadence.everyNTools</span></label>
+                    <input type="number" value="0" min="0" placeholder="0 = 仅 agent_end 审查">
+                    <div class="hint">每 N 次工具调用做一次非阻塞 scope 检查</div>
+                  </div>
+                </div>
+                <div class="switch-row" style="margin-top:8px">
+                  <div><div class="s-label">Scope 监控 <span class="key">scope.enabled</span></div><div class="s-desc">记录当前目标，标记 scope-drift</div></div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="switch-row">
+                  <div><div class="s-label">LSP 诊断 <span class="key">lsp.enabled</span></div><div class="s-desc">审查前对变更的 TS/JS 文件跑语言服务器诊断</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="switch-row">
+                  <div><div class="s-label">Auto-follow <span class="key">autoFollow</span></div><div class="s-desc">发现 blocker 时自动排队后续消息让 agent 处理</div></div>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">审查历史 <span class="src-tag">只读</span></div>
+              <div class="form-card">
+                <div class="timeline">
+                  <div class="tl-item">
+                    <div class="tl-time">10:12 · 2 分钟前</div>
+                    <div class="tl-title">审查通过 <span class="badge blue">worker</span> <span class="badge gray">3 文件变更</span></div>
+                    <div class="tl-detail">无 blocker；1 条 concern（未使用变量） · 模型 claude-opus-4-8</div>
+                  </div>
+                  <div class="tl-item warn">
+                    <div class="tl-time">09:47 · 25 分钟前</div>
+                    <div class="tl-title">发现 blocker <span class="badge red">scope-drift</span></div>
+                    <div class="tl-detail">改动超出当前目标范围（auth 重构 vs 日志修复）→ auto-follow 已排队</div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-time">昨天 17:20</div>
+                    <div class="tl-title">审查通过 <span class="badge amber">LSP 警告 3</span></div>
+                    <div class="tl-detail">TS 诊断 3 个警告，无错误 · 模型 claude-opus-4-8</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 6. 权限 ═══════════ -->
+          <div class="viz-page-content hidden" id="page-perms">
+            <div class="page-title">子代理工具权限</div>
+            <div class="page-sub">原生权限门（bash 除外）：allow / ask / deny，ask 由子 watchdog 仲裁，写入 <code>config.json → permissions</code></div>
+
+            <div class="sec">
+              <div class="sec-title">权限规则 <span class="src-tag">permissions.rules</span></div>
+              <div class="form-card" style="padding:8px">
+                <table>
+                  <thead><tr><th>工具</th><th style="width:160px">策略</th><th>说明</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>read</code></td><td><select style="padding:4px 8px;border:1px solid var(--border);border-radius:6px"><option selected>allow</option><option>ask</option><option>deny</option></select></td><td style="color:var(--text-dim)">全局默认</td></tr>
+                    <tr><td><code>write</code></td><td><select style="padding:4px 8px;border:1px solid var(--border);border-radius:6px"><option>allow</option><option selected>ask</option><option>deny</option></select></td><td style="color:var(--text-dim)">调用时由 watchdog 仲裁（预览 + 批准/拒绝）</td></tr>
+                    <tr><td><code>edit</code></td><td><select style="padding:4px 8px;border:1px solid var(--border);border-radius:6px"><option>allow</option><option>ask</option><option selected>deny</option></select></td><td style="color:var(--text-dim)">子代理禁止编辑</td></tr>
+                    <tr><td><code>bash</code></td><td><span class="badge gray">不受管</span></td><td style="color:var(--text-dim)">始终放行；命令级策略需 pi-guard</td></tr>
+                  </tbody>
+                </table>
+                <button class="btn sm" style="margin-top:10px">＋ 添加工具规则</button>
+              </div>
+            </div>
+            <div class="sec">
+              <div class="sec-title">每角色覆盖 <span class="src-tag">agent frontmatter: permission</span></div>
+              <div class="form-card" style="font-size:12px;color:var(--text-muted)">
+                自定义 agent 的 frontmatter 可覆盖全局规则（如 worker 里 <code>write: allow, edit: ask</code>）。此处在角色编辑面板中提供。
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════════ 7. Mission·调度 ═══════════ -->
+          <div class="viz-page-content hidden" id="page-mission">
+            <div class="page-title">Mission 与定时调度</div>
+            <div class="page-sub">持久任务记录 + 定时运行，存于项目 <code>.pi-subagents/</code></div>
+
+            <div class="sec">
+              <div class="sec-title">Mission <span class="src-tag">missions</span></div>
+              <div class="form-card">
+                <div class="switch-row">
+                  <div><div class="s-label">自动创建 Mission <span class="key">missions.enabled</span></div><div class="s-desc">普通任务启动时自动创建持久记录（含目标/运行/收据）</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="form-grid" style="margin-top:10px">
+                  <div class="field"><label>存储目录 <span class="key">missions.directory</span></label><input type="text" value=".pi-subagents/missions"></div>
+                  <div class="field"><label>保留终端记录数 <span class="key">missions.retainTerminal</span></label><input type="number" value="200"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">定时调度 <span class="src-tag">scheduledRuns</span></div>
+              <div class="form-card">
+                <div class="switch-row">
+                  <div><div class="s-label">启用调度 <span class="key">scheduledRuns.enabled</span></div><div class="s-desc">支持 at:+30m 一次性 / every:6h 周期</div></div>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="form-grid" style="margin-top:10px">
+                  <div class="field"><label>待执行上限 <span class="key">scheduledRuns.maxPending</span></label><input type="number" value="20"></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px">
+                  <button class="btn primary sm">＋ 新建调度</button>
+                  <button class="btn sm">查看现有调度</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sec">
+              <div class="sec-title">现有调度列表 <span class="src-tag">只读</span></div>
+              <div class="form-card" style="padding:8px">
+                <table>
+                  <thead><tr><th>ID</th><th>名称</th><th>触发</th><th>代理</th><th>状态</th><th>操作</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><code>backlog</code></td><td>每日代码审查</td><td>every 6h</td><td>reviewer</td>
+                      <td><span class="badge green">active</span></td>
+                      <td><button class="btn sm ghost">暂停</button><button class="btn sm ghost">立即运行</button><button class="btn sm ghost" style="color:var(--red)">删除</button></td>
+                    </tr>
+                    <tr>
+                      <td><code>evening-review</code></td><td>晚间审查</td><td>一次性 +30m</td>
+                      <td>reviewer</td><td><span class="badge amber">pending</span></td>
+                      <td><button class="btn sm ghost">取消</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /viz-content -->
+
+        <!-- 底部操作条 -->
+        <div class="viz-footer">
+          <span class="target">写入目标：~/.pi/agent/settings.json（模型/角色/Watchdog）· ~/.pi/agent/extensions/subagent/config.json（行为/UI）</span>
+          <span class="spacer"></span>
+          <button class="btn">恢复默认</button>
+          <button class="btn primary" id="save-btn">保存</button>
+        </div>
+      </div><!-- /viz-page -->
+    </div><!-- /right -->
+  </div><!-- /modal-body -->
+</div><!-- /modal -->
+
+<div class="toast" id="toast">已保存 ✓ 写入配置文件（设计图示意，未实际落盘）</div>
+
+<script>
+  // Tab 切换
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('page-detail').classList.toggle('hidden', btn.dataset.tab !== 'detail');
+      document.getElementById('page-viz').classList.toggle('hidden', btn.dataset.tab !== 'viz');
+    });
+  });
+
+  // 可视化分类切换
+  document.querySelectorAll('.viz-nav .nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.viz-nav .nav-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      document.querySelectorAll('.viz-page-content').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-' + item.dataset.page).classList.remove('hidden');
+    });
+  });
+
+  // 模板选择（示意：选中高亮）
+  document.querySelectorAll('.tpl-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.tpl-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+
+  // 保存 → toast
+  document.getElementById('save-btn').addEventListener('click', () => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  });
+</script>
+</body>
+</html>

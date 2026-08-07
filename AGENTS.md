@@ -1,9 +1,19 @@
 # Pi Web - Development Notes
 
+## UI 组件库标准（必读）
+
+**所有 UI 开发必须遵循 `docs/UI-COMPONENTS.md` 标准**：
+
+- 标准来源：[@cloudflare/kumo](https://github.com/cloudflare/kumo)（v2.9.2，Base UI + Tailwind v4），微调层在 `components/ui/`
+- **一律从 `@/components/ui` 导入组件**（Button/Field/Input/Select/Switch/Badge/Dialog/Tabs），禁止直接 import kumo、禁止新增内联 style、禁止硬编码 hex 颜色
+- 颜色只用语义 token（`bg-kumo-base`、`text-kumo-subtle`、`ring-kumo-line` 等），主题微调见 `app/globals.css`（brand → pi-web 蓝、dark variant 跟随 html.dark）
+- **组件库预览页：http://127.0.0.1:37377/design**（源码 `app/design/page.tsx`），开发前先看组件形态
+- 新增组件流程：`components/ui/<name>.tsx` → `index.ts` 登记 → `/design` 加预览 → 更新 `docs/UI-COMPONENTS.md`
+
 ## Quick Start
 
 ```bash
-npm run dev   # port 30141
+npm run dev   # port 37377
 ```
 
 Typecheck: `node_modules/.bin/tsc --noEmit`  

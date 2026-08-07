@@ -1,0 +1,12 @@
+{
+  "name": "pi-permission-modes",
+  "version": "0.1.0",
+  "description": "Codex-style permission gate for pi: full / ask / risky / readonly / custom modes with allow-ask-deny rules, risk detection, approval flow and audit log",
+  "license": "MIT",
+  "keywords": ["pi-package", "permission", "approval", "security", "gate"],
+  "type": "module",
+  "main": "index.ts",
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pi-subagents 可视化配置 · 设计图 v2</title>
+<style>
+  /* 与 pi-web globals.css 完全一致的变量 */
+  :root {
+    --bg: #ffffff;
+    --bg-panel: #f5f5f5;
+    --bg-hover: #eeeeee;
+    --bg-selected: #e8e8e8;
+    --border: #e0e0e0;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --text-dim: #9ca3af;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --user-bg: #eff6ff;
+    --assistant-bg: #ffffff;
+    --tool-bg: #f9fafb;
+    --bg-subtle: rgba(0,0,0,0.03);
+    --font-mono: 'JetBrains Mono','Fira Code',ui-monospace,Consolas,'PingFang SC','Microsoft YaHei',monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #e5e5e6;
+    color: var(--text);
+    display: flex; flex-direction: column; align-items: center;
+    padding: 30px 16px 60px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .banner {
+    width: 860px; max-width: 100%;
+    background: var(--bg-panel);
+    border: 1px solid var(--border); border-radius: 8;
+    padding: 8px 14px; margin-bottom: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text-muted); font-size: 11px;
+  }
+  .banner code { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <span><b style="color:var(--text)">设计图 v2</b> · 与 pi-web 原生风格一致（内联样式 + CSS 变量，无第三方 UI 库）</span>
+  <span>弹框尺寸模拟：860 × 76vh，与 PluginsConfig 一致</span>
+</div>
+
+<!-- ══════════ 弹框（模拟 PluginsConfig 结构） ══════════ -->
+<div style="width:860px;max-width:calc(100vw - 16px);height:76vh;max-height:calc(100dvh - 16px);background:var(--bg);border:1px solid var(--border);border-radius:8;display:flex;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,0.18);overflow:hidden">
+
+  <!-- 弹框头 -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--border);flex-shrink:0">
+    <div style="display:flex;align-items:baseline;gap:10px;min-width:0">
+      <span style="font-size:15px;font-weight:700;color:var(--text)">插件配置</span>
+      <code style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">~/Codes/xuefei/pi-web-yuxi</code>
+    </div>
+    <button style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;line-height:1;padding:2px 6px">×</button>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:row;overflow:hidden">
+
+    <!-- ══════ 左侧插件列表（保持现状结构） ══════ -->
+    <div style="width:245px;flex-shrink:0;border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg-panel)">
+      <div style="flex:1;overflow-y:auto;padding:8px 6px">
+        <div style="padding:4px 8px 3px;font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase">global</div>
+        <div style="display:flex;align-items:center;gap:7px;padding:8px 8px;border-radius:5;cursor:pointer">
+          <span style="flex-shrink:0;width:7px;height:7px;border-radius:50%;background:#16a34a"/>
+          <div style="min-width:0;flex:1">
+            <div style="font-size:12px;color:var(--text);font-family:var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">npm:pi-mcp-adapter</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">1 extension</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;padding:8px 8px;border-radius:5;cursor:pointer;background:var(--bg-selected)">
+          <span style="flex-shrink:0;width:7px;height:7px;border-radius:50%;background:#16a34a"/>
+          <div style="min-width:0;flex:1">
+            <div style="font-size:12px;font-weight:600;color:var(--text);font-family:var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">npm:pi-subagents</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">1 extension · 1 skill · 7 prompts</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">v0.42.1</div>
+          </div>
+          <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(37,99,235,0.1);color:var(--accent)">可视化</span>
+        </div>
+      </div>
+      <div style="padding:8px 6px;border-top:1px solid var(--border);flex-shrink:0">
+        <div style="display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:5;cursor:pointer;color:var(--text-dim);font-size:12px">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          添加插件
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ 右侧 ══════ -->
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+
+      <!-- Tab 条：插件详情 | 可视化 -->
+      <div style="display:flex;gap:2px;padding:0 14px;border-bottom:1px solid var(--border);flex-shrink:0">
+        <button style="padding:10px 14px;font-size:13px;cursor:pointer;border:none;background:none;color:var(--text-muted);border-bottom:2px solid transparent">插件详情</button>
+        <button style="padding:10px 14px;font-size:13px;cursor:pointer;border:none;background:none;color:var(--accent);border-bottom:2px solid var(--accent);font-weight:600">可视化配置</button>
+      </div>
+
+      <!-- 可视化内容区 -->
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+
+        <!-- 顶部横向分类导航（SegmentedScope 风格） -->
+        <div class="viz-nav" style="display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap">
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:var(--accent);color:#fff;font-weight:600">通用设置</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">模型路由</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">Agent 管理</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">工作流编排</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">Watchdog</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">权限</button>
+          <button style="padding:4px 11px;font-size:12px;border:none;border-radius:5;cursor:pointer;background:none;color:var(--text-muted)">Mission 调度</button>
+        </div>
+
+        <!-- 内容滚动区 -->
+        <div class="viz-content" style="flex:1;overflow-y:auto;padding:16px 20px">
+
+          <!-- ═══════ 页面 1：通用设置 ═══════ -->
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">通用设置</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">写入 <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-panel);padding:0 4px;border-radius:3">~/.pi/agent/extensions/subagent/config.json</code> · 重启 pi 或 /reload 生效</div>
+
+            <!-- UI 展示 -->
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">UI 展示</div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">FleetView 常驻面板</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">编辑器下方显示运行中的子代理摘要 · fleetView</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;transition:background 0.18s;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">异步运行小部件</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">编辑器下方显示后台任务状态 · asyncWidget</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">FleetView 位置 · fleetViewPlacement</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none">
+                    <option>belowEditor</option><option>aboveEditor</option>
+                  </select>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">工具结果展示 · inlineToolDisplay</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none">
+                    <option>rich</option><option>summary</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- 运行行为 -->
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">运行行为</div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">默认后台运行</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">workflowScript 未指定 async 时默认异步 · asyncByDefault</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">嵌套委派深度 · maxSubagentDepth</label>
+                  <input type="number" value="2" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"/>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">并行上限 · parallel.maxTasks</label>
+                  <input type="number" value="8" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- 产物与存储 -->
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">产物与存储</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:12px 14px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">产物目录策略 · artifactDir</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none">
+                    <option>project（项目内 .pi-subagents/）</option><option>session</option><option>temp</option>
+                  </select>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">worktree 基目录 · worktreeBaseDir</label>
+                  <input type="text" placeholder="默认系统临时目录" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════ 页面 2：模型路由 ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">模型路由</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">写入 <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-panel);padding:0 4px;border-radius:3">settings.json → subagents</code> · 优先级：运行参数 &gt; agent 定义 &gt; 角色覆盖 &gt; 全局默认 &gt; 父会话</div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">全局默认</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:12px 14px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">默认模型 · defaultModel</label>
+                  <input type="text" value="deepseek-v4-pro" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                  <span style="font-size:10px;color:var(--text-dim)">支持模糊匹配，如 anthropic/claude-sonnet-4</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">默认思考级别 · defaultThinking</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none">
+                    <option>继承父会话</option><option>off</option><option>low</option><option>medium</option><option>high</option>
+                  </select>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;grid-column:1/-1">
+                  <label style="font-size:11px;color:var(--text-muted)">模型范围白名单 · modelScope.allow</label>
+                  <input type="text" value="anthropic/*, openai/gpt-5-*" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                  <span style="font-size:10px;color:var(--text-dim)">glob 模式，逗号分隔；未命中时显式指定会报错，继承来源仅警告</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px;display:flex;justify-content:space-between;align-items:center">
+              <span>角色覆盖 · agentOverrides</span>
+              <button style="padding:3px 10px;background:none;border:1px solid var(--border);border-radius:5;color:var(--accent);cursor:pointer;font-size:11px;text-transform:none">＋ 添加角色</button>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <table style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border)">
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">角色</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">模型</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">思考</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">备用模型</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px;width:110px">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px"><span style="font-family:var(--font-mono);font-size:11px">reviewer</span> <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">已覆盖</span></td>
+                    <td style="padding:8px 12px"><input type="text" value="deepseek-v4-pro" style="width:130px;padding:4px 8px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;font-family:var(--font-mono);outline:none"/></td>
+                    <td style="padding:8px 12px"><select style="padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;outline:none"><option>inherit</option><option>high</option></select></td>
+                    <td style="padding:8px 12px"><span style="color:var(--text-dim);font-size:11px">—</span></td>
+                    <td style="padding:8px 12px"><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">编辑</button><button style="padding:2px 8px;background:none;border:none;color:#ef4444;cursor:pointer;font-size:11px">删除</button></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px"><span style="font-family:var(--font-mono);font-size:11px">oracle</span> <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">已覆盖</span></td>
+                    <td style="padding:8px 12px"><input type="text" value="deepseek-v4-pro" style="width:130px;padding:4px 8px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;font-family:var(--font-mono);outline:none"/></td>
+                    <td style="padding:8px 12px"><select style="padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;outline:none"><option>inherit</option><option>high</option></select></td>
+                    <td style="padding:8px 12px"><input type="text" value="openai/gpt-5-mini" style="width:130px;padding:4px 8px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;font-family:var(--font-mono);outline:none"/></td>
+                    <td style="padding:8px 12px"><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">编辑</button><button style="padding:2px 8px;background:none;border:none;color:#ef4444;cursor:pointer;font-size:11px">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 12px"><span style="font-family:var(--font-mono);font-size:11px">worker</span></td>
+                    <td style="padding:8px 12px" colspan="3"><span style="color:var(--text-dim);font-size:11px">跟随全局默认（无覆盖）</span></td>
+                    <td style="padding:8px 12px"><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">覆盖</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ═══════ 页面 3：Agent 管理 ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">Agent 管理</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">内置 9 个角色 + 自定义；点击卡片编辑（tools / model / thinking / 继承上下文…）</div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">推荐委派流转</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--bg-panel)">
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--accent);color:var(--accent);font-weight:600">clarify</span>
+              <span style="color:var(--text-dim)">→</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--border)">scout</span>
+              <span style="color:var(--text-dim)">→</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--border)">planner</span>
+              <span style="color:var(--text-dim)">→</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--border)">worker</span>
+              <span style="color:var(--text-dim)">→</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--border)">reviewer ×N</span>
+              <span style="color:var(--text-dim)">→</span>
+              <span style="font-size:10px;padding:3px 8px;border-radius:5;background:var(--bg);border:1px solid var(--border)">oracle</span>
+              <span style="font-size:10px;color:var(--text-dim);margin-left:auto">官方推荐循环</span>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px;display:flex;justify-content:space-between;align-items:center">
+              <span>角色卡片</span>
+              <button style="padding:3px 10px;background:none;border:1px solid var(--border);border-radius:5;color:var(--accent);cursor:pointer;font-size:11px;text-transform:none">＋ 新建自定义 Agent</button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <!-- 卡片模板 x8 -->
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">scout</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">覆盖中</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">快速代码侦察：相关文件、入口、数据流、风险</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-flash</span>
+                  <span style="font-size:10px;color:var(--text-dim)">·</span>
+                  <span style="font-size:10px;color:var(--text-dim)">只读</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">researcher</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">Web/文档调研，带来源与调研简报</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-flash</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(245,158,11,0.12);color:#d97706">需 pi-web-access</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">worker</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">覆盖中</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">实现工作：改文件、验证、未批准决策上报</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-pro</span>
+                  <span style="font-size:10px;color:var(--text-dim)">·</span>
+                  <span style="font-size:10px;color:var(--text-dim)">写 · fork 上下文</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">reviewer</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">覆盖中</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">对照任务/计划审查代码、测试、边界</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-pro</span>
+                  <span style="font-size:10px;color:var(--text-dim)">·</span>
+                  <span style="font-size:10px;color:var(--text-dim)">只读</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">oracle</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">覆盖中</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">第二意见：挑战假设、发现漂移、不编辑</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-pro</span>
+                  <span style="font-size:10px;color:var(--text-dim)">·</span>
+                  <span style="font-size:10px;color:var(--text-dim)">只读 · fork</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">planner</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">从现有上下文制定实现计划，只读不编辑</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+                  <span style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">deepseek-v4-pro</span>
+                  <span style="font-size:10px;color:var(--text-dim)">·</span>
+                  <span style="font-size:10px;color:var(--text-dim)">只读</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:12px;font-weight:600">context-builder</span>
+                  <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">内置</span>
+                </div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:4px">规划前收集代码上下文并写交接材料</div>
+                <div style="font-size:10px;font-family:var(--font-mono);color:var(--text-dim);margin-top:7px">deepseek-v4-flash</div>
+              </div>
+              <div style="border:1px dashed var(--border);border-radius:8;padding:10px 12px;cursor:pointer;display:flex;align-items:center;justify-content:center">
+                <span style="font-size:11px;color:var(--text-dim)">＋ 自定义角色（user / project 作用域）</span>
+              </div>
+            </div>
+
+            <!-- 编辑面板（点击卡片后展开，示意） -->
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">编辑：reviewer（点击卡片展开）</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:12px 14px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">模型 · model</label>
+                  <input type="text" value="deepseek-v4-pro" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">思考级别 · thinking</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"><option>inherit</option><option>high</option></select>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;grid-column:1/-1">
+                  <label style="font-size:11px;color:var(--text-muted)">工具白名单 · tools</label>
+                  <input type="text" value="read, grep, find, ls" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <button style="padding:6px 12px;background:var(--accent);border:none;border-radius:5;color:#fff;cursor:pointer;font-size:12px;font-weight:600">保存覆盖</button>
+                <button style="padding:6px 12px;background:none;border:1px solid var(--border);border-radius:5;color:var(--text-muted);cursor:pointer;font-size:12px">eject 抽出</button>
+                <button style="padding:6px 12px;background:none;border:1px solid var(--border);border-radius:5;color:var(--text-muted);cursor:pointer;font-size:12px">reset 恢复</button>
+                <button style="padding:6px 12px;background:rgba(239,68,68,0.08);border:1px solid var(--border);border-radius:5;color:#ef4444;cursor:pointer;font-size:12px">disable</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════ 页面 4：工作流编排 ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">工作流编排</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">模板 → workflowScript 代码 → 流水线预览（自动解析，只读）</div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">模板库</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+              <div style="border:1px solid var(--accent);border-radius:8;padding:10px 12px;cursor:pointer;background:var(--user-bg)">
+                <div style="font-size:12px;font-weight:600">单代理委派</div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">一个子代理完成任务</div>
+                <div style="font-size:10px;color:var(--text-dim);margin-top:6px;font-family:var(--font-mono)">runs.run(agent)</div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="font-size:12px;font-weight:600">顺序链</div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">上一步输出作下一步输入</div>
+                <div style="font-size:10px;color:var(--text-dim);margin-top:6px;font-family:var(--font-mono)">scout → worker → reviewer</div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8;padding:10px 12px;cursor:pointer">
+                <div style="font-size:12px;font-weight:600">并行扇出</div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">多个独立审查同时进行</div>
+                <div style="font-size:10px;color:var(--text-dim);margin-top:6px;font-family:var(--font-mono)">runs.all ×3 reviewer</div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px;display:flex;justify-content:space-between;align-items:center">
+              <span>workflowScript · 可编辑</span>
+              <button style="padding:3px 10px;background:none;border:1px solid var(--border);border-radius:5;color:var(--text-muted);cursor:pointer;font-size:11px;text-transform:none">复制</button>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--bg-panel);border-bottom:1px solid var(--border);font-size:11px;color:var(--text-muted)">
+                <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim)">workflowScript.js</span>
+              </div>
+              <pre style="margin:0;padding:12px 14px;font-family:var(--font-mono);font-size:11px;line-height:1.6;overflow-x:auto;background:var(--bg)"><span style="color:var(--text-dim)">// 并行审查扇出：三个独立角度</span>
+<span style="color:#7c3aed">const</span> scan = <span style="color:#7c3aed">await</span> runs.run(<span style="color:#16a34a">"scan"</span>, { agent: <span style="color:#16a34a">"scout"</span>, task: <span style="color:#16a34a">"扫描代码库结构"</span> });
+<span style="color:#7c3aed">const</span> reviews = <span style="color:#7c3aed">await</span> runs.all([
+  { key: <span style="color:#16a34a">"correctness"</span>, agent: <span style="color:#16a34a">"reviewer"</span>, task: <span style="color:#16a34a">"审查正确性"</span> + scan.output },
+  { key: <span style="color:#16a34a">"tests"</span>,       agent: <span style="color:#16a34a">"reviewer"</span>, task: <span style="color:#16a34a">"审查测试"</span> + scan.output },
+  { key: <span style="color:#16a34a">"simplicity"</span>,  agent: <span style="color:#16a34a">"reviewer"</span>, task: <span style="color:#16a34a">"审查简洁性"</span> + scan.output }
+]);
+<span style="color:#7c3aed">return</span> reviews.map(r =&gt; r.output);</pre>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">流水线预览 · 自动解析</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:12px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bg-panel)">
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:6;padding:7px 12px">
+                <div style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono)">step 1</div>
+                <div style="font-size:11.5px;font-weight:600;margin-top:1px">scout</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:1px">扫描代码库结构</div>
+              </div>
+              <span style="color:var(--text-dim)">→</span>
+              <div style="border:1.5px dashed var(--accent);border-radius:6;padding:7px 10px;background:var(--user-bg)">
+                <div style="font-size:10px;color:var(--accent);font-family:var(--font-mono)">并行 ×3 · runs.all</div>
+                <div style="display:flex;gap:6px;margin-top:5px">
+                  <div style="background:var(--bg);border:1px solid var(--border);border-radius:6;padding:5px 9px">
+                    <div style="font-size:11px;font-weight:600">reviewer</div>
+                    <div style="font-size:9.5px;color:var(--text-dim)">correctness</div>
+                  </div>
+                  <div style="background:var(--bg);border:1px solid var(--border);border-radius:6;padding:5px 9px">
+                    <div style="font-size:11px;font-weight:600">reviewer</div>
+                    <div style="font-size:9.5px;color:var(--text-dim)">tests</div>
+                  </div>
+                  <div style="background:var(--bg);border:1px solid var(--accent);border-radius:6;padding:5px 9px">
+                    <div style="font-size:11px;font-weight:600">reviewer <span style="font-size:9px;padding:0 4px;border-radius:3;background:rgba(245,158,11,0.12);color:#d97706">运行中</span></div>
+                    <div style="font-size:9.5px;color:var(--text-dim)">simplicity</div>
+                  </div>
+                </div>
+              </div>
+              <span style="color:var(--text-dim)">→</span>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:6;padding:7px 12px">
+                <div style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono)">return</div>
+                <div style="font-size:11.5px;font-weight:600;margin-top:1px">聚合结果</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:1px">3 个审查输出</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════ 页面 5：Watchdog ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">Watchdog 看门狗</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">可选对抗性审查：repo 被修改时用独立强模型审查 · 写入 <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-panel);padding:0 4px;border-radius:3">settings.json → subagents.watchdog</code></div>
+
+            <!-- 状态条 -->
+            <div style="display:flex;gap:8px;margin-bottom:14px">
+              <div style="flex:1;border:1px solid var(--border);border-radius:8;padding:9px 12px;background:var(--bg-panel)">
+                <div style="font-size:10px;color:var(--text-dim)">状态</div>
+                <div style="font-size:12px;font-weight:600;margin-top:2px"><span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">● 已启用</span></div>
+              </div>
+              <div style="flex:1;border:1px solid var(--border);border-radius:8;padding:9px 12px;background:var(--bg-panel)">
+                <div style="font-size:10px;color:var(--text-dim)">审查模型</div>
+                <div style="font-size:11px;font-weight:600;margin-top:2px;font-family:var(--font-mono)">claude-opus-4-8</div>
+              </div>
+              <div style="flex:1;border:1px solid var(--border);border-radius:8;padding:9px 12px;background:var(--bg-panel)">
+                <div style="font-size:10px;color:var(--text-dim)">上次审查</div>
+                <div style="font-size:12px;font-weight:600;margin-top:2px">2 分钟前</div>
+              </div>
+              <div style="flex:1;border:1px solid var(--border);border-radius:8;padding:9px 12px;background:var(--bg-panel)">
+                <div style="font-size:10px;color:var(--text-dim)">LSP 诊断</div>
+                <div style="font-size:11px;font-weight:600;margin-top:2px">正常 · 2 文件</div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:0 0 6px">配置</div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">启用 Watchdog</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">agent_end 且 repo 有改动时触发 · enabled</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">主审查模型 · main.model</label>
+                  <div style="display:flex;gap:6px">
+                    <input type="text" value="anthropic/claude-opus-4-8" style="flex:1;padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                    <button style="padding:6px 10px;background:none;border:1px solid var(--border);border-radius:5;color:var(--accent);cursor:pointer;font-size:11px;white-space:nowrap">推荐模型</button>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">思考级别 · main.thinking</label>
+                  <select style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"><option>high</option><option>off</option><option>low</option></select>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">审查节奏 · cadence.everyNTools</label>
+                  <input type="number" value="0" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"/>
+                  <span style="font-size:10px;color:var(--text-dim)">0 = 仅 agent_end 审查；N &gt; 0 时每 N 次工具调用做 scope 检查</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">子代理默认审查模型 · children.model</label>
+                  <input type="text" placeholder="默认继承 main.model" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">Scope 监控</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">记录当前目标，标记 scope-drift · scope.enabled</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--border);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">LSP 诊断 · lsp.enabled</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">审查前对变更的 TS/JS 文件跑语言服务器</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:14px 0 6px">审查历史</div>
+            <div style="border:1px solid var(--border);border-radius:8;padding:12px 14px">
+              <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bg-subtle)">
+                <span style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono);flex-shrink:0">10:12</span>
+                <div>
+                  <div style="font-size:12px">审查通过 <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(37,99,235,0.1);color:var(--accent)">worker</span> <span style="font-size:10px;color:var(--text-dim)">3 文件变更</span></div>
+                  <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">无 blocker；1 条 concern（未使用变量）</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bg-subtle)">
+                <span style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono);flex-shrink:0">09:47</span>
+                <div>
+                  <div style="font-size:12px">发现 blocker <span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(245,158,11,0.12);color:#d97706">scope-drift</span></div>
+                  <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">改动超出当前目标范围 → auto-follow 已排队</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;padding:8px 0 2px">
+                <span style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono);flex-shrink:0">昨天</span>
+                <div>
+                  <div style="font-size:12px">审查通过 <span style="font-size:10px;color:var(--text-dim)">LSP 警告 3</span></div>
+                  <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px">TS 诊断 3 个警告，无错误</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════ 页面 6：权限 ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">子代理工具权限</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">原生权限门（bash 除外）：allow / ask / deny · 写入 <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-panel);padding:0 4px;border-radius:3">config.json → permissions</code></div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <table style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border)">
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">工具</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px;width:140px">策略</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">说明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px;font-family:var(--font-mono);font-size:11px">read</td>
+                    <td style="padding:8px 12px"><select style="padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;outline:none"><option>allow</option><option>ask</option><option>deny</option></select></td>
+                    <td style="padding:8px 12px;font-size:10.5px;color:var(--text-dim)">全局默认</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px;font-family:var(--font-mono);font-size:11px">write</td>
+                    <td style="padding:8px 12px"><select style="padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;outline:none"><option>allow</option><option selected>ask</option><option>deny</option></select></td>
+                    <td style="padding:8px 12px;font-size:10.5px;color:var(--text-dim)">调用时由子 watchdog 仲裁（预览 + 批准/拒绝）</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px;font-family:var(--font-mono);font-size:11px">edit</td>
+                    <td style="padding:8px 12px"><select style="padding:4px 6px;background:var(--bg);border:1px solid var(--border);border-radius:5;font-size:11px;outline:none"><option>allow</option><option>ask</option><option selected>deny</option></select></td>
+                    <td style="padding:8px 12px;font-size:10.5px;color:var(--text-dim)">子代理禁止编辑</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 12px;font-family:var(--font-mono);font-size:11px">bash</td>
+                    <td style="padding:8px 12px"><span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(120,120,120,0.12);color:var(--text-dim)">不受管</span></td>
+                    <td style="padding:8px 12px;font-size:10.5px;color:var(--text-dim)">始终放行；命令级策略需 pi-guard</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button style="padding:6px 12px;background:none;border:1px solid var(--border);border-radius:5;color:var(--accent);cursor:pointer;font-size:12px;margin-top:10px">＋ 添加工具规则</button>
+          </div>
+
+          <!-- ═══════ 页面 7：Mission 调度 ═══════ -->
+          <div style="display:none">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">Mission 与定时调度</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">持久任务记录 + 定时运行 · 存于项目 <code style="font-family:var(--font-mono);font-size:10px;background:var(--bg-panel);padding:0 4px;border-radius:3">.pi-subagents/</code></div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:0 0 6px">Mission</div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden;margin-bottom:14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-size:12px">自动创建 Mission · missions.enabled</div>
+                  <div style="font-size:10px;color:var(--text-dim);margin-top:1px">普通任务启动时自动创建持久记录（目标/运行/收据）</div>
+                </div>
+                <button style="flex-shrink:0;width:40px;height:22px;border-radius:11px;border:none;padding:0;cursor:pointer;background:var(--accent);position:relative;outline:none">
+                  <span style="position:absolute;top:3px;left:21px;width:16px;height:16px;border-radius:50%;background:var(--bg);box-shadow:0 1px 4px rgba(0,0,0,0.22)"/>
+                </button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">存储目录 · missions.directory</label>
+                  <input type="text" value=".pi-subagents/missions" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none;font-family:var(--font-mono)"/>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <label style="font-size:11px;color:var(--text-muted)">保留终端记录 · retainTerminal</label>
+                  <input type="number" value="200" style="padding:6px 9px;background:var(--bg);border:1px solid var(--border);border-radius:5;color:var(--text);font-size:12px;outline:none"/>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;margin:0 0 6px;display:flex;justify-content:space-between;align-items:center">
+              <span>定时调度 · scheduledRuns</span>
+              <button style="padding:3px 10px;background:none;border:1px solid var(--border);border-radius:5;color:var(--accent);cursor:pointer;font-size:11px;text-transform:none">＋ 新建调度</button>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:8;overflow:hidden">
+              <table style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead>
+                  <tr style="border-bottom:1px solid var(--border)">
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">名称</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">触发</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">代理</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px">状态</th>
+                    <th style="text-align:left;font-size:10px;color:var(--text-dim);font-weight:600;padding:7px 12px;width:150px">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--bg-subtle)">
+                    <td style="padding:8px 12px;font-size:11.5px">每日代码审查</td>
+                    <td style="padding:8px 12px;font-size:11px;font-family:var(--font-mono)">every 6h</td>
+                    <td style="padding:8px 12px;font-size:11px;font-family:var(--font-mono)">reviewer</td>
+                    <td style="padding:8px 12px"><span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(22,163,74,0.12);color:#16a34a">active</span></td>
+                    <td style="padding:8px 12px"><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">暂停</button><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">立即运行</button><button style="padding:2px 8px;background:none;border:none;color:#ef4444;cursor:pointer;font-size:11px">删除</button></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 12px;font-size:11.5px">晚间审查</td>
+                    <td style="padding:8px 12px;font-size:11px;font-family:var(--font-mono)">一次性 +30m</td>
+                    <td style="padding:8px 12px;font-size:11px;font-family:var(--font-mono)">reviewer</td>
+                    <td style="padding:8px 12px"><span style="font-size:10px;padding:1px 5px;border-radius:3;background:rgba(245,158,11,0.12);color:#d97706">pending</span></td>
+                    <td style="padding:8px 12px"><button style="padding:2px 8px;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px">取消</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div><!-- /内容滚动区 -->
+
+        <!-- 底部操作条 -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;border-top:1px solid var(--border);flex-shrink:0">
+          <div style="font-size:10px;color:var(--text-dim);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:var(--font-mono)">
+            settings.json → subagents · config.json
+          </div>
+          <div style="display:flex;gap:8px">
+            <button style="padding:6px 12px;background:none;border:1px solid var(--border);border-radius:6;color:var(--text-muted);cursor:pointer;font-size:12px">恢复默认</button>
+            <button style="padding:6px 12px;background:var(--accent);border:none;border-radius:6;color:#fff;cursor:pointer;font-size:12px;font-weight:600">保存</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 分类切换（示意）
+  const pillBtns = document.querySelectorAll('.viz-nav button');
+  const pageDivs = [...document.querySelectorAll('.viz-content > div')];
+  pillBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      pillBtns.forEach((b) => {
+        b.style.background = 'none';
+        b.style.color = 'var(--text-muted)';
+        b.style.fontWeight = '400';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#fff';
+      btn.style.fontWeight = '600';
+      pageDivs.forEach((el, j) => {
+        el.style.display = j === i ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

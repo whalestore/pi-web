@@ -105,7 +105,7 @@ export default function DesignPage() {
               ["bg-kumo-warning", "warning"],
               ["bg-kumo-danger", "danger"],
               ["bg-kumo-info", "info"],
-              ["bg-kumo-tint", "surface"],
+              ["bg-kumo-base", "base / 页面背景"],
             ].map(([cls, label]) => (
               <div key={cls} className="rounded-lg border border-kumo-line p-3 flex items-center gap-3">
                 <div className={`w-9 h-9 rounded-md ${cls}`} />

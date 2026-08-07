@@ -63,7 +63,7 @@ export default function DesignPage() {
   );
 
   return (
-    <div className="min-h-screen bg-kumo-base text-kumo-default">
+    <div className="h-dvh overflow-y-auto bg-kumo-base text-kumo-default">
       {/* 顶栏 */}
       <header className="sticky top-0 z-10 border-b border-kumo-line bg-kumo-tint/80 backdrop-blur">
         <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">

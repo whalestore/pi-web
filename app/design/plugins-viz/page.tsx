@@ -95,7 +95,7 @@ export default function PluginsVizPreview() {
   };
 
   return (
-    <div className="min-h-screen bg-kumo-base text-kumo-default p-6">
+    <div className="h-dvh overflow-y-auto bg-kumo-base text-kumo-default p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-baseline justify-between mb-4">
           <div>
@@ -112,7 +112,7 @@ export default function PluginsVizPreview() {
         {/* ═══════════ 弹框模拟 ═══════════ */}
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger render={(p) => <Button {...p}>重新打开弹框预览</Button>} />
-          <Dialog size="lg">
+          <Dialog size="xl" className="sm:w-[860px] max-w-[calc(100vw-2rem)]">
             <Dialog.Title>插件配置</Dialog.Title>
             <Dialog.Description className="font-mono text-xs text-kumo-subtle">
               ~/Codes/xuefei/pi-web-yuxi

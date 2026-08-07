@@ -1,0 +1,30 @@
+[     108ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     117ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     153ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     154ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     154ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     154ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     156ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     156ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   87676ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   87682ms] [LOG] [Fast Refresh] done in 108ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  127538ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  127721ms] [LOG] [Fast Refresh] done in 284ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489

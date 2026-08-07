@@ -13,3 +13,13 @@ export type InputProps = KumoInputProps;
 
 export const Input = KumoInput;
 export default Input;
+
+/**
+ * ui/textarea —— 多行文本输入
+ *
+ * @example
+ * <Textarea value={...} onChange={...} placeholder="多行内容" />
+ */
+import { Textarea as KumoTextarea } from "@cloudflare/kumo/components/input";
+
+export const Textarea = KumoTextarea;

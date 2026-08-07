@@ -129,7 +129,7 @@ export default function PluginsVizPreview() {
                 ].map((p) => (
                   <div
                     key={p.src}
-                    className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer ${p.active ? "bg-kumo-selected" : "hover:bg-kumo-tint"}`}
+                    className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer ${p.active ? "bg-kumo-tint" : "hover:bg-kumo-tint"}`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-kumo-success shrink-0" />
                     <div className="min-w-0 flex-1">

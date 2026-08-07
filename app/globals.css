@@ -2,6 +2,9 @@
 @import "@cloudflare/kumo/styles";
 @import "@cloudflare/kumo/styles/theme-kumo";
 
+/* 让 Tailwind v4 编译 kumo 组件内部的 class（默认不扫描 node_modules） */
+@source "../node_modules/@cloudflare/kumo/dist";
+
 /* Kumo 主题策略桥接：pi-web 用 .dark class 切换主题，kumo 组件使用 light-dark() 与 dark: variant */
 @custom-variant dark (&:where(.dark, .dark *));
 

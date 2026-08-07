@@ -65,7 +65,7 @@ export default function DesignPage() {
   return (
     <div className="min-h-screen bg-kumo-base text-kumo-default">
       {/* 顶栏 */}
-      <header className="sticky top-0 z-10 border-b border-kumo-line bg-kumo-surface/80 backdrop-blur">
+      <header className="sticky top-0 z-10 border-b border-kumo-line bg-kumo-tint/80 backdrop-blur">
         <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-baseline gap-3">
             <h1 className="text-base font-bold">pi-web UI 组件库</h1>
@@ -105,7 +105,7 @@ export default function DesignPage() {
               ["bg-kumo-warning", "warning"],
               ["bg-kumo-danger", "danger"],
               ["bg-kumo-info", "info"],
-              ["bg-kumo-surface", "surface"],
+              ["bg-kumo-tint", "surface"],
             ].map(([cls, label]) => (
               <div key={cls} className="rounded-lg border border-kumo-line p-3 flex items-center gap-3">
                 <div className={`w-9 h-9 rounded-md ${cls}`} />

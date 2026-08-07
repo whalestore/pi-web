@@ -35,6 +35,8 @@
     "start:lan": "next start -H 0.0.0.0 -p 30141",
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test lib/markdown.test.mjs",
+    "snapshot:plugins": "node scripts/plugin-snapshot.mjs",
+    "check:plugins-updates": "node scripts/plugin-update-check.mjs",
     "release": "npm version patch --no-git-tag-version && npm run build && npm publish --access public"
   },
   "dependencies": {

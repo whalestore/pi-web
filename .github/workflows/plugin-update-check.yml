@@ -1,0 +1,27 @@
+name: plugin-update-check
+
+on:
+  schedule:
+    # 每天 08:00 UTC（北京时间 16:00）检查一次
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run plugin update check
+        run: node scripts/plugin-update-check.mjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PLUGIN_UPDATE_REPO: whalestore/pi-web

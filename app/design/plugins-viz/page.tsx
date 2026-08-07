@@ -120,7 +120,7 @@ export default function PluginsVizPreview() {
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger render={(p) => <Button {...p}>重新打开弹框预览</Button>} />
           <Dialog size="xl" className="sm:w-[860px] max-w-[calc(100vw-2rem)]">
-            <Dialog.Title>插件配置</Dialog.Title>
+            <Dialog.Title className="text-lg font-semibold">插件配置</Dialog.Title>
             <Dialog.Description className="font-mono text-xs text-kumo-subtle">
               ~/Codes/xuefei/pi-web-yuxi
             </Dialog.Description>

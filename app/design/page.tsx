@@ -187,6 +187,64 @@ export default function DesignPage() {
               </table>
             </div>
           </div>
+          {/* 组件内部字体规范 */}
+          <div className="border-t border-kumo-line">
+            <div className="px-4 py-2.5 border-b border-kumo-line text-xs font-semibold text-kumo-subtle">
+              组件内部字体规范（kumo 源码实证）· 开发组件时内部文字必须遵循下表
+            </div>
+            <div className="p-4">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-kumo-line text-left">
+                    <th className="px-3 py-1.5 text-xs font-medium text-kumo-inactive">组件</th>
+                    <th className="px-3 py-1.5 text-xs font-medium text-kumo-inactive">内部元素</th>
+                    <th className="px-3 py-1.5 text-xs font-medium text-kumo-inactive">字号</th>
+                    <th className="px-3 py-1.5 text-xs font-medium text-kumo-inactive">字重</th>
+                    <th className="px-3 py-1.5 text-xs font-medium text-kumo-inactive">颜色</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm">
+                  {[
+                    ["Button", "按钮文字 (xs/sm)", "12px text-xs", "500", "text-kumo-default"],
+                    ["Button", "按钮文字 (base/lg)", "14px text-base", "500", "text-kumo-default"],
+                    ["Input / Select", "输入文本", "14px text-base", "400", "text-kumo-default"],
+                    ["Input / Select", "描述 / 错误", "13px text-sm", "400", "text-kumo-subtle / -danger"],
+                    ["Switch", "开关标签", "14px text-base", "500", "text-kumo-default"],
+                    ["Switch", "开关描述", "13px text-sm", "400", "text-kumo-subtle"],
+                    ["Badge", "徽章文字", "12px text-xs", "500", "语义色"],
+                    ["Tabs", "标签文字", "14px text-base", "500", "text-kumo-default"],
+                    ["Table", "单元格", "12px text-xs", "400", "text-kumo-strong"],
+                    ["Table", "表头", "12px text-xs", "600", "text-kumo-strong"],
+                    ["Field", "字段标签", "14px text-base", "500", "text-kumo-default"],
+                    ["Field", "描述 / 错误", "13px text-sm", "400", "text-kumo-subtle / -danger"],
+                    ["Dialog", "弹框标题（需自设）", "16px text-lg", "600", "text-kumo-default"],
+                    ["Dialog", "弹框描述", "14px text-base", "400", "text-kumo-subtle"],
+                    ["Empty", "空状态标题", "24px text-2xl", "600", "text-kumo-default"],
+                    ["Empty", "空状态描述", "13px text-sm", "400", "text-kumo-subtle"],
+                    ["Banner", "横幅文字", "13px text-sm", "400", "语义色"],
+                    ["Breadcrumbs", "面包屑", "13px text-sm (sm) / 14px (base)", "500", "text-kumo-subtle"],
+                    ["Pagination", "分页文字", "13px text-sm", "400", "text-kumo-subtle"],
+                    ["Meter", "度量值", "13px text-sm", "500", "text-kumo-default"],
+                    ["Meter", "度量标签", "12px text-xs", "400", "text-kumo-subtle"],
+                    ["卡片（组合）", "卡片标题", "14px text-base", "600", "text-kumo-default"],
+                    ["卡片（组合）", "卡片描述", "13px text-sm", "400", "text-kumo-subtle"],
+                    ["卡片（组合）", "卡片辅助行", "12px text-xs", "400", "text-kumo-inactive"],
+                    ["页面", "页面标题", "30px text-3xl", "600", "text-kumo-strong"],
+                    ["页面", "区块标题", "24px text-2xl", "600", "text-kumo-default"],
+                    ["页面", "小节标题", "16px text-lg", "600", "text-kumo-default"],
+                  ].map(([comp, el, size, weight, color]) => (
+                    <tr key={comp + el} className="border-b border-kumo-line last:border-0">
+                      <td className="px-3 py-1.5 font-mono text-xs">{comp}</td>
+                      <td className="px-3 py-1.5 text-xs text-kumo-subtle">{el}</td>
+                      <td className="px-3 py-1.5 text-xs font-mono text-kumo-default">{size}</td>
+                      <td className="px-3 py-1.5 text-xs text-kumo-subtle">{weight}</td>
+                      <td className="px-3 py-1.5 text-xs font-mono text-kumo-subtle">{color}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         {/* Button */}

@@ -122,7 +122,7 @@ export default function PluginsVizPreview() {
               ~/Codes/xuefei/pi-web-yuxi
             </Dialog.Description>
 
-            <div className="flex gap-0 -mx-6 mt-3 border-t border-kumo-line flex-1 min-h-0">
+            <div className="flex gap-0 mt-3 border-t border-kumo-line flex-1 min-h-0">
               {/* 左侧插件列表（模拟现有结构） */}
               <div className="w-52 shrink-0 border-r border-kumo-line bg-kumo-tint p-2 hidden sm:block">
                 <div className="text-xs font-semibold uppercase text-kumo-inactive px-2 py-1.5">global</div>

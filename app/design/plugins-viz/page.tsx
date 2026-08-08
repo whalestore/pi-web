@@ -477,9 +477,20 @@ export default function PluginsVizPreview() {
                           </Card>
 
                           <SectionLabel>
-                            <div className="flex items-center justify-between">
-                              <span>角色卡片</span>
-                              <Button variant="outline" size="xs">＋ 新建自定义 Agent</Button>
+                            <div className="flex items-center justify-between gap-3">
+                              <span>角色卡片 · 作用域发现（内置 / 用户 / 项目）</span>
+                              <div className="flex gap-1">
+                                {["全部", "内置", "自定义"].map((s, i) => (
+                                  <button
+                                    key={s}
+                                    className={`px-2.5 py-1 rounded-md text-xs cursor-pointer border-0 ${
+                                      i === 0 ? "bg-kumo-brand text-white font-semibold" : "bg-transparent text-kumo-subtle hover:bg-kumo-tint"
+                                    }`}
+                                  >
+                                    {s}
+                                  </button>
+                                ))}
+                              </div>
                             </div>
                           </SectionLabel>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -495,6 +506,7 @@ export default function PluginsVizPreview() {
                                   <span className="text-base font-semibold">{a.name}</span>
                                   <Badge variant="neutral">内置</Badge>
                                   {a.override && <Badge variant="success">覆盖中</Badge>}
+                                  {a.name === "researcher" && <Badge variant="warning">需 pi-web-access</Badge>}
                                 </div>
                                 <div className="text-sm text-kumo-subtle mt-1.5">{a.desc}</div>
                                 <div className="flex items-center gap-2 mt-2 text-xs font-mono text-kumo-inactive">
@@ -505,6 +517,31 @@ export default function PluginsVizPreview() {
                                 </div>
                               </div>
                             ))}
+                            {/* 自定义 agent 示例 */}
+                            <div className="border border-dashed border-kumo-line rounded-lg p-3 bg-kumo-base">
+                              <div className="flex items-center gap-2">
+                                <span className="text-base font-semibold">code-reviewer</span>
+                                <Badge variant="info">自定义 · user</Badge>
+                              </div>
+                              <div className="text-sm text-kumo-subtle mt-1.5">团队代码审查角色（~/.pi/agent/agents/code-reviewer.md）</div>
+                              <div className="flex items-center gap-2 mt-2 text-xs font-mono text-kumo-inactive">
+                                claude-sonnet-4
+                                <span className="text-kumo-subtle">· aliases: cr</span>
+                                <span className="text-kumo-subtle">· memory: project</span>
+                              </div>
+                            </div>
+                            <div className="border border-dashed border-kumo-line rounded-lg p-3 bg-kumo-base">
+                              <div className="flex items-center gap-2">
+                                <span className="text-base font-semibold">api-designer</span>
+                                <Badge variant="info">自定义 · project</Badge>
+                              </div>
+                              <div className="text-sm text-kumo-subtle mt-1.5">本项目 API 设计审查（.pi/agents/api-designer.md）</div>
+                              <div className="flex items-center gap-2 mt-2 text-xs font-mono text-kumo-inactive">
+                                deepseek-v4-pro
+                                <span className="text-kumo-subtle">· 只读</span>
+                                <span className="text-kumo-subtle">· 项目级配置</span>
+                              </div>
+                            </div>
                           </div>
 
                           <SectionLabel>编辑：{selectedAgent}（点击卡片切换）</SectionLabel>
@@ -513,20 +550,49 @@ export default function PluginsVizPreview() {
                               <Field label="模型 · model">
                                 <Select items={MODEL_ITEMS} value={reviewerModel} onValueChange={(v) => setReviewerModel(String(v))} />
                               </Field>
+                              <Field label="备用模型 · fallbackModels" description="限流/鉴权失败时按序降级">
+                                <Input placeholder="openai/gpt-5-mini, anthropic/claude-sonnet-4" className="font-mono w-full" />
+                              </Field>
                               <Field label="思考级别 · thinking">
                                 <Select items={THINKING_ITEMS} value="high" />
+                              </Field>
+                              <Field label="别名 · aliases" description="逗号分隔，别名解析到本角色">
+                                <Input placeholder="code-reviewer, cr" className="font-mono w-full" />
+                              </Field>
+                              <Field label="默认上下文 · defaultContext">
+                                <Select items={[{ value: "inherit", label: "继承（frontmatter 定义）" }, { value: "fresh", label: "fresh（全新）" }, { value: "fork", label: "fork（分支父会话）" }]} />
+                              </Field>
+                              <Field label="超时 · timeoutMs">
+                                <Input type="number" placeholder="900000（默认 30 分钟）" className="w-full" />
                               </Field>
                               <div className="sm:col-span-2">
                                 <Field label="工具白名单 · tools">
                                   <Input value="read, grep, find, ls" className="font-mono w-full" />
                                 </Field>
                               </div>
+                              <div className="sm:col-span-2">
+                                <Field label="持久记忆 · memory" description="每角色记忆（MEMORY.md 注入），scope: project/user + path">
+                                  <div className="flex gap-2">
+                                    <div className="w-32"><Select size="sm" items={[{ value: "off", label: "关闭" }, { value: "project", label: "project" }, { value: "user", label: "user" }]} value="off" /></div>
+                                    <div className="flex-1"><Input placeholder="记忆路径，如 security-reviewer" className="font-mono w-full" /></div>
+                                  </div>
+                                </Field>
+                              </div>
                             </div>
-                            <div className="flex gap-2 mt-4">
+                            <div className="px-0 pt-2 mt-3 border-t border-kumo-line">
+                              <SwitchRow title="默认后台运行 · async" desc="单 agent 启动默认进入后台（调用未指定 async 时）" checked={false} onChange={() => {}} />
+                              <SwitchRow title="默认 fork 上下文" desc="启动未指定 context 时使用 fork（worker/oracle/advisor 默认开启）" checked onChange={() => {}} />
+                            </div>
+                            <div className="flex gap-2 mt-3 flex-wrap">
                               <Button variant="primary">保存覆盖</Button>
                               <Button variant="secondary">eject 抽出</Button>
                               <Button variant="secondary">reset 恢复</Button>
+                              <Button variant="secondary">enable 恢复</Button>
                               <Button variant="destructive">disable</Button>
+                              <Button variant="destructive">delete（仅自定义）</Button>
+                            </div>
+                            <div className="text-xs text-kumo-inactive mt-2">
+                              作用域操作：eject / disable / enable / reset 支持 agentScope（user / project）——项目覆盖优先于用户覆盖
                             </div>
                           </Card>
                         </div>

@@ -1,0 +1,9 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "设计图 v3 · pi-subagents 可视化配置" [level=1] [ref=e6]
+        - paragraph [ref=e7]: 真实组件实现（components/ui）· 可交互预览 · 后续 PluginsConfig 开发直接复用本结构
+      - button "← 组件库" [ref=e9] [cursor=pointer]
+    - button "重新打开弹框预览" [ref=e10] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=e16] [cursor=pointer]

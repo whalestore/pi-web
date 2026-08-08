@@ -19,6 +19,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { useI18n } from "@/hooks/useI18n";
 import type { ExtensionUiRequest } from "@/lib/types";
 import { ApprovalPopup, type ApprovalRespond } from "./ApprovalPopup";
+import { PermissionMenu } from "./PermissionMenu";
 
 export interface AttachedImage {
   data: string;   // base64, no prefix
@@ -1870,6 +1871,8 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput({
                 <polyline points="21 15 16 10 5 21" />
               </svg>
             </button>
+            {/* 权限模式选择器（Codex 风格：attach 右侧） */}
+            <PermissionMenu />
             {/* Model selector — visible always, disabled during streaming */}
             {(modelOptions.length > 0 || currentName || modelError) && onModelChange && (
                 <div ref={dropdownRef} style={{ position: "relative", flex: isMobile ? "1 1 auto" : undefined, minWidth: 0 }}>

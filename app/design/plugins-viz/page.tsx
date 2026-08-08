@@ -876,51 +876,54 @@ return reviews.map(r => r.output);`}
 
         {/* 作用域解释弹框 */}
         <Dialog.Root open={scopeHelpOpen} onOpenChange={setScopeHelpOpen}>
-          <Dialog>
+          <Dialog size="lg">
             <Dialog.Title>Agent 作用域 · 大白话</Dialog.Title>
             <Dialog.Description>一份 agent = 一份角色说明书（md 文件），放在哪个目录就是它的作用域</Dialog.Description>
             <div className="space-y-3 text-sm py-2">
               <div className="border border-kumo-line rounded-lg overflow-hidden">
-                <table className="w-full text-sm">
+                <table className="w-full text-sm table-fixed">
+                  <colgroup>
+                    <col className="w-16" />
+                    <col className="w-44" />
+                    <col />
+                  </colgroup>
                   <thead>
                     <tr className="border-b border-kumo-line text-left">
-                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive w-20">作用域</th>
-                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive">存放位置</th>
-                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive">大白话</th>
+                      <th className="px-3 py-2 text-xs font-semibold text-kumo-inactive">作用域</th>
+                      <th className="px-3 py-2 text-xs font-semibold text-kumo-inactive">存放位置</th>
+                      <th className="px-3 py-2 text-xs font-semibold text-kumo-inactive">大白话</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-kumo-line">
+                    <tr className="border-b border-kumo-line align-top">
                       <td className="px-3 py-2 text-xs font-semibold">内置</td>
-                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">插件自带 agents/</td>
-                      <td className="px-3 py-2 text-xs text-kumo-subtle">出厂自带的 9 个角色（scout/reviewer…），人人都有</td>
+                      <td className="px-3 py-2 text-[11px] font-mono text-kumo-subtle break-all">插件自带 agents/</td>
+                      <td className="px-3 py-2 text-xs text-kumo-subtle">出厂自带 9 个角色（scout/reviewer…），人人都有</td>
                     </tr>
-                    <tr className="border-b border-kumo-line">
+                    <tr className="border-b border-kumo-line align-top">
                       <td className="px-3 py-2 text-xs font-semibold">插件包</td>
-                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">包的 pi-subagents.agents</td>
+                      <td className="px-3 py-2 text-[11px] font-mono text-kumo-subtle break-all">包的 pi-subagents.agents</td>
                       <td className="px-3 py-2 text-xs text-kumo-subtle">应用商店 App 自带的组件</td>
                     </tr>
-                    <tr className="border-b border-kumo-line">
+                    <tr className="border-b border-kumo-line align-top">
                       <td className="px-3 py-2 text-xs font-semibold">用户</td>
-                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">~/.pi/agent/agents/</td>
+                      <td className="px-3 py-2 text-[11px] font-mono text-kumo-subtle break-all">~/.pi/agent/agents/</td>
                       <td className="px-3 py-2 text-xs text-kumo-subtle">你自己下载的 App——所有项目通用，换项目还在</td>
                     </tr>
-                    <tr>
+                    <tr className="align-top">
                       <td className="px-3 py-2 text-xs font-semibold">项目</td>
-                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">.pi/agents/</td>
+                      <td className="px-3 py-2 text-[11px] font-mono text-kumo-subtle break-all">.pi/agents/</td>
                       <td className="px-3 py-2 text-xs text-kumo-subtle">公司给这个项目专用——只在当前项目生效</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="text-sm text-kumo-default">
+              <div className="border border-kumo-brand/30 bg-kumo-brand/5 rounded-lg px-3 py-2.5 text-sm text-kumo-default">
                 <b>规则一句话：近的盖远的。</b>
-                <span className="text-kumo-subtle">
-                  {" "}项目 &gt; 用户 &gt; 插件包 &gt; 内置。同一个名字（如 reviewer）在多个作用域都有说明书时，高优先级那份生效——内置 9 个只是最底层地基，谁都能在上层放同名说明书把它顶掉。
-                </span>
+                <span className="text-kumo-subtle">{" "}项目 &gt; 用户 &gt; 插件包 &gt; 内置。同一个名字（如 reviewer）在多个作用域都有说明书时，高优先级那份生效——内置 9 个只是最底层地基，谁都能在上层放同名说明书把它顶掉。</span>
               </div>
-              <div className="text-sm text-kumo-subtle">
-                例：用户抽屉放了 reviewermd（用更好的模型）→ 所有项目用你的版本；某项目再放一份 reviewer（只查安全）→ 只有那个项目用项目版。
+              <div className="text-sm text-kumo-subtle px-1">
+                例：用户抽屉放了 reviewer（用更好的模型）→ 所有项目用你的版本；某项目再放一份 reviewer（只查安全）→ 只有那个项目用项目版。
               </div>
             </div>
             <Dialog.Close render={(p) => <Button variant="secondary" {...p}>知道了</Button>} />

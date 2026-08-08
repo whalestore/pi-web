@@ -51,10 +51,13 @@ function readJsonSafe(file: string): Partial<PermissionConfig> | null {
   }
 }
 
-let cached: PermissionConfig | null = null;
-
+/**
+ * NOTE: intentionally NOT cached across calls — the mode may be switched by
+ * pi-web's /api/permission (PermissionMenu) which writes the file directly
+ * from another module. Re-reading a tiny JSON on each tool call is cheap and
+ * guarantees the gate always uses the latest mode/rules.
+ */
 export function loadConfig(): PermissionConfig {
-  if (cached) return cached;
   const user = readJsonSafe(USER_CONFIG_PATH) ?? {};
   const project = readJsonSafe(PROJECT_CONFIG_PATH) ?? {};
 
@@ -62,17 +65,15 @@ export function loadConfig(): PermissionConfig {
     ? (user.mode as Mode)
     : DEFAULTS.mode;
 
-  cached = {
+  return {
     mode,
     rules: mergeRuleSet(mergeRuleSet(DEFAULTS.rules, user.rules), project.rules),
     defaultPolicy: user.defaultPolicy ?? DEFAULTS.defaultPolicy,
     approvalTimeoutMs: user.approvalTimeoutMs ?? DEFAULTS.approvalTimeoutMs,
   };
-  return cached;
 }
 
 export function reloadConfig(): PermissionConfig {
-  cached = null;
   return loadConfig();
 }
 

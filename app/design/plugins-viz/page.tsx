@@ -864,6 +864,30 @@ return reviews.map(r => r.output);`}
                           <div className="mt-3">
                             <Button variant="outline" size="xs">＋ 添加工具规则</Button>
                           </div>
+
+                          <SectionLabel>ask 仲裁机制</SectionLabel>
+                          <Card className="p-4">
+                            <div className="text-sm text-kumo-subtle">
+                              <b className="text-kumo-default">ask</b> 规则：该工具调用暂停 → 将脱敏预览发给<b className="text-kumo-default">子 watchdog</b> 一次性仲裁（返回仅 approve / deny）→
+                              写入有界审计 JSONL（decisionSource: watchdog）。仲裁模型使用 watchdog.children 配置；未启用 watchdog / 缺模型 / 超时 = 拒绝该调用。
+                            </div>
+                            <div className="text-xs text-kumo-inactive mt-2">
+                              注意：bash 始终放行（命令级策略需 pi-guard）；agent 规则（permission frontmatter）覆盖全局规则；未列出工具默认 allow。
+                            </div>
+                          </Card>
+
+                          <SectionLabel>每角色覆盖示例 · frontmatter permission</SectionLabel>
+                          <Card className="p-4">
+                            <pre className="text-xs font-mono leading-relaxed overflow-x-auto bg-kumo-tint rounded-md p-3">{`---
+name: worker
+permission:
+  write: allow   # 覆盖全局 write: ask
+  edit: ask      # 编辑需要仲裁
+---`}</pre>
+                            <div className="text-xs text-kumo-subtle mt-2">
+                              自定义 agent 的 frontmatter 可覆盖全局 permissions.rules（allow 可解除继承限制、deny 强制拒绝）
+                            </div>
+                          </Card>
                         </div>
                       )}
 
@@ -884,6 +908,24 @@ return reviews.map(r => r.output);`}
                               <Field label="保留终端记录 · retainTerminal">
                                 <Input type="number" defaultValue={200} className="w-full" />
                               </Field>
+                              <div className="sm:col-span-2">
+                                <SwitchRow title="全局索引 · missions.globalIndex" desc="在用户级目录维护跨项目 mission 指针索引（仅指针，项目记录仍为源）" checked={false} onChange={() => {}} />
+                              </div>
+                            </div>
+                          </Card>
+
+                          <SectionLabel>Mission 管理操作</SectionLabel>
+                          <Card className="p-4">
+                            <div className="flex flex-wrap gap-2">
+                              {["mission.create", "mission.list", "mission.show", "mission.update", "mission.attach-run", "mission.close"].map((cmd) => (
+                                <span key={cmd} className="px-2.5 py-1 rounded-md border border-kumo-line bg-kumo-base font-mono text-xs text-kumo-default">
+                                  {cmd}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="text-xs text-kumo-subtle mt-2">
+                              目标任务（goal: true + budget.tokens）：空闲时提醒续作（标题/剩余预算/下一步动作），预算耗尽变 budget-exhausted 并停止提醒；
+                              收据（receipts）记录 PR / CI / 部署结果链接（仅记录，不代合并/部署）
                             </div>
                           </Card>
 
@@ -895,7 +937,15 @@ return reviews.map(r => r.output);`}
                           </SectionLabel>
                           <Card>
                             <div className="px-4 py-1">
-                              <SwitchRow title="启用调度 · scheduledRuns.enabled" desc="支持 at:+30m 一次性 / every:6h 周期" checked={schedules} onChange={setSchedules} />
+                              <SwitchRow title="启用调度 · scheduledRuns.enabled" desc="支持 at:+30m 一次性 / every:6h 周期（m/h/d/w 单位）" checked={schedules} onChange={setSchedules} />
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
+                              <Field label="待执行上限 · scheduledRuns.maxPending">
+                                <Input type="number" defaultValue={20} className="w-full" />
+                              </Field>
+                              <Field label="追赶策略 · catchUp" description="latest（默认，错过即追赶最新）/ none（错过跳过）· overlap 固定 skip">
+                                <Select items={[{ value: "latest", label: "latest（追赶最新，默认）" }, { value: "none", label: "none（错过跳过）" }]} />
+                              </Field>
                             </div>
                             <table className="w-full text-sm border-t border-kumo-line">
                               <thead>
@@ -915,7 +965,9 @@ return reviews.map(r => r.output);`}
                                   <td className="px-4 py-2.5"><Badge variant="success">active</Badge></td>
                                   <td className="px-4 py-2.5">
                                     <Button variant="ghost" size="xs">暂停</Button>
+                                    <Button variant="ghost" size="xs">恢复</Button>
                                     <Button variant="ghost" size="xs">运行</Button>
+                                    <Button variant="ghost" size="xs">历史</Button>
                                     <Button variant="ghost" size="xs" className="text-kumo-danger">删除</Button>
                                   </td>
                                 </tr>

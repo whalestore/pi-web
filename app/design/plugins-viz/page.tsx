@@ -621,15 +621,21 @@ export default function PluginsVizPreview() {
                           <SectionLabel>模板库（点击插入 workflowScript）</SectionLabel>
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             {[
-                              { name: "单代理委派", desc: "一个子代理完成任务", code: "runs.run(agent)" },
-                              { name: "顺序链", desc: "上一步输出作下一步输入", code: "scout → worker → reviewer" },
-                              { name: "并行扇出", desc: "多个独立审查同时进行", code: "runs.all ×3 reviewer" },
+                              { name: "单代理委派", desc: "一个子代理完成任务并返回结果", code: "runs.run(agent)", tag: "基础" },
+                              { name: "顺序链", desc: "上一步输出作下一步输入", code: "scout → worker → reviewer", tag: "基础" },
+                              { name: "并行扇出", desc: "多个独立审查同时进行，聚合结果", code: "runs.all ×3 reviewer", tag: "审查" },
+                              { name: "审查循环", desc: "worker + reviewer 循环直到干净或达上限", code: "worker ⇄ reviewer · max 3 轮", tag: "审查" },
+                              { name: "并行调研", desc: "researcher + scout 组合：外部证据 + 本地上下文", code: "research ∥ scout", tag: "调研" },
+                              { name: "混合编排", desc: "顺序 + 并行 + worktree 隔离（每写子代理独立工作区）", code: "scout → worker×2(wt) → reviewer", tag: "高级" },
                             ].map((t, i) => (
                               <div
                                 key={t.name}
                                 className={`border rounded-lg p-3 cursor-pointer bg-kumo-base ${i === 0 ? "border-kumo-brand bg-kumo-brand/5" : "border-kumo-line hover:border-kumo-brand/60"}`}
                               >
-                                <div className="text-base font-semibold">{t.name}</div>
+                                <div className="flex items-center gap-2">
+                                  <span className="text-base font-semibold">{t.name}</span>
+                                  <Badge variant={t.tag === "高级" ? "warning" : t.tag === "审查" ? "info" : "neutral"}>{t.tag}</Badge>
+                                </div>
                                 <div className="text-sm text-kumo-subtle mt-1">{t.desc}</div>
                                 <div className="text-xs font-mono text-kumo-inactive mt-2">{t.code}</div>
                               </div>
@@ -680,6 +686,49 @@ return reviews.map(r => r.output);`}
                                 <div className="text-sm font-semibold mt-0.5">聚合结果</div>
                                 <div className="text-xs text-kumo-subtle mt-0.5">3 个审查输出</div>
                               </div>
+                            </div>
+                          </Card>
+
+                          <SectionLabel>运行参数（workflowScript 顶层参数）</SectionLabel>
+                          <Card className="p-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <Field label="上下文 · context" description="fork = 真实分支父会话；fresh = 全新子会话">
+                                <Select items={[{ value: "inherit", label: "继承（各 agent 默认）" }, { value: "fresh", label: "fresh（全新）" }, { value: "fork", label: "fork（分支父会话）" }]} />
+                              </Field>
+                              <Field label="执行方式 · async" description="后台运行（默认）或前台流式">
+                                <Select items={[{ value: "async", label: "async（后台，默认）" }, { value: "foreground", label: "foreground（前台流式）" }]} />
+                              </Field>
+                              <Field label="worktree 隔离 · worktree" description="true = 每个写子代理独立 git worktree">
+                                <Select items={[{ value: "off", label: "off（默认，同工作区）" }, { value: "all", label: "on（全部子代理隔离）" }, { value: "per-child", label: "per-child（按子代理指定）" }]} />
+                              </Field>
+                              <Field label="验收门 · acceptance" description="auto / none / attested / checked / verified + review">
+                                <Select items={[{ value: "auto", label: "auto（自动推断，默认）" }, { value: "checked", label: "checked（结构化检查）" }, { value: "verified", label: "verified（验证命令）" }, { value: "none", label: "none（关闭，需 reason）" }]} />
+                              </Field>
+                              <Field label="超时 · timeoutMs" description="前台默认 30 分钟，后台无默认限制">
+                                <Input type="number" placeholder="1800000" className="w-full" />
+                              </Field>
+                              <Field label="聊天进度展示 · chatProgress" description="auto / off / live-card（需 async:false 且同仓库）">
+                                <Select items={[{ value: "auto", label: "auto（自动）" }, { value: "off", label: "off（关闭）" }, { value: "live-card", label: "live-card（前台卡片）" }]} />
+                              </Field>
+                            </div>
+                            <div className="text-xs text-kumo-inactive mt-3 pt-3 border-t border-kumo-line">
+                              监督协调：子代理可用 contact_supervisor 向父会话提问（need_decision / interview_request / progress_update）；
+                              递归保护：嵌套深度由 maxSubagentDepth 控制（默认 2 层：主会话 → 子 → 孙）
+                            </div>
+                          </Card>
+
+                          <SectionLabel>官方快捷命令</SectionLabel>
+                          <Card className="p-4">
+                            <div className="flex flex-wrap gap-2">
+                              {["/parallel-review", "/review-loop", "/parallel-research", "/gather-context-and-clarify", "/parallel-cleanup", "/run <agent>", "/prompt-workflow"].map((cmd) => (
+                                <span key={cmd} className="px-2.5 py-1 rounded-md border border-kumo-line bg-kumo-base font-mono text-xs text-kumo-default">
+                                  {cmd}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="text-xs text-kumo-subtle mt-2">
+                              提示词快捷方式：并行审查 / 审查循环（autofix 可选）/ 并行调研 / 先收集再提问 / 并行清理；
+                              /run 直接运行单个 agent（--bg 后台 / --fork 分支上下文）；/prompt-workflow 运行 prompt 模板（frontmatter 可带 subagent/model/cwd）
                             </div>
                           </Card>
                         </div>

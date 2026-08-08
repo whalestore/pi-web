@@ -74,6 +74,8 @@ export function ApprovalPopup({
   );
   const [feedback, setFeedback] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  // input(feedback) 请求没有 payload，用 ref 记住上一个 select 的工具名
+  const lastToolRef = useRef<string | null>(null);
 
   // 请求类型切换：select → options，feedback input → feedback
   useEffect(() => {
@@ -96,6 +98,10 @@ export function ApprovalPopup({
     () => (request.method === "select" ? parsePermissionPayload(request.title) : null),
     [request],
   );
+
+  useEffect(() => {
+    if (payload?.tool) lastToolRef.current = payload.tool;
+  }, [payload]);
 
   const timeoutText = payload?.timeoutSec
     ? ` · ${payload.timeoutSec}s 无响应将自动拒绝`
@@ -126,7 +132,7 @@ export function ApprovalPopup({
   if (request.method === "select" && !payload) return null;
 
   const isDeniedStyle = request.method === "input";
-  const toolTag = payload?.tool ?? "tool";
+  const toolTag = payload?.tool ?? lastToolRef.current ?? "tool";
 
   return (
     <div

@@ -148,18 +148,18 @@ export function PermissionMenu() {
               background: "none",
               border: "none",
               borderRadius: 9,
-              color: isDanger ? DANGER : current !== "full" ? BRAND : "var(--text-muted)",
+              color: current === "full" ? DANGER : BRAND,
               cursor: "pointer",
               transition: "background 0.12s, color 0.12s",
               opacity: loading ? 0.6 : 1,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "var(--bg-hover)";
-              if (!isDanger) e.currentTarget.style.color = current !== "full" ? BRAND : "var(--text)";
+              e.currentTarget.style.color = current === "full" ? DANGER : BRAND;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "none";
-              if (!isDanger) e.currentTarget.style.color = current !== "full" ? BRAND : "var(--text-muted)";
+              e.currentTarget.style.color = current === "full" ? DANGER : BRAND;
             }}
           >
             <Shield size={15} weight="fill" />

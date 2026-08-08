@@ -10,6 +10,14 @@
 - **组件库预览页：http://127.0.0.1:37377/design**（源码 `app/design/page.tsx`），开发前先看组件形态
 - 新增组件流程：`components/ui/<name>.tsx` → `index.ts` 登记 → `/design` 加预览 → 更新 `docs/UI-COMPONENTS.md`
 
+### 组件使用纪律（硬性要求）
+
+1. **开发页面必须使用 `/design` 中已有的组件，禁止自己创建任何新组件**。
+2. **默认去 kumo 里找，而不是自己创造**：遇到新需求，先在 kumo（`node_modules/@cloudflare/kumo`）的组件库里找现成组件；找不到再考虑自建。
+3. **组件不够用时，先停下来和用户交互确认**：说明缺什么、kumo 里有什么可替代的，经用户同意后再新增组件。
+4. 新增组件时：若 kumo 中已有同类组件但形态不满足 → 优先在 `components/ui/` 微调扩展；若 kumo 中确实没有 → 按 kumo 的审美标准（语义 token、圆角/间距/字号体系、Base UI 交互模式）自行新增，并在 `/design` 页添加预览。
+5. **字体规范同样遵守 http://127.0.0.1:37377/font**（源码 `app/font/page.tsx` + `app/globals.css` 的字体变量）：正文/代码/数字字体一律用 `--font-mono`、`--font-sans` 等语义变量，禁止硬编码字体栈。
+
 ## Quick Start
 
 ```bash

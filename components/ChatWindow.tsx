@@ -7,6 +7,7 @@ import { asBracketedPaste, toTerminalKeyData } from "@/lib/terminal-input";
 import { countToolCallBlocks, getAssistantErrorMessage, getDisplayableAssistantBlocks, splitFinalAssistantBlocks } from "@/lib/message-display";
 import { MessageView } from "./MessageView";
 import { ChatInput, type ChatInputHandle } from "./ChatInput";
+import { isPermissionFeedback, isPermissionSelect } from "./ApprovalPopup";
 import { ChatMinimap, useMessageRefs } from "./ChatMinimap";
 import { ExtensionStatusBar } from "./ExtensionStatusBar";
 import { ExtensionWidgets } from "./ExtensionWidgets";
@@ -458,6 +459,12 @@ export function ChatWindow({ session, newSessionCwd, onAgentEnd, onSessionCreate
     ? (modelThinkingLevelMaps[`${displayModelValue.provider}:${displayModelValue.modelId}`] ?? null)
     : null;
 
+  // 权限审批请求（pi-permission-modes 扩展）：select(payload) / input(feedback)
+  const approvalRequest =
+    extensionDialog && (isPermissionSelect(extensionDialog) || isPermissionFeedback(extensionDialog))
+      ? extensionDialog
+      : null;
+
   const chatInputElement = (
     <ChatInput
       ref={chatInputRef}
@@ -498,6 +505,8 @@ export function ChatWindow({ session, newSessionCwd, onAgentEnd, onSessionCreate
       onAudioUnlock={unlockAudio}
       draftKey={session?.id ?? (newSessionCwd ? `new:${newSessionCwd}` : undefined)}
       cwd={session?.cwd ?? newSessionCwd}
+      approvalRequest={approvalRequest}
+      onApprovalRespond={respondToExtensionUi}
     />
   );
 
@@ -561,7 +570,7 @@ export function ChatWindow({ session, newSessionCwd, onAgentEnd, onSessionCreate
         </div>
       )}
 
-      {extensionDialog && (
+      {extensionDialog && !approvalRequest && (
         <ExtensionDialog
           request={extensionDialog}
           onRespond={respondToExtensionUi}

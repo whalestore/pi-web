@@ -17,6 +17,8 @@ import {
 import { FolderIcon, getFileIcon } from "./FileIcons";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useI18n } from "@/hooks/useI18n";
+import type { ExtensionUiRequest } from "@/lib/types";
+import { ApprovalPopup, type ApprovalRespond } from "./ApprovalPopup";
 
 export interface AttachedImage {
   data: string;   // base64, no prefix
@@ -70,6 +72,9 @@ interface Props {
   draftKey?: string;
   /** Session working directory — enables the @ file autocomplete menu */
   cwd?: string | null;
+  /** 权限审批弹窗请求（pi-permission-modes 扩展），渲染在输入框上方 */
+  approvalRequest?: ExtensionUiRequest | null;
+  onApprovalRespond?: ApprovalRespond;
 }
 
 export interface ChatInputHandle {
@@ -356,6 +361,8 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput({
   onPromptWithStreamingBehavior,
   draftKey,
   cwd,
+  approvalRequest,
+  onApprovalRespond,
 }: Props, ref) {
   const { t } = useI18n();
   const isMobile = useIsMobile();
@@ -1666,6 +1673,9 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput({
               </div>
             );
           })()}
+          {approvalRequest && onApprovalRespond && (
+            <ApprovalPopup request={approvalRequest} onRespond={onApprovalRespond} />
+          )}
           <div
             style={{
               minWidth: 0,

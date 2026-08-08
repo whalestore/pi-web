@@ -96,7 +96,7 @@ export function detectPathRisk(filePath: string, cwd: string): RiskInfo {
 
 // ---------- web ----------
 
-export function detectWebRisk(target: string): RiskInfo {
+export function detectWebRisk(): RiskInfo {
   // read-only web lookups are not risky by themselves; only writes are.
   return NO_RISK;
 }

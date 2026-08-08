@@ -77,7 +77,6 @@ export function reloadConfig(): PermissionConfig {
 }
 
 export function setMode(mode: Mode): PermissionConfig {
-  const cfg = loadConfig();
   const user = readJsonSafe(USER_CONFIG_PATH) ?? {};
   const next = { ...user, mode };
   writeFileSync(USER_CONFIG_PATH, `${JSON.stringify(next, null, 2)}\n`);
@@ -86,7 +85,6 @@ export function setMode(mode: Mode): PermissionConfig {
 
 /** Add a rule (e.g. "Bash(rm *)") to the user config under the given level. */
 export function addRule(level: keyof RuleSet, rule: string): PermissionConfig {
-  const cfg = loadConfig();
   const user = readJsonSafe(USER_CONFIG_PATH) ?? {};
   const rules = { ...(user.rules ?? {}) };
   rules[level] = [...(rules[level] ?? []), rule];

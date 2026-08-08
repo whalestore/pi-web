@@ -27,10 +27,6 @@ import { matchRules, normalizeToolForRules } from "./rules.ts";
 import { detectBashRisk, detectPathRisk } from "./risk-detector.ts";
 import {
   requestApproval,
-  hasMemorizedAllow,
-  memorizeAllow,
-  forgetAll,
-  memoryEntries,
   type ApprovalInfo,
   type ApprovalResult,
 } from "./approval.ts";
@@ -103,7 +99,7 @@ interface Decision {
 
 const ALLOW_DECISION: Decision = { action: "allow", reasons: [] };
 
-function decide(mode: Mode, kind: ToolKind, toolName: string, target: string, input: Record<string, unknown>): Decision {
+function decide(mode: Mode, kind: ToolKind, toolName: string, target: string): Decision {
   if (mode === "full") return ALLOW_DECISION;
   if (kind === "other" || NEVER_GATE.has(toolName)) return ALLOW_DECISION;
 
@@ -137,15 +133,12 @@ function decide(mode: Mode, kind: ToolKind, toolName: string, target: string, in
   } else if (kind === "write") {
     reasons.push(...detectPathRisk(target, process.cwd()).reasons);
   } else if (kind === "web") {
-    reasons.push(...detectWebRiskLocal(target));
+    // web 查询本质只读，risky 模式放行
   }
   return reasons.length ? { action: "ask", reasons } : ALLOW_DECISION;
 }
 
-function detectWebRiskLocal(target: string): string[] {
-  // web lookups are read-only by nature; risky mode lets them through.
-  return [];
-}
+
 
 const READONLY_CMD_RE =
   /^(?:git\s+(?:status|log|diff|show|branch|remote|rev-parse|ls-files|check-ignore)|(?:ls|pwd|cat|head|tail|wc|grep|find|echo)\b|true|false)/;
@@ -160,7 +153,7 @@ function isReadonlyCommand(command: string): boolean {
 
 // ---------- extension entry ----------
 
-export default function (pi: ExtensionAPI): void {
+export default function registerPermissionModes(pi: ExtensionAPI): void {
   ensureConfigDir();
 
   pi.on("tool_call", async (event: ToolCallEvent, ctx) => {
@@ -180,7 +173,7 @@ export default function (pi: ExtensionAPI): void {
     }
     if (ruleHit === "allow") return;
 
-    const decision = decide(cfg.mode, kind, toolName, target, input);
+    const decision = decide(cfg.mode, kind, toolName, target);
     if (decision.action === "allow") return;
     if (decision.action === "deny") {
       audit({ mode: cfg.mode, toolName, target, decision: "deny", reason: decision.reasons.join("；") });
@@ -188,21 +181,17 @@ export default function (pi: ExtensionAPI): void {
     }
 
     // ask
-    const memKey = memoryKeyFor(toolName, target);
-    if (hasMemorizedAllow(toolName, target)) {
-      audit({ mode: cfg.mode, toolName, target, decision: "allow", reason: "会话记忆（始终允许）" });
-      return;
-    }
-
     const info: ApprovalInfo = {
       toolName,
       target,
       summary: summarizeToolCall(toolName, input),
       reason: decision.reasons.join("；") || "需要批准",
+      reasons: decision.reasons,
+      subject: target,
     };
     audit({ mode: cfg.mode, toolName, target, decision: "ask", reason: info.reason });
 
-    const choice: ApprovalResult = await requestApproval(ctx.ui, cfg, info);
+    const choice: ApprovalResult = await requestApproval(ctx.ui, ctx.mode, cfg, info);
 
     if (choice.kind === "allow-rule") {
       // Codex-style: remember this target prefix as an allow rule (persisted)
@@ -234,16 +223,14 @@ export default function (pi: ExtensionAPI): void {
 
       if (!cmd) {
         const cfg = loadConfig();
-        const entries = memoryEntries();
         const lines = [
           `当前模式: ${cfg.mode}`,
           `规则: allow ${cfg.rules.allow.length} / ask ${cfg.rules.ask.length} / deny ${cfg.rules.deny.length}`,
-          `会话记忆: ${entries.length} 条`,
           `默认策略(custom): ${cfg.defaultPolicy}`,
           "",
           "用法: /permission <full|ask|risky|readonly|custom>",
           "      /permission allow|ask|deny <Tool(pattern)>",
-          "      /permission forget | log",
+          "      /permission log",
         ];
         ctx.ui.notify(lines.join("\n"), "info");
         return;
@@ -264,12 +251,6 @@ export default function (pi: ExtensionAPI): void {
         return;
       }
 
-      if (cmd === "forget") {
-        const n = forgetAll();
-        ctx.ui.notify(`已清除 ${n} 条会话审批记忆`, "info");
-        return;
-      }
-
       if (cmd === "log") {
         const entries = recentAudit(20);
         if (!entries.length) {
@@ -285,13 +266,9 @@ export default function (pi: ExtensionAPI): void {
         return;
       }
 
-      ctx.ui.notify(`未知命令: ${cmd}\n用法: /permission <mode> | allow|ask|deny <规则> | forget | log`, "warning");
+      ctx.ui.notify(`未知命令: ${cmd}\n用法: /permission <mode> | allow|ask|deny <规则> | log`, "warning");
     },
   });
-}
-
-function memoryKeyFor(toolName: string, target: string): string {
-  return `${toolName}\u0000${target}`;
 }
 
 export { loadConfig as _reloadForTests };

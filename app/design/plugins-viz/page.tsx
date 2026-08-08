@@ -43,7 +43,7 @@ function SwitchRow({ title, desc, checked, onChange }: { title: string; desc: st
   return (
     <div className="flex items-center justify-between py-2.5 border-b border-kumo-line last:border-0">
       <div>
-        <div className="text-base text-kumo-default">{title}</div>
+        <div className="text-base font-medium text-kumo-default">{title}</div>
         <div className="text-sm text-kumo-subtle mt-0.5">{desc}</div>
       </div>
       <Switch checked={checked} onCheckedChange={onChange} aria-label={title} />
@@ -324,10 +324,10 @@ export default function PluginsVizPreview() {
                             <table className="w-full text-sm">
                               <thead>
                                 <tr className="border-b border-kumo-line text-left">
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">角色</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">模型</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">思考</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">操作</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">角色</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">模型</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">思考</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">操作</th>
                                 </tr>
                               </thead>
                               <tbody className="text-sm">
@@ -597,9 +597,9 @@ return reviews.map(r => r.output);`}
                             <table className="w-full text-sm">
                               <thead>
                                 <tr className="border-b border-kumo-line text-left">
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">工具</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive w-40">策略</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">说明</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">工具</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive w-40">策略</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">说明</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -665,11 +665,11 @@ return reviews.map(r => r.output);`}
                             <table className="w-full text-sm border-t border-kumo-line">
                               <thead>
                                 <tr className="border-b border-kumo-line text-left">
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">名称</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">触发</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">代理</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">状态</th>
-                                  <th className="px-4 py-2 text-xs font-medium text-kumo-inactive">操作</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">名称</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">触发</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">代理</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">状态</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">操作</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -700,7 +700,7 @@ return reviews.map(r => r.output);`}
 
                     {/* 底部操作条 */}
                     <div className="flex items-center justify-between px-5 py-2.5 border-t border-kumo-line flex-shrink-0">
-                      <span className="text-xs font-mono text-kumo-inactive">
+                      <span className="text-sm font-mono text-kumo-inactive">
                         settings.json → subagents · config.json
                       </span>
                       <div className="flex gap-2">

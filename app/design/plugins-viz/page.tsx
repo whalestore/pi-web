@@ -250,8 +250,8 @@ export default function PluginsVizPreview() {
                               <Field label="worktree 基目录 · worktreeBaseDir" description="worktree: true 运行的隔离工作区">
                                 <Input placeholder="默认系统临时目录" className="w-full font-mono" />
                               </Field>
-                              <Field label="单次运行输出目录 · singleRunOutputBaseDir">
-                                <Input placeholder="默认随运行产物目录" className="w-full font-mono" />
+                              <Field label="单次运行输出目录 · singleRunOutputBaseDir" description="相对 output 路径的根目录">
+                                <Input value="~/.pi/subagent-outputs" className="w-full font-mono" />
                               </Field>
                             </div>
                           </Card>
@@ -273,14 +273,17 @@ export default function PluginsVizPreview() {
                                   <Field label="intercom 桥接 · intercomBridge.mode">
                                     <Select items={[{ value: "always", label: "always（默认，始终注入）" }, { value: "fork-only", label: "fork-only（仅 fork 运行）" }, { value: "off", label: "off（关闭）" }]} />
                                   </Field>
-                                  <Field label="操作确认策略 · authorityPolicy" description="auto / confirm / forbid">
-                                    <Input value="discardWorktree: confirm, stopRun: auto" className="w-full font-mono" />
+                                  <Field label="操作确认策略 · authorityPolicy" description="6 个动作：auto / confirm / forbid（默认：discardWorktree·destructiveCleanup·spawnBudgetGrant=confirm，scheduleCreate·stopRun·steerRun=auto）">
+                                    <Input value="discardWorktree: confirm, destructiveCleanup: confirm, spawnBudgetGrant: confirm, scheduleCreate: auto, stopRun: auto, steerRun: auto" className="w-full font-mono" />
                                   </Field>
                                   <Field label="回合预算默认 · turnBudget" description="如 {maxTurns:20, graceTurns:2} JSON 格式">
                                     <Input placeholder={'{"maxTurns":20,"graceTurns":2}'} className="w-full font-mono" />
                                   </Field>
                                   <Field label="工具调用预算 · toolBudget" description="如 {soft:40, hard:60} JSON 格式">
                                     <Input placeholder={'{"soft":40,"hard":60}'} className="w-full font-mono" />
+                                  </Field>
+                                  <Field label="用量预算 · usageBudget" description="如 {tokens:{hard:500000}, costUsd:{hard:5}} JSON 格式">
+                                    <Input placeholder={'{"tokens":{"hard":500000},"costUsd":{"hard":5}}'} className="w-full font-mono" />
                                   </Field>
                                 </div>
                               </Collapsible.DefaultPanel>

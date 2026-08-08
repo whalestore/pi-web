@@ -74,6 +74,7 @@ export default function PluginsVizPreview() {
   const [forceTopLevelAsync, setForceTopLevelAsync] = useState(false);
   const [waitTool, setWaitTool] = useState(true);
   const [completionBatch, setCompletionBatch] = useState(true);
+  const [scopeHelpOpen, setScopeHelpOpen] = useState(false);
   const [scopeWatch, setScopeWatch] = useState(false);
   const [lsp, setLsp] = useState(true);
   const [autoFollow, setAutoFollow] = useState(false);
@@ -478,7 +479,21 @@ export default function PluginsVizPreview() {
 
                           <SectionLabel>
                             <div className="flex items-center justify-between gap-3">
-                              <span>角色卡片 · 作用域发现（内置 / 用户 / 项目）</span>
+                              <span className="flex items-center gap-1.5">
+                                角色卡片 · 作用域发现（内置 / 用户 / 项目）
+                                <button
+                                  onClick={() => setScopeHelpOpen(true)}
+                                  title="作用域说明"
+                                  aria-label="作用域说明"
+                                  className="inline-flex items-center justify-center w-4.5 h-4.5 rounded-full text-kumo-subtle hover:text-kumo-brand hover:bg-kumo-tint cursor-pointer border-0"
+                                >
+                                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                  </svg>
+                                </button>
+                              </span>
                               <div className="flex gap-1">
                                 {["全部", "内置", "自定义"].map((s, i) => (
                                   <button
@@ -856,6 +871,59 @@ return reviews.map(r => r.output);`}
                 )}
               </div>
             </div>
+          </Dialog>
+        </Dialog.Root>
+
+        {/* 作用域解释弹框 */}
+        <Dialog.Root open={scopeHelpOpen} onOpenChange={setScopeHelpOpen}>
+          <Dialog>
+            <Dialog.Title>Agent 作用域 · 大白话</Dialog.Title>
+            <Dialog.Description>一份 agent = 一份角色说明书（md 文件），放在哪个目录就是它的作用域</Dialog.Description>
+            <div className="space-y-3 text-sm py-2">
+              <div className="border border-kumo-line rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-kumo-line text-left">
+                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive w-20">作用域</th>
+                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive">存放位置</th>
+                      <th className="px-3 py-1.5 text-xs font-semibold text-kumo-inactive">大白话</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-kumo-line">
+                      <td className="px-3 py-2 text-xs font-semibold">内置</td>
+                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">插件自带 agents/</td>
+                      <td className="px-3 py-2 text-xs text-kumo-subtle">出厂自带的 9 个角色（scout/reviewer…），人人都有</td>
+                    </tr>
+                    <tr className="border-b border-kumo-line">
+                      <td className="px-3 py-2 text-xs font-semibold">插件包</td>
+                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">包的 pi-subagents.agents</td>
+                      <td className="px-3 py-2 text-xs text-kumo-subtle">应用商店 App 自带的组件</td>
+                    </tr>
+                    <tr className="border-b border-kumo-line">
+                      <td className="px-3 py-2 text-xs font-semibold">用户</td>
+                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">~/.pi/agent/agents/</td>
+                      <td className="px-3 py-2 text-xs text-kumo-subtle">你自己下载的 App——所有项目通用，换项目还在</td>
+                    </tr>
+                    <tr>
+                      <td className="px-3 py-2 text-xs font-semibold">项目</td>
+                      <td className="px-3 py-2 text-xs font-mono text-kumo-subtle">.pi/agents/</td>
+                      <td className="px-3 py-2 text-xs text-kumo-subtle">公司给这个项目专用——只在当前项目生效</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="text-sm text-kumo-default">
+                <b>规则一句话：近的盖远的。</b>
+                <span className="text-kumo-subtle">
+                  {" "}项目 &gt; 用户 &gt; 插件包 &gt; 内置。同一个名字（如 reviewer）在多个作用域都有说明书时，高优先级那份生效——内置 9 个只是最底层地基，谁都能在上层放同名说明书把它顶掉。
+                </span>
+              </div>
+              <div className="text-sm text-kumo-subtle">
+                例：用户抽屉放了 reviewermd（用更好的模型）→ 所有项目用你的版本；某项目再放一份 reviewer（只查安全）→ 只有那个项目用项目版。
+              </div>
+            </div>
+            <Dialog.Close render={(p) => <Button variant="secondary" {...p}>知道了</Button>} />
           </Dialog>
         </Dialog.Root>
       </div>

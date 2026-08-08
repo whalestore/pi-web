@@ -301,17 +301,27 @@ export default function PluginsVizPreview() {
                             优先级：运行参数 &gt; agent 定义 &gt; 角色覆盖 &gt; 全局默认 &gt; 父会话 · 写入 settings.json → subagents
                           </div>
                           <SectionLabel>全局默认</SectionLabel>
-                          <Card className="p-4">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              <Field label="默认模型 · defaultModel" description="支持模糊匹配">
+                          <Card>
+                            <div className="px-4 py-1">
+                              <SwitchRow title="禁用思考后缀" desc="provider 拒绝带 thinking 后缀的模型 id 时开启 · disableThinking" checked={false} onChange={() => {}} />
+                              <SwitchRow title="禁用全部内置 agent" desc="隐藏所有内置角色，仅保留自定义 · disableBuiltins" checked={false} onChange={() => {}} />
+                              <SwitchRow title="强制模型范围" desc="开启后白名单外的模型显式指定会报错 · modelScope.enforce" checked={false} onChange={() => {}} />
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 border-t border-kumo-line">
+                              <Field label="默认模型 · defaultModel" description="支持模糊匹配，如 anthropic/claude-sonnet-4">
                                 <Select items={MODEL_ITEMS} value={defaultModel} onValueChange={(v) => setDefaultModel(String(v))} />
                               </Field>
                               <Field label="默认思考级别 · defaultThinking">
                                 <Select items={THINKING_ITEMS} value={thinking} onValueChange={(v) => setThinking(String(v))} />
                               </Field>
                               <div className="sm:col-span-2">
-                                <Field label="模型范围白名单 · modelScope.allow" description="glob 模式逗号分隔；未命中显式指定报错，继承来源仅警告">
+                                <Field label="模型范围白名单 · modelScope.allow" description="glob 模式逗号分隔；未命中显式指定报错（enforce 开启时），继承来源仅警告">
                                   <Input value="anthropic/*, openai/gpt-5-*" className="w-full" />
+                                </Field>
+                              </div>
+                              <div className="sm:col-span-2">
+                                <Field label="默认扩展白名单 · defaultExtensions" description="未声明 extensions 的 agent 使用的扩展列表（空 = 禁用全部扩展）">
+                                  <Input placeholder="./tools/research.ts, ./tools/guard.ts（逗号分隔）" className="w-full font-mono" />
                                 </Field>
                               </div>
                             </div>
@@ -330,6 +340,7 @@ export default function PluginsVizPreview() {
                                   <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">角色</th>
                                   <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">模型</th>
                                   <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">思考</th>
+                                  <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">备用模型</th>
                                   <th className="px-4 py-2 text-xs font-semibold text-kumo-inactive">操作</th>
                                 </tr>
                               </thead>
@@ -344,6 +355,9 @@ export default function PluginsVizPreview() {
                                   </td>
                                   <td className="px-4 py-2.5">
                                     <Select size="sm" items={THINKING_ITEMS} value="high" />
+                                  </td>
+                                  <td className="px-4 py-2.5">
+                                    <Input size="sm" value="openai/gpt-5-mini" className="w-full font-mono" aria-label="reviewer 备用模型" />
                                   </td>
                                   <td className="px-4 py-2.5">
                                     <Button variant="ghost" size="xs">编辑</Button>
@@ -362,6 +376,9 @@ export default function PluginsVizPreview() {
                                     <Select size="sm" items={THINKING_ITEMS} value="high" />
                                   </td>
                                   <td className="px-4 py-2.5">
+                                    <Input size="sm" placeholder="限流/鉴权失败时降级" className="w-full font-mono" aria-label="oracle 备用模型" />
+                                  </td>
+                                  <td className="px-4 py-2.5">
                                     <Button variant="ghost" size="xs">编辑</Button>
                                     <Button variant="ghost" size="xs" className="text-kumo-danger">删除</Button>
                                   </td>
@@ -370,10 +387,68 @@ export default function PluginsVizPreview() {
                                   <td className="px-4 py-2.5">
                                     <span className="font-mono text-xs">worker</span>
                                   </td>
-                                  <td className="px-4 py-2.5 text-xs text-kumo-inactive" colSpan={3}>跟随全局默认（无覆盖）</td>
+                                  <td className="px-4 py-2.5 text-xs text-kumo-inactive" colSpan={4}>跟随全局默认（无覆盖）</td>
                                 </tr>
                               </tbody>
                             </table>
+                          </Card>
+
+                          <SectionLabel>角色编辑（agentOverrides 全字段）</SectionLabel>
+                          <Card className="p-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <Field label="覆盖描述 · description">
+                                <Input placeholder="独立审查层级（列表展示用）" className="w-full" />
+                              </Field>
+                              <Field label="系统提示模式 · systemPromptMode">
+                                <Select items={[{ value: "replace", label: "replace（替换基础提示）" }, { value: "append", label: "append（追加到基础提示）" }]} />
+                              </Field>
+                              <Field label="默认上下文 · defaultContext">
+                                <Select items={[{ value: "inherit", label: "继承（agent 自身定义）" }, { value: "fresh", label: "fresh（全新上下文）" }, { value: "fork", label: "fork（分支父会话）" }]} />
+                              </Field>
+                              <Field label="验收角色 · acceptanceRole">
+                                <Select items={[{ value: "auto", label: "自动推断" }, { value: "read-only", label: "read-only（只读）" }, { value: "writer", label: "writer（写）" }]} />
+                              </Field>
+                              <Field label="技能白名单 · skills" description="逗号分隔">
+                                <Input placeholder="tmux, safe-bash" className="w-full font-mono" />
+                              </Field>
+                              <Field label="工具白名单 · tools" description="逗号分隔，覆盖 frontmatter">
+                                <Input placeholder="read, grep, find, ls" className="w-full font-mono" />
+                              </Field>
+                              <Field label="系统提示覆盖 · systemPrompt" description="完整替换该角色的系统提示">
+                                <Input placeholder="（留空 = 不覆盖）" className="w-full" />
+                              </Field>
+                            </div>
+                            <div className="px-0 py-1 mt-2 border-t border-kumo-line">
+                              <SwitchRow title="禁用该角色" desc="隐藏于运行时发现与列表 · disabled" checked={false} onChange={() => {}} />
+                              <SwitchRow title="继承项目上下文" desc="读取 AGENTS.md 等项目指令 · inheritProjectContext" checked onChange={() => {}} />
+                              <SwitchRow title="继承技能目录" desc="子代理可见 pi 的技能目录 · inheritSkills" checked={false} onChange={() => {}} />
+                            </div>
+                            <div className="flex gap-2 mt-3">
+                              <Button variant="primary">保存覆盖</Button>
+                              <Button variant="secondary">清除覆盖</Button>
+                            </div>
+                          </Card>
+
+                          <SectionLabel>诊断与配置文件</SectionLabel>
+                          <Card className="p-4">
+                            <div className="flex items-center justify-between gap-3 flex-wrap">
+                              <div className="text-sm text-kumo-subtle">
+                                查看当前生效的角色 → 模型映射（运行时状态，非配置）
+                              </div>
+                              <Button variant="secondary" size="sm">刷新映射（/subagents-models）</Button>
+                            </div>
+                            <div className="border-t border-kumo-line mt-3 pt-3">
+                              <div className="text-xs font-semibold text-kumo-subtle mb-2">模型配置文件（provider 目录 → 角色分配）</div>
+                              <div className="flex gap-2 flex-wrap">
+                                <Button variant="secondary" size="sm">刷新 provider 模型目录</Button>
+                                <Button variant="secondary" size="sm">生成配额/质量配置</Button>
+                                <Button variant="secondary" size="sm">加载配置</Button>
+                                <Button variant="secondary" size="sm">检查配置</Button>
+                              </div>
+                              <div className="text-xs text-kumo-inactive mt-2">
+                                对应命令：/subagents-refresh-provider-models · /subagents-generate-profiles · /subagents-load-profile · /subagents-check-profile
+                              </div>
+                            </div>
                           </Card>
                         </div>
                       )}

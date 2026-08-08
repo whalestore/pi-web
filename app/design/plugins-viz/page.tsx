@@ -768,9 +768,36 @@ return reviews.map(r => r.output);`}
                                   <Button variant="secondary" className="shrink-0">✨ 推荐</Button>
                                 </div>
                               </Field>
-                              <Field label="审查节奏 · cadence.everyNTools" description="0 = 仅 agent_end 审查">
+                              <Field label="审查思考级别 · main.thinking" description="推荐 :high（强对抗审查配对）">
+                                <Select items={[{ value: "off", label: "off" }, { value: "low", label: "low" }, { value: "medium", label: "medium" }, { value: "high", label: "high" }]} value="high" />
+                              </Field>
+                              <Field label="子代理审查模型 · children.model" description="写子代理在自身 worktree 的审查（默认继承 main.model）">
+                                <Input placeholder="默认继承 main.model" className="font-mono w-full" />
+                              </Field>
+                              <Field label="审查节奏 · cadence.everyNTools" description="0 = 仅 agent_end 审查；N &gt; 0 每 N 次工具调用做 scope 检查（用便宜模型）">
                                 <Input type="number" defaultValue={0} className="w-full" />
                               </Field>
+                              <Field label="auto-follow 最大次数 · autoFollow.maxAttempts" description="重复 blocker 停止阈值 · stalemateRepeats（默认 3）">
+                                <Input type="number" defaultValue={3} className="w-full" />
+                              </Field>
+                              <Field label="LSP 超时 · lsp.timeoutMs" description="诊断超时（默认 30s），maxFiles/maxDiagnostics 限制规模">
+                                <Input type="number" placeholder="30000" className="w-full" />
+                              </Field>
+                            </div>
+                          </Card>
+
+                          <SectionLabel>触发条件与命令</SectionLabel>
+                          <Card className="p-4">
+                            <div className="text-sm text-kumo-subtle">
+                              触发：仅在 <b className="text-kumo-default">agent_end</b> 且本次回合<b className="text-kumo-default">改变了 repo 最终状态</b>时审查；
+                              未变化/回滚的 diff 跳过；生成的 .pi-subagents/ 与 tmp/ 产物不触发。多文件改动合并为一次审查。
+                            </div>
+                            <div className="flex flex-wrap gap-2 mt-3">
+                              {["/subagents-watchdog on", "/subagents-watchdog off", "/subagents-watchdog status", "/subagents-watchdog check", "/subagents-watchdog model recommended"].map((cmd) => (
+                                <span key={cmd} className="px-2.5 py-1 rounded-md border border-kumo-line bg-kumo-base font-mono text-xs text-kumo-default">
+                                  {cmd}
+                                </span>
+                              ))}
                             </div>
                           </Card>
 

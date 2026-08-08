@@ -155,9 +155,11 @@ export function PermissionMenu() {
         )}
       />
       <DropdownMenu.Content align="start" sideOffset={6}>
-        <DropdownMenu.Label style={{ fontSize: 11, color: "var(--color-kumo-subtle)" }}>
-          权限模式 · 当前：{MODE_LABELS[current]}
-        </DropdownMenu.Label>
+        <DropdownMenu.Group>
+          <DropdownMenu.Label style={{ fontSize: 11, color: "var(--color-kumo-subtle)" }}>
+            权限模式 · 当前：{MODE_LABELS[current]}
+          </DropdownMenu.Label>
+        </DropdownMenu.Group>
         {MODE_ITEMS.map((item) =>
           item.disabled ? (
             <DropdownMenu.Item key={item.id} disabled icon={item.icon} style={{ opacity: 0.5 }}>

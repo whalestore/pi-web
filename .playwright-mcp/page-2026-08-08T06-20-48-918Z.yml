@@ -1,0 +1,31 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - generic [ref=e6]:
+            - button "Pi Web" [ref=e7]
+            - generic [ref=e8]:
+              - button "新建" [disabled] [ref=e9]
+              - button "刷新" [ref=e11] [cursor=pointer]
+          - button "选择项目…" [ref=e16] [cursor=pointer]
+        - generic [ref=e18]: 加载中...
+      - generic [ref=e20]:
+        - button "模型" [ref=e21] [cursor=pointer]
+        - button "技能" [disabled] [ref=e25]
+        - button "插件" [disabled] [ref=e30]
+    - separator "调整侧边栏宽度" [ref=e33]
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - button "隐藏侧边栏" [ref=e36] [cursor=pointer]
+        - button "切换到深色模式" [ref=e39] [cursor=pointer]
+        - button "语言" [ref=e42] [cursor=pointer]
+      - generic [ref=e47]:
+        - generic:
+          - generic:
+            - generic: 开始使用
+            - generic: 1.从侧边栏选择项目目录2.点击底部的“模型”按钮添加模型
+    - generic: 没有打开的文件
+  - button "显示文件面板" [ref=e53] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=e61] [cursor=pointer]
+  - alert [ref=e65]

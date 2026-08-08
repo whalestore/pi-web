@@ -5,6 +5,7 @@ import { sendAgentCommand } from "@/lib/agent-client";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import type { PluginPackageInfo, PluginsResponse } from "@/lib/api-types";
 import { useI18n } from "@/hooks/useI18n";
+import { SubagentsViz } from "@/components/PluginViz/SubagentsViz";
 
 type PluginScope = PluginPackageInfo["scope"];
 type PluginAction = "install" | "remove" | "update" | "disable" | "enable";
@@ -635,6 +636,8 @@ export function PluginsConfig({
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionMessage, setActionMessage] = useState<string | null>(null);
+  const [vizPlugins, setVizPlugins] = useState<string[]>([]);
+  const [vizTab, setVizTab] = useState<"detail" | "viz">("detail");
 
   const packages = useMemo(() => data?.packages ?? [], [data?.packages]);
   const selectedPackage = packages.find((pkg) => packageKey(pkg) === selected) ?? null;
@@ -645,6 +648,10 @@ export function PluginsConfig({
       .map((scope) => ({ scope, packages: packages.filter((pkg) => pkg.scope === scope) }))
       .filter((group) => group.packages.length > 0);
   }, [packages]);
+
+  useEffect(() => {
+    setVizTab("detail");
+  }, [selected]);
 
   const loadPlugins = useCallback(async () => {
     setLoading(true);
@@ -668,6 +675,12 @@ export function PluginsConfig({
 
   useEffect(() => {
     void loadPlugins();
+    void fetch("/api/plugin-viz/index")
+      .then((r) => r.json())
+      .then((json) => {
+        if (Array.isArray(json?.plugins)) setVizPlugins(json.plugins.map((p: { name: string }) => p.name));
+      })
+      .catch(() => {});
   }, [loadPlugins]);
 
   const runAction = useCallback(async (action: PluginAction, pkg: PluginPackageInfo) => {
@@ -1011,7 +1024,53 @@ export function PluginsConfig({
             </div>
           </div>
 
-          <div style={{ flex: 1, overflowY: "auto", padding: 20 }}>
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+            {/* Tab：插件详情 | 可视化配置 */}
+            {selectedPackage && !addMode && (
+              <div
+                style={{
+                  display: "flex",
+                  gap: 2,
+                  padding: "0 14px",
+                  borderBottom: "1px solid var(--border)",
+                  flexShrink: 0,
+                }}
+              >
+                <button
+                  onClick={() => setVizTab("detail")}
+                  style={{
+                    padding: "9px 14px",
+                    fontSize: 13,
+                    cursor: "pointer",
+                    border: "none",
+                    background: "none",
+                    color: vizTab === "detail" ? "var(--accent)" : "var(--text-muted)",
+                    borderBottom: vizTab === "detail" ? "2px solid var(--accent)" : "2px solid transparent",
+                    fontWeight: vizTab === "detail" ? 600 : 400,
+                  }}
+                >
+                  插件详情
+                </button>
+                {vizPlugins.includes(selectedPackage.packageName ?? selectedPackage.source) && (
+                  <button
+                    onClick={() => setVizTab("viz")}
+                    style={{
+                      padding: "9px 14px",
+                      fontSize: 13,
+                      cursor: "pointer",
+                      border: "none",
+                      background: "none",
+                      color: vizTab === "viz" ? "var(--accent)" : "var(--text-muted)",
+                      borderBottom: vizTab === "viz" ? "2px solid var(--accent)" : "2px solid transparent",
+                      fontWeight: vizTab === "viz" ? 600 : 400,
+                    }}
+                  >
+                    可视化配置
+                  </button>
+                )}
+              </div>
+            )}
+            <div style={{ flex: 1, overflowY: "auto", padding: 20, minHeight: 0 }}>
             {addMode ? (
               <AddPluginPanel
                 cwd={cwd}
@@ -1025,6 +1084,14 @@ export function PluginsConfig({
                 onInstall={installPlugin}
               />
             ) : loading ? null : selectedPackage ? (
+              vizTab === "viz" && vizPlugins.includes(selectedPackage.packageName ?? selectedPackage.source) ? (
+                <SubagentsViz
+                  onReloaded={() => {
+                    setActionMessage(null);
+                    void loadPlugins();
+                  }}
+                />
+              ) : (
               <PackageDetail
                 key={packageKey(selectedPackage)}
                 pkg={selectedPackage}
@@ -1036,6 +1103,7 @@ export function PluginsConfig({
                 onAction={runAction}
                 onReloadSession={reloadSession}
               />
+              )
             ) : (
               <div
                 style={{
@@ -1050,8 +1118,9 @@ export function PluginsConfig({
                 {t("i18n.selectPackage")}
               </div>
             )}
+            </div>
+            </div>
           </div>
-        </div>
 
         <div
           style={{

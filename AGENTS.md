@@ -13,12 +13,53 @@
 ## Quick Start
 
 ```bash
-npm run dev   # port 37377
+npm run dev        # port 37377（纯 dev，无托盘）
+npm run dev:tray   # 一键重启：dev + 系统托盘（推荐日常使用）
 ```
 
 Typecheck: `node_modules/.bin/tsc --noEmit`  
 Lint: `npm run lint`  
 **Never run `next build` during dev** — pollutes `.next/` and breaks `npm run dev`.
+
+---
+
+## 服务重启与扩展开发（必读）
+
+### 什么时候必须重启（用 `npm run dev:tray`，不要手动 pkill）
+
+**Next dev 的 HMR 只覆盖前端/路由代码**（components/、app/、hooks/、route.ts）。
+以下代码不在 HMR 范围内，改完必须重启进程才会生效：
+
+- `lib/` 下的服务端模块（rpc-manager.ts 等）
+- **pi 扩展**（`extensions/` 目录 + 全局安装的扩展）：pi 的 loader 有进程级模块缓存，
+  且扩展只在 **AgentSession 创建时加载一次**，已有会话永远不会重读扩展代码
+
+```bash
+npm run dev:tray   # 唯一推荐的重启方式：按端口杀旧进程（含孤儿）→ 等端口释放 → 启动新进程
+```
+
+> ⚠️ **禁止手动 pkill -f 宽泛匹配**（如 `pkill -f next-server`）——会误杀其他项目进程
+> （历史上误杀过 9router 的 UI 子进程）。`dev:tray` 内部按端口杀，精准安全。
+
+### 扩展开发模式（新进程天然最新代码）
+
+```bash
+# 在 TUI 里单独测试扩展，每次都是全新进程，改代码即测即用，无需重启 pi-web
+pi -e ./extensions/pi-permission-modes/index.ts
+
+# headless 验证（非交互）：
+pi --print --no-session -e ./extensions/pi-permission-modes/index.ts "<触发命令>"
+```
+
+### 权限扩展（pi-permission-modes）速览
+
+- 位置：`extensions/pi-permission-modes/`，全局安装（`~/.pi/agent/settings.json` 指向本地路径）
+- 模式配置：`~/.pi/permission.json`（`mode` + `rules`）；前端菜单通过 `app/api/permission` 读写
+- 前端入口：ChatInput 中 attach（选择图片）按钮右侧的盾牌按钮（`components/PermissionMenu.tsx`），
+  审批弹窗为 `components/ApprovalPopup.tsx`（kumo 风格，渲染在输入框上方）
+- 协议：扩展 select 请求 title 以 `pi-permission:` 开头（携带 JSON payload），
+  拒绝反馈 input 请求 title 为 `pi-permission-feedback`
+- 模式：`full`（默认，零拦截）/ `ask` / `risky` / `readonly` / `custom`（规则表 deny>allow>ask）
 
 ---
 

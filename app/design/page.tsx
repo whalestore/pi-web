@@ -16,7 +16,12 @@ import {
   Banner, Tooltip, TooltipProvider, Loader, Empty, Popover, DropdownMenu,
   Breadcrumbs, Pagination, Collapsible, Link, Toolbar, TableOfContents,
   Table, Surface, LayerCard, Grid, ClipboardText, Code,
+  SkeletonLine, InputArea, CodeHighlighted,
+  CommandPalette, SidebarProvider, Sidebar, MenuBar, DatePicker, Flow,
+  TimeseriesChart,
 } from "@/components/ui";
+import { ShikiProvider } from "@cloudflare/kumo/code";
+import * as echarts from "echarts";
 import { useTheme } from "@/hooks/useTheme";
 
 function Section({
@@ -462,42 +467,116 @@ return scan.output;`} />
           </div>
         </Section>
 
-        {/* ═══════ 复合组件 ═══════ */}
+        {/* ═══════ 复合组件（全部带实际预览） ═══════ */}
         <div className="border border-kumo-line rounded-lg overflow-hidden">
           <div className="px-4 py-3 border-b border-kumo-line">
             <div className="text-base font-semibold">复合/重型组件</div>
-            <div className="text-xs text-kumo-subtle mt-0.5">按需使用，均可在 components/ui 中找到包装</div>
+            <div className="text-xs text-kumo-subtle mt-0.5">全部组件实际预览 · 按需使用，均可在 components/ui 中找到包装</div>
           </div>
-          <div className="p-4">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-kumo-line text-left">
-                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">组件</th>
-                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">用途</th>
-                  <th className="px-3 py-2 text-xs font-medium text-kumo-inactive">注意</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm">
-                {[
-                  ["CommandPalette", "命令面板（Cmd+K 全局搜索/命令）", "复合组件（14 个子组件）"],
-                  ["Sidebar / SidebarProvider", "应用级侧边栏（菜单/折叠/悬浮）", "复合组件"],
-                  ["MenuBar", "顶部菜单栏", "useMenuNavigation"],
-                  ["DatePicker", "日期选择器", "DateRangePicker 已弃用，用 mode=\x27range\x27"],
-                  ["TimeseriesChart", "时序图表", "需要安装 echarts"],
-                  ["Flow", "流程图/节点图", "高级可视化"],
-                  ["TableOfContents", "文档目录", "useTableOfContentsActiveId"],
-                  ["SkeletonLine", "骨架屏", "配合 Loader"],
-                  ["Toasty / ToastManager", "命令式 toast", "createKumoToastManager"],
-                  ["RefreshButton", "刷新按钮（带旋转动画）", "Button 变体"],
-                ].map(([name, use, note]) => (
-                  <tr key={name} className="border-b border-kumo-line last:border-0">
-                    <td className="px-3 py-2 font-mono text-xs">{name}</td>
-                    <td className="px-3 py-2 text-xs text-kumo-subtle">{use}</td>
-                    <td className="px-3 py-2 text-xs text-kumo-inactive">{note}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Text */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">Text · 文本排版</div>
+              <Text variant="heading3" as="h3">heading3 标题</Text>
+              <Text variant="body">body 正文内容</Text>
+              <Text variant="secondary" size="sm">secondary 次要</Text>
+              <Text variant="mono" size="lg">mono 等宽</Text>
+            </div>
+            {/* SkeletonLine */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">SkeletonLine · 骨架屏</div>
+              <div className="space-y-2">
+                <SkeletonLine />
+                <SkeletonLine className="w-2/3" />
+                <SkeletonLine className="w-1/2" />
+              </div>
+            </div>
+            {/* InputArea */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">InputArea · 自动伸缩多行输入</div>
+              <InputArea placeholder="多行内容，自动伸缩…" />
+            </div>
+            {/* CodeHighlighted */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">CodeHighlighted · 语法高亮</div>
+              <ShikiProvider engine="javascript" languages={["ts", "js"]}>
+                <CodeHighlighted code={`const sum = (a: number, b: number) => a + b;`} lang="ts" />
+              </ShikiProvider>
+            </div>
+            {/* MenuBar */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">MenuBar · 菜单栏</div>
+              <div className="flex items-center gap-1">
+                <MenuBar isActive={0} options={[
+                  { icon: <span className="text-sm">📄</span>, tooltip: "新建", onClick: () => {} },
+                  { icon: <span className="text-sm">💾</span>, tooltip: "保存", onClick: () => {} },
+                  { icon: <span className="text-sm">🔍</span>, tooltip: "搜索", onClick: () => {} },
+                ]} />
+              </div>
+            </div>
+            {/* DatePicker */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">DatePicker · 日期选择</div>
+              <DatePicker mode="single" selected={undefined} onChange={() => {}} />
+            </div>
+            {/* TableOfContents */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">TableOfContents · 目录</div>
+              <TableOfContents aria-label="页面目录">
+                <TableOfContents.Title>本页目录</TableOfContents.Title>
+                <TableOfContents.List>
+                  <TableOfContents.Item href="#intro" active>简介</TableOfContents.Item>
+                  <TableOfContents.Item href="#usage">用法</TableOfContents.Item>
+                  <TableOfContents.Item href="#api">API</TableOfContents.Item>
+                </TableOfContents.List>
+              </TableOfContents>
+            </div>
+            {/* Flow */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">Flow · 流程节点</div>
+              <Flow>
+                <Flow.Node id="a">步骤 1</Flow.Node>
+                <Flow.Node id="b">步骤 2</Flow.Node>
+              </Flow>
+            </div>
+            {/* TimeseriesChart */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">TimeseriesChart · 时序图（echarts）</div>
+              <TimeseriesChart
+                echarts={echarts}
+                data={[
+                  { name: "token", color: "#2563eb", data: [[1735689600000, 120], [1738368000000, 240], [1740787200000, 180], [1743465600000, 300]] },
+                ]}
+              />
+            </div>
+            {/* CommandPalette */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">CommandPalette · 命令面板</div>
+              <CommandPalette.Root
+                open={false}
+                onOpenChange={() => {}}
+                items={[{ value: "run", label: "运行" }, { value: "test", label: "测试" }]}
+              >
+                <CommandPalette.Input placeholder="输入命令…" />
+                <CommandPalette.List>
+                  <CommandPalette.Item value="run">运行</CommandPalette.Item>
+                  <CommandPalette.Item value="test">测试</CommandPalette.Item>
+                </CommandPalette.List>
+              </CommandPalette.Root>
+              <div className="text-xs text-kumo-inactive mt-2">（open 受控示例，默认关闭）</div>
+            </div>
+            {/* Sidebar */}
+            <div className="border border-kumo-line rounded-lg p-3">
+              <div className="text-xs font-semibold text-kumo-subtle mb-2">Sidebar · 应用侧边栏</div>
+              <SidebarProvider>
+                <Sidebar>
+                  <Sidebar.Menu>
+                    <Sidebar.MenuButton>菜单项一</Sidebar.MenuButton>
+                    <Sidebar.MenuButton>菜单项二</Sidebar.MenuButton>
+                  </Sidebar.Menu>
+                </Sidebar>
+              </SidebarProvider>
+            </div>
           </div>
         </div>
 

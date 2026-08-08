@@ -1,0 +1,868 @@
+[     181ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) @ http://127.0.0.1:37377/design:0
+[     210ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     277ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     308ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     309ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     313ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     313ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     367ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     367ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   42253ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   43180ms] [LOG] [Fast Refresh] done in 1029ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   59291ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   60142ms] [LOG] [Fast Refresh] done in 911ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   80926ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[   81120ms] [ERROR] ./app/design/page.tsx:20:72
+the name `TableOfContents` is defined multiple times
+  18 |   Table, Surface, LayerCard, Grid, ClipboardText, Code,
+  19 |   SkeletonLine, InputArea, CodeHighlighted,
+> 20 |   CommandPalette, SidebarProvider, Sidebar, MenuBar, DatePicker, Flow, TableOfContents,
+     |                                                                        ^^^^^^^^^^^^^^^
+  21 |   TimeseriesChart, Text,
+  22 | } from "@/components/ui";
+  23 | import { useTheme } from "@/hooks/useTheme";
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./app/design/page.tsx [Client Component Browser]
+    ./app/design/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/page.tsx [Client Component SSR]
+    ./app/design/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[   81120ms] [ERROR] ./app/design/page.tsx:21:20
+the name `Text` is defined multiple times
+  19 |   SkeletonLine, InputArea, CodeHighlighted,
+  20 |   CommandPalette, SidebarProvider, Sidebar, MenuBar, DatePicker, Flow, TableOfContents,
+> 21 |   TimeseriesChart, Text,
+     |                    ^^^^
+  22 | } from "@/components/ui";
+  23 | import { useTheme } from "@/hooks/useTheme";
+  24 |
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./app/design/page.tsx [Client Component Browser]
+    ./app/design/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/design/page.tsx [Client Component SSR]
+    ./app/design/page.tsx [Server Component] @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  124456ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124536ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124539ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124540ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124540ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124556ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124556ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124577ms] [ERROR] React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. activeId activeid @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  124618ms] [LOG] [Fast Refresh] done in 168ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124644ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124645ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124645ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124645ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124657ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124657ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  124702ms] TypeError: data.flatMap is not a function or its return value is not iterable
+    at getTimestamps (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:1153:17)
+    at TimeseriesChart.TimeseriesChart.useMemo[options] (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:748:142)
+    at mountMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5393:25)
+    at Object.useMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15213:24)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:1742:36
+    at TimeseriesChart (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:736:194)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15037:24)
+    at renderWithHooks (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:4620:24)
+    at updateForwardRef (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5908:21)
+    at beginWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6766:24)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at performUnitOfWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9555:97)
+    at workLoopSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:186)
+    at performSyncWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10179:316)
+    at processRootScheduleInMicrotask (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10200:106)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10274:158
+[  306785ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306787ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306789ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  306800ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306800ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306800ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306800ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306814ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306814ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306840ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306841ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306841ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306841ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306854ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306854ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  306876ms] TypeError: data.flatMap is not a function or its return value is not iterable
+    at getTimestamps (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:1153:17)
+    at TimeseriesChart.TimeseriesChart.useMemo[options] (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:748:142)
+    at mountMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5393:25)
+    at Object.useMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15213:24)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:1742:36
+    at TimeseriesChart (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:736:194)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15037:24)
+    at renderWithHooks (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:4620:24)
+    at updateForwardRef (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5908:21)
+    at beginWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6766:24)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at performUnitOfWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9555:97)
+    at workLoopSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9098:47)
+    at performSyncWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10179:316)
+    at flushSyncWork$1 (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9230:86)
+    at Object.scheduleRefresh (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:299:13)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:391:33
+    at Set.forEach (<anonymous>)
+    at Object.performReactRefresh (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:384:38)
+    at applyUpdate (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:878:31)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:886:13
+[  307161ms] [LOG] [Fast Refresh] done in 72ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307180ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:37377/design:0
+[  307206ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307213ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307217ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  307262ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307262ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307263ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307263ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307284ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307285ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307321ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307321ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307322ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307322ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307333ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307333ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  307353ms] TypeError: data.flatMap is not a function or its return value is not iterable
+    at getTimestamps (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:1153:17)
+    at TimeseriesChart.TimeseriesChart.useMemo[options] (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:748:142)
+    at mountMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5393:25)
+    at Object.useMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15213:24)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:1742:36
+    at TimeseriesChart (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:736:194)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15037:24)
+    at renderWithHooks (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:4620:24)
+    at updateForwardRef (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5908:21)
+    at beginWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6766:24)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at performUnitOfWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9555:97)
+    at workLoopSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64)
+[  333865ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335109ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335139ms] [LOG] [Fast Refresh] done in 1292ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335735ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:37377/design:0
+[  335787ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335839ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335843ms] [ERROR] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  335943ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335944ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335944ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335944ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335959ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335959ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335989ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335989ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335989ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  335989ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  336000ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  336000ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  336067ms] TypeError: Cannot read properties of undefined (reading 'map')
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:1153:47
+    at Array.flatMap (<anonymous>)
+    at getTimestamps (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:1153:17)
+    at TimeseriesChart.TimeseriesChart.useMemo[options] (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:748:142)
+    at mountMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5393:25)
+    at Object.useMemo (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15213:24)
+    at http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:1742:36
+    at TimeseriesChart (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:736:194)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15037:24)
+    at renderWithHooks (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:4620:24)
+    at updateForwardRef (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:5908:21)
+    at beginWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6766:24)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at performUnitOfWork (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9555:97)
+    at workLoopSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64)
+[  349463ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349466ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349536ms] [LOG] [Fast Refresh] done in 61ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349566ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) @ http://127.0.0.1:37377/design:0
+[  349570ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349588ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349635ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349635ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349638ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349638ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349656ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349656ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349682ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/design" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="design/pag...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function DesignPage} serverProvidedParams={{...}}>
+              <DesignPage params={Promise} searchParams={Promise}>
+                <div className="h-dvh over...">
+                  <header>
+                  <main className="max-w-5xl ...">
+                    <div>
+                    <div>
+                    <div>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <div className="border bor...">
+                      <div>
+                      <div className="p-4 grid g...">
+                        <div>
+                        <div className="border bor...">
+                          <div>
+                          <div className="space-y-2">
+                            <SkeletonLine>
+                              <div
+                                className="skeleton-line"
+                                style={{
++                                 --skeleton-width: "65%"
+-                                 --skeleton-width: "35%"
++                                 --shimmer-duration: "1.53s"
+-                                 --shimmer-duration: "1.37s"
++                                 --shimmer-delay: "0.33s"
+-                                 --shimmer-delay: "0.14s"
+                                }}
+                              >
+                            <SkeletonLine className="w-2/3">
+                              <div
+                                className="skeleton-line w-2/3"
+                                style={{
++                                 --skeleton-width: "33%"
+-                                 --skeleton-width: "61%"
++                                 --shimmer-duration: "1.69s"
+-                                 --shimmer-duration: "1.54s"
++                                 --shimmer-delay: "0.04s"
+-                                 --shimmer-delay: "0.13s"
+                                }}
+                              >
+                            <SkeletonLine className="w-1/2">
+                              <div
+                                className="skeleton-line w-1/2"
+                                style={{
++                                 --skeleton-width: "31%"
+-                                 --skeleton-width: "48%"
++                                 --shimmer-duration: "1.36s"
+-                                 --shimmer-duration: "1.53s"
++                                 --shimmer-delay: "0.16s"
+-                                 --shimmer-delay: "0.31s"
+                                }}
+                              >
+                        ...
+                    ...
+          ...
+        ...
+ @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  349713ms] Error: Renderer 'undefined' is not imported. Please import it first.
+    at new ZRender (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8667:23)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8908:14)
+    at new ECharts (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:1789:178)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:3584:17)
+    at Chart.Chart.useEffect (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:223:35)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15087:22)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at commitHookEffectListMount (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7255:167)
+    at commitHookPassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7290:60)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8689:33)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+[  349815ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  349887ms] [LOG] [Fast Refresh] done in 172ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370272ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370275ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370354ms] [LOG] [Fast Refresh] done in 67ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370378ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) @ http://127.0.0.1:37377/design:0
+[  370388ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370397ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370443ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370443ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370444ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370444ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370463ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370463ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  370485ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/design" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="design/pag...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function DesignPage} serverProvidedParams={{...}}>
+              <DesignPage params={Promise} searchParams={Promise}>
+                <div className="h-dvh over...">
+                  <header>
+                  <main className="max-w-5xl ...">
+                    <div>
+                    <div>
+                    <div>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <div className="border bor...">
+                      <div>
+                      <div className="p-4 grid g...">
+                        <div>
+                        <div className="border bor...">
+                          <div>
+                          <div className="space-y-2">
+                            <SkeletonLine>
+                              <div
+                                className="skeleton-line"
+                                style={{
++                                 --skeleton-width: "39%"
+-                                 --skeleton-width: "48%"
++                                 --shimmer-duration: "1.49s"
+-                                 --shimmer-duration: "1.49s"
++                                 --shimmer-delay: "0.08s"
+-                                 --shimmer-delay: "0.40s"
+                                }}
+                              >
+                            <SkeletonLine className="w-2/3">
+                              <div
+                                className="skeleton-line w-2/3"
+                                style={{
++                                 --skeleton-width: "45%"
+-                                 --skeleton-width: "98%"
++                                 --shimmer-duration: "1.42s"
+-                                 --shimmer-duration: "1.56s"
++                                 --shimmer-delay: "0.47s"
+-                                 --shimmer-delay: "0.07s"
+                                }}
+                              >
+                            <SkeletonLine className="w-1/2">
+                              <div
+                                className="skeleton-line w-1/2"
+                                style={{
++                                 --skeleton-width: "98%"
+-                                 --skeleton-width: "95%"
++                                 --shimmer-duration: "1.41s"
+-                                 --shimmer-duration: "1.39s"
++                                 --shimmer-delay: "0.17s"
+-                                 --shimmer-delay: "0.37s"
+                                }}
+                              >
+                        ...
+                    ...
+          ...
+        ...
+ @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  370512ms] Error: Renderer 'undefined' is not imported. Please import it first.
+    at new ZRender (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8667:23)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8908:14)
+    at new ECharts (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:1789:178)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:3584:17)
+    at Chart.Chart.useEffect (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:223:35)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15087:22)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at commitHookEffectListMount (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7255:167)
+    at commitHookPassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7290:60)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8689:33)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+[  393127ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393129ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393183ms] [LOG] [Fast Refresh] done in 64ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393205ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) @ http://127.0.0.1:37377/design:0
+[  393220ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393229ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393275ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393275ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393276ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393276ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393295ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393295ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  393319ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/design" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="design/pag...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function DesignPage} serverProvidedParams={{...}}>
+              <DesignPage params={Promise} searchParams={Promise}>
+                <div className="h-dvh over...">
+                  <header>
+                  <main className="max-w-5xl ...">
+                    <div>
+                    <div>
+                    <div>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <div className="border bor...">
+                      <div>
+                      <div className="p-4 grid g...">
+                        <div>
+                        <div className="border bor...">
+                          <div>
+                          <div className="space-y-2">
+                            <SkeletonLine>
+                              <div
+                                className="skeleton-line"
+                                style={{
++                                 --skeleton-width: "56%"
+-                                 --skeleton-width: "38%"
++                                 --shimmer-duration: "1.38s"
+-                                 --shimmer-duration: "1.55s"
++                                 --shimmer-delay: "0.35s"
+-                                 --shimmer-delay: "0.13s"
+                                }}
+                              >
+                            <SkeletonLine className="w-2/3">
+                              <div
+                                className="skeleton-line w-2/3"
+                                style={{
++                                 --skeleton-width: "39%"
+-                                 --skeleton-width: "32%"
++                                 --shimmer-duration: "1.36s"
+-                                 --shimmer-duration: "1.32s"
++                                 --shimmer-delay: "0.15s"
+-                                 --shimmer-delay: "0.09s"
+                                }}
+                              >
+                            <SkeletonLine className="w-1/2">
+                              <div
+                                className="skeleton-line w-1/2"
+                                style={{
++                                 --skeleton-width: "60%"
+-                                 --skeleton-width: "47%"
++                                 --shimmer-duration: "1.51s"
+-                                 --shimmer-duration: "1.38s"
++                                 --shimmer-delay: "0.26s"
+-                                 --shimmer-delay: "0.50s"
+                                }}
+                              >
+                        ...
+                    ...
+          ...
+        ...
+ @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[  393345ms] Error: Renderer 'undefined' is not imported. Please import it first.
+    at new ZRender (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8667:23)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_zrender_lib_0y0-cc4._.js:8908:14)
+    at new ECharts (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:1789:178)
+    at Module.init (http://127.0.0.1:37377/_next/static/chunks/node_modules_echarts_lib_core_0b6wo7m._.js:3584:17)
+    at Chart.Chart.useEffect (http://127.0.0.1:37377/_next/static/chunks/node_modules_%40cloudflare_kumo_dist_chunks_chart-bxxlck50zlsbj3kl_0mcyrb0.js:223:35)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:15087:22)
+    at runWithFiberInDEV (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at commitHookEffectListMount (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7255:167)
+    at commitHookPassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:7290:60)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8689:33)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8676:316)
+    at commitPassiveMountOnFiber (http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:8688:17)

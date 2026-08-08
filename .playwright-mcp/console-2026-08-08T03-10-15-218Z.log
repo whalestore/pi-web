@@ -1,0 +1,115 @@
+[      88ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) @ http://127.0.0.1:37377/design:0
+[      98ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     113ms] [LOG] [HMR] connected @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     187ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     187ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     188ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     188ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     219ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     219ms] [WARNING] [Kumo Input]: Input must have an accessible name. Provide either:
+  - label prop: <Input label='Email' />
+  - aria-label: <Input aria-label='Email address' />
+  - aria-labelledby for custom label association @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     235ms] [LOG] [Fast Refresh] rebuilding @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     241ms] [LOG] [Fast Refresh] done in 116ms @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[     244ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/design" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="design/pag...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function DesignPage} serverProvidedParams={{...}}>
+              <DesignPage params={Promise} searchParams={Promise}>
+                <div className="h-dvh over...">
+                  <header>
+                  <main className="max-w-5xl ...">
+                    <div>
+                    <div>
+                    <div>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <Section>
+                    <div className="border bor...">
+                      <div>
+                      <div className="p-4 grid g...">
+                        <div>
+                        <div className="border bor...">
+                          <div>
+                          <div className="space-y-2">
+                            <SkeletonLine>
+                              <div
+                                className="skeleton-line"
+                                style={{
++                                 --skeleton-width: "49%"
+-                                 --skeleton-width: "89%"
++                                 --shimmer-duration: "1.67s"
+-                                 --shimmer-duration: "1.34s"
++                                 --shimmer-delay: "0.05s"
+-                                 --shimmer-delay: "0.08s"
+                                }}
+                              >
+                            <SkeletonLine className="w-2/3">
+                              <div
+                                className="skeleton-line w-2/3"
+                                style={{
++                                 --skeleton-width: "72%"
+-                                 --skeleton-width: "42%"
++                                 --shimmer-duration: "1.50s"
+-                                 --shimmer-duration: "1.31s"
++                                 --shimmer-delay: "0.17s"
+-                                 --shimmer-delay: "0.33s"
+                                }}
+                              >
+                            <SkeletonLine className="w-1/2">
+                              <div
+                                className="skeleton-line w-1/2"
+                                style={{
++                                 --skeleton-width: "73%"
+-                                 --skeleton-width: "49%"
++                                 --shimmer-duration: "1.38s"
+-                                 --shimmer-duration: "1.51s"
++                                 --shimmer-delay: "0.10s"
+-                                 --shimmer-delay: "0.01s"
+                                }}
+                              >
+                        ...
+                    ...
+          ...
+        ...
+ @ http://127.0.0.1:37377/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330

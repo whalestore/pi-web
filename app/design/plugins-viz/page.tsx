@@ -877,8 +877,8 @@ return reviews.map(r => r.output);`}
         {/* 作用域解释弹框 */}
         <Dialog.Root open={scopeHelpOpen} onOpenChange={setScopeHelpOpen}>
           <Dialog size="lg">
-            <Dialog.Title>Agent 作用域 · 大白话</Dialog.Title>
-            <Dialog.Description>一份 agent = 一份角色说明书（md 文件），放在哪个目录就是它的作用域</Dialog.Description>
+            <Dialog.Title className="text-lg font-semibold">Agent 作用域 · 大白话</Dialog.Title>
+            <Dialog.Description className="text-sm text-kumo-subtle">一份 agent = 一份角色说明书（md 文件），放在哪个目录就是它的作用域</Dialog.Description>
             <div className="space-y-3 text-sm py-2">
               <div className="border border-kumo-line rounded-lg overflow-hidden">
                 <table className="w-full text-sm table-fixed">
@@ -926,7 +926,7 @@ return reviews.map(r => r.output);`}
                 例：用户抽屉放了 reviewer（用更好的模型）→ 所有项目用你的版本；某项目再放一份 reviewer（只查安全）→ 只有那个项目用项目版。
               </div>
             </div>
-            <Dialog.Close render={(p) => <Button variant="secondary" {...p}>知道了</Button>} />
+            <Dialog.Close render={(p) => <Button variant="secondary" size="base" {...p}>知道了</Button>} />
           </Dialog>
         </Dialog.Root>
       </div>
